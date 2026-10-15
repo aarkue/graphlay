@@ -166,8 +166,10 @@ class Layout:
         """Node centres by node id, ready for `networkx.draw(g, pos=...)`. SVG y grows
         downwards, so pass `flip_y` for a plot whose y grows upwards."""
         sign = -1.0 if flip_y else 1.0
+        # `+ 0.0` turns the -0.0 a flipped zero would give into 0.0.
         return {
-            id: (n["center"]["x"], sign * n["center"]["y"]) for id, n in zip(self.ids, self.nodes)
+            id: (n["center"]["x"], sign * n["center"]["y"] + 0.0)
+            for id, n in zip(self.ids, self.nodes)
         }
 
     def to_dict(self) -> Dict[str, Any]:

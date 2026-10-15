@@ -10,7 +10,7 @@ use serde::{Deserialize, Serialize};
 use crate::graph::{Graph, NodeId};
 use crate::layout::Layout;
 use crate::svg::model::{
-    Attrs, BuiltinMarker, MarkerRef, NodeContent, Overlay, Point, RawSvg, Rect, Scene, SceneEdge,
+    Attrs, BuiltinMarker, MarkerRef, NodeContent, Overlay, RawSvg, Rect, Scene, SceneEdge,
     SceneNode, Shape, Size, Stroke, TextRun, TextWrap, ZOrder,
 };
 use crate::svg::render::{render, xml_escape};
@@ -110,10 +110,7 @@ pub fn sketch_scene(graph: &Graph, layout: &Layout, options: &SketchOptions) -> 
                 Stroke::new("#2f3a4d", 1.6)
             };
             SceneNode {
-                rect: Rect::from_center(
-                    Point::new(at.center.x, at.center.y),
-                    Size::new(at.size.width, at.size.height),
-                ),
+                rect: Rect::from_center(at.center, Size::new(at.size.width, at.size.height)),
                 shape,
                 fill: Some(if compound { "none" } else { "#ffffff" }.into()),
                 stroke: Some(stroke),
@@ -132,7 +129,7 @@ pub fn sketch_scene(graph: &Graph, layout: &Layout, options: &SketchOptions) -> 
                 EDGE_COLOURS[gid.0 as usize % EDGE_COLOURS.len()]
             });
             SceneEdge {
-                points: route.points.iter().map(|p| Point::new(p.x, p.y)).collect(),
+                points: route.points.clone(),
                 stroke: Stroke::new(colour, edge.thickness.clamp(1.4, 6.0)),
                 corner_radius: 5.0,
                 hop_radius: 4.0,

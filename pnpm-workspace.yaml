@@ -2,3 +2,6 @@ packages:
   - bindings/wasm/js
   - site
   - bench
+
+onlyBuiltDependencies:
+  - core-js

@@ -34,35 +34,7 @@ mod unbounded {
 /// A CSS colour, passed through as written (e.g., `#rrggbb`, `rgb(..)` or `currentColor`).
 pub type Color = String;
 
-/// A point in scene coordinates.
-#[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
-#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
-#[cfg_attr(feature = "schemars", schemars(rename = "ScenePoint"))]
-pub struct Point {
-    /// Horizontal coordinate, growing to the right.
-    pub x: f64,
-    /// Vertical coordinate, growing downwards (SVG's convention).
-    pub y: f64,
-}
-
-impl Point {
-    /// The point `(x, y)`.
-    pub const fn new(x: f64, y: f64) -> Self {
-        Point { x, y }
-    }
-}
-
-impl From<(f64, f64)> for Point {
-    fn from((x, y): (f64, f64)) -> Self {
-        Point { x, y }
-    }
-}
-
-impl From<Point> for (f64, f64) {
-    fn from(p: Point) -> Self {
-        (p.x, p.y)
-    }
-}
+pub use crate::geometry::Point;
 
 /// A width/height pair.
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
@@ -559,6 +531,18 @@ impl Default for TextRun {
     }
 }
 
+impl From<&str> for TextRun {
+    fn from(text: &str) -> Self {
+        TextRun::new(text)
+    }
+}
+
+impl From<String> for TextRun {
+    fn from(text: String) -> Self {
+        TextRun::new(text)
+    }
+}
+
 impl TextRun {
     /// A run of `text` with every other field at its default. It is centred on its anchor, set in
     /// the scene font and not wrapped.
@@ -585,6 +569,12 @@ impl TextRun {
     /// This run at font weight `weight`, builder style.
     pub fn weight(mut self, weight: f64) -> Self {
         self.weight = Some(weight);
+        self
+    }
+
+    /// This run in `color`, builder style.
+    pub fn color(mut self, color: impl Into<Color>) -> Self {
+        self.color = Some(color.into());
         self
     }
 
@@ -822,6 +812,21 @@ pub struct GlyphRow {
     pub attrs: Attrs,
 }
 
+impl GlyphRow {
+    /// `count` dots of `radius` in `color`, centred on the node, e.g., the tokens of a place.
+    pub fn dots(count: u64, radius: f64, color: impl Into<Color>) -> Self {
+        GlyphRow {
+            clusters: vec![GlyphCluster {
+                count,
+                radius,
+                color: Some(color.into()),
+                ..GlyphCluster::default()
+            }],
+            ..GlyphRow::default()
+        }
+    }
+}
+
 /// What is drawn inside a node, in list order, over its fill and border.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
@@ -854,6 +859,19 @@ pub enum NodeContent {
     },
     /// Caller markup, in scene coordinates (not relative to the node).
     Raw(RawSvg),
+}
+
+impl NodeContent {
+    /// The symbol `id` centred in the node, in a box of `size`, tinted `color`.
+    pub fn symbol(id: impl Into<String>, size: Size, color: impl Into<Color>) -> Self {
+        NodeContent::Use {
+            symbol: id.into(),
+            at: Point::default(),
+            size,
+            color: Some(color.into()),
+            attrs: Attrs::default(),
+        }
+    }
 }
 
 /// One node: a shape at a position, plus whatever is drawn inside it.
@@ -889,6 +907,15 @@ impl Default for SceneNode {
 }
 
 impl SceneNode {
+    /// The first text run in [`SceneNode::content`], e.g., the label
+    /// [`crate::svg::sketch_scene`] puts there.
+    pub fn label_mut(&mut self) -> Option<&mut TextRun> {
+        self.content.iter_mut().find_map(|c| match c {
+            NodeContent::Text(text) => Some(text),
+            _ => None,
+        })
+    }
+
     /// Half-width and half-height of the drawn outline (a circle uses `rect.w` for both).
     pub fn half_extent(&self) -> (f64, f64) {
         match self.shape {
@@ -968,6 +995,18 @@ impl MarkerRef {
         }
     }
 
+    /// This marker filled with `color`. A [`MarkerRef::None`] or custom marker is unchanged.
+    pub fn colored(self, color: impl Into<Color>) -> Self {
+        match self {
+            MarkerRef::Builtin { marker, size, .. } => MarkerRef::Builtin {
+                marker,
+                color: Some(color.into()),
+                size,
+            },
+            other => other,
+        }
+    }
+
     /// Whether this is [`MarkerRef::None`].
     pub fn is_none(&self) -> bool {
         matches!(self, MarkerRef::None)
@@ -1032,6 +1071,25 @@ impl Default for EdgeAnchor {
     }
 }
 
+impl From<f64> for EdgeAnchor {
+    fn from(fraction: f64) -> Self {
+        EdgeAnchor::Fraction(fraction)
+    }
+}
+
+impl From<Point> for EdgeAnchor {
+    fn from(p: Point) -> Self {
+        EdgeAnchor::At(p)
+    }
+}
+
+/// `None` is the middle of the edge, so an [`crate::EdgeRoute::label_anchor`] converts as is.
+impl From<Option<Point>> for EdgeAnchor {
+    fn from(p: Option<Point>) -> Self {
+        p.map_or_else(EdgeAnchor::default, EdgeAnchor::At)
+    }
+}
+
 /// A filled box drawn behind an edge label.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
@@ -1071,6 +1129,23 @@ pub struct EdgeLabel {
     pub chip: Option<Chip>,
     /// When non-empty, the chip and text are wrapped in a `<g>` carrying these attributes.
     pub attrs: Attrs,
+}
+
+impl EdgeLabel {
+    /// `text` anchored at `at`, with no chip.
+    pub fn new(text: impl Into<TextRun>, at: impl Into<EdgeAnchor>) -> Self {
+        EdgeLabel {
+            text: text.into(),
+            at: at.into(),
+            ..EdgeLabel::default()
+        }
+    }
+
+    /// This label on a default [`Chip`], builder style.
+    pub fn chip(mut self) -> Self {
+        self.chip = Some(Chip::default());
+        self
+    }
 }
 
 /// Something drawn along an edge. `Band`s are painted under the edge's own path, in list order.
@@ -1135,6 +1210,18 @@ pub enum Decoration {
         #[serde(default)]
         attrs: Attrs,
     },
+}
+
+impl Decoration {
+    /// A band under the whole of `edge`, following its points and corner radius.
+    pub fn band(edge: &SceneEdge, stroke: Stroke) -> Self {
+        Decoration::Band {
+            points: edge.points.clone(),
+            stroke,
+            corner_radius: edge.corner_radius,
+            attrs: Attrs::default(),
+        }
+    }
 }
 
 /// One edge: an already-routed polyline plus its styling, markers, labels and decorations.
@@ -1212,6 +1299,15 @@ pub enum Swatch {
     Raw(RawSvg),
 }
 
+impl Swatch {
+    /// A plain square in `color`.
+    pub fn color(color: impl Into<Color>) -> Self {
+        Swatch::Color {
+            color: color.into(),
+        }
+    }
+}
+
 /// One labelled entry of a [`Panel`].
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
@@ -1226,6 +1322,17 @@ pub struct LegendItem {
     pub swatch_advance: Option<f64>,
     /// When non-empty, the entry is wrapped in a `<g>` carrying these attributes.
     pub attrs: Attrs,
+}
+
+impl LegendItem {
+    /// An entry of `text` after `swatch`.
+    pub fn new(swatch: Swatch, text: impl Into<String>) -> Self {
+        LegendItem {
+            swatch,
+            text: text.into(),
+            ..LegendItem::default()
+        }
+    }
 }
 
 impl Default for LegendItem {
@@ -1309,6 +1416,25 @@ pub struct Panel {
     pub style: PanelStyle,
     /// When non-empty, the panel is wrapped in a `<g>` carrying these attributes.
     pub attrs: Attrs,
+}
+
+impl Panel {
+    /// One titled section of `items`, with its top-left at `origin`.
+    pub fn legend(
+        origin: Point,
+        title: impl Into<String>,
+        items: impl IntoIterator<Item = LegendItem>,
+    ) -> Self {
+        Panel {
+            origin,
+            sections: vec![PanelSection {
+                title: Some(title.into()),
+                items: items.into_iter().collect(),
+                ..PanelSection::default()
+            }],
+            ..Panel::default()
+        }
+    }
 }
 
 /// Whether an overlay is drawn under or over the graph.

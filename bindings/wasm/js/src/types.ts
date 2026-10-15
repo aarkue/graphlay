@@ -420,7 +420,7 @@ export type Decoration =
       /**
        * The band's own polyline, in scene coordinates. Fewer than two points draws nothing.
        */
-      points: ScenePoint[];
+      points: Point[];
       /**
        * How the band is stroked.
        */
@@ -432,7 +432,7 @@ export type Decoration =
  * This interface was referenced by `GraphlayTypes`'s JSON-Schema
  * via the `definition` "EdgeAnchor".
  */
-export type EdgeAnchor = number | ScenePoint;
+export type EdgeAnchor = number | Point;
 /**
  * How a stroked line ends.
  *
@@ -524,7 +524,7 @@ export type NodeContent =
       /**
        * Centre of the symbol's box, relative to the node centre.
        */
-      at: ScenePoint;
+      at: Point;
       /**
        * Attributes on the `<use>` element.
        */
@@ -2456,7 +2456,7 @@ export interface SceneEdge {
   /**
    * The polyline in scene coordinates, source first. Fewer than two points draws nothing.
    */
-  points?: ScenePoint[];
+  points?: Point[];
   /**
    * Ramer-Douglas-Peucker tolerance applied to the *drawn* path only (0 = draw as given).
    * Labels and decorations still anchor on the points as passed in.
@@ -2467,22 +2467,6 @@ export interface SceneEdge {
    * colour, or the theme's arc colour when the stroke is a gradient.
    */
   stroke?: Stroke;
-}
-/**
- * A point in scene coordinates.
- *
- * This interface was referenced by `GraphlayTypes`'s JSON-Schema
- * via the `definition` "ScenePoint".
- */
-export interface ScenePoint {
-  /**
-   * Horizontal coordinate, growing to the right.
-   */
-  x: number;
-  /**
-   * Vertical coordinate, growing downwards (SVG's convention).
-   */
-  y: number;
 }
 /**
  * A stroke: what to paint with, how wide, dashed how, capped how.
@@ -2522,7 +2506,7 @@ export interface Gradient {
   /**
    * Where offset `0` lies.
    */
-  from: ScenePoint;
+  from: Point;
   /**
    * The colour stops, in offset order.
    */
@@ -2530,7 +2514,7 @@ export interface Gradient {
   /**
    * Where offset `1` lies.
    */
-  to: ScenePoint;
+  to: Point;
 }
 /**
  * One stop of a [`Gradient`].
@@ -2761,7 +2745,7 @@ export interface MarkerDef {
   /**
    * The point of the marker that lands on the path's endpoint, in `view_box` coordinates.
    */
-  ref_point?: ScenePoint;
+  ref_point?: Point;
   /**
    * `markerWidth`/`markerHeight` in scene units.
    */
@@ -3045,7 +3029,7 @@ export interface Panel {
   /**
    * Top-left of the panel. The first baseline sits at `origin.y`.
    */
-  origin?: ScenePoint;
+  origin?: Point;
   /**
    * The sections, top to bottom.
    */

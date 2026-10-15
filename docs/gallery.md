@@ -97,9 +97,9 @@ Process models are the main use case. The first three are written by hand: a Pet
 use std::path::Path;
 
 use graphlay::svg::{
-    self, sketch_scene, Attrs, BuiltinMarker, Chip, Decoration, EdgeAnchor, EdgeLabel,
-    GlyphCluster, GlyphRow, LegendItem, LineCap, MarkerRef, NodeContent, Overlay, Paint, Palette,
-    PanelSection, Ring, SceneNode, SketchOptions, Stroke, Swatch, TextRun,
+    self, sketch_scene, BuiltinMarker, Decoration, EdgeLabel, GlyphRow, LegendItem, LineCap,
+    MarkerRef, NodeContent, Overlay, Paint, Palette, Point, Ring, SketchOptions, Stroke, Swatch,
+    TextRun,
 };
 use graphlay::{
     fixture, layout, Edge, GraphBuilder, GroupId, Layout, LayoutOptions, Node, NodeId,
@@ -135,30 +135,10 @@ fn label_size(text: &str) -> Size {
     Size::new(6.5 * text.len() as f64 + 10.0, 14.0)
 }
 
-/// `text` in a chip, at the spot the layout reserved for edge `i`'s label.
+/// `text` on a chip, at the spot the layout reserved for edge `i`'s label.
 fn chip(drawing: &Layout, i: usize, text: String, colour: &str) -> EdgeLabel {
-    let at = drawing.edges[i]
-        .label_anchor
-        .map_or(EdgeAnchor::default(), |p| {
-            EdgeAnchor::At(svg::Point::new(p.x, p.y))
-        });
-    EdgeLabel {
-        text: TextRun {
-            color: Some(colour.to_string()),
-            ..TextRun::new(text).size(10.0).weight(600.0)
-        },
-        at,
-        chip: Some(Chip::default()),
-        ..EdgeLabel::default()
-    }
-}
-
-/// The label the sketch put in a node, if it has one.
-fn label(node: &mut SceneNode) -> Option<&mut TextRun> {
-    node.content.iter_mut().find_map(|c| match c {
-        NodeContent::Text(text) => Some(text),
-        _ => None,
-    })
+    let text = TextRun::new(text).size(10.0).weight(600.0).color(colour);
+    EdgeLabel::new(text, drawing.edges[i].label_anchor).chip()
 }
 
 #[derive(Clone, Copy, PartialEq)]
@@ -237,15 +217,8 @@ impl Net {
                     node.fill = Some(self.types[i].map_or("#ffffff", |t| TYPES[t].2).to_string());
                     node.stroke = Some(Stroke::new(c, 1.5));
                     if !has_in(i) {
-                        let token = GlyphCluster {
-                            radius: 5.5,
-                            color: Some(c.to_string()),
-                            ..GlyphCluster::default()
-                        };
-                        node.content.push(NodeContent::Glyphs(GlyphRow {
-                            clusters: vec![token],
-                            ..GlyphRow::default()
-                        }));
+                        node.content
+                            .push(NodeContent::Glyphs(GlyphRow::dots(1, 5.5, c)));
                     }
                     if !has_out(i) {
                         let ring = Ring {
@@ -259,7 +232,7 @@ impl Net {
                 Kind::Transition => {
                     node.shape = svg::Shape::Rect { corner_radius: 2.0 };
                     node.stroke = Some(Stroke::new(INK, 1.5));
-                    if let Some(text) = label(node) {
+                    if let Some(text) = node.label_mut() {
                         text.color = Some(INK.to_string());
                         text.size = Some(11.5);
                     }
@@ -276,21 +249,13 @@ impl Net {
             edge.corner_radius = 6.0;
             if variable {
                 // A double line: a wide band in the type's colour under a white core.
-                edge.decorations.push(Decoration::Band {
-                    points: edge.points.clone(),
-                    stroke: Stroke {
-                        linecap: LineCap::Round,
-                        ..Stroke::new(c, 6.5)
-                    },
-                    corner_radius: 6.0,
-                    attrs: Attrs::default(),
-                });
-                edge.stroke = Stroke::new("#ffffff", 2.5);
-                edge.marker_end = MarkerRef::Builtin {
-                    marker: BuiltinMarker::Arrow,
-                    color: Some(c.to_string()),
-                    size: None,
+                let band = Stroke {
+                    linecap: LineCap::Round,
+                    ..Stroke::new(c, 6.5)
                 };
+                edge.decorations.push(Decoration::band(edge, band));
+                edge.stroke = Stroke::new("#ffffff", 2.5);
+                edge.marker_end = MarkerRef::builtin(BuiltinMarker::Arrow).colored(c);
             } else {
                 edge.stroke = Stroke::new(c, 1.6);
             }
@@ -300,23 +265,10 @@ impl Net {
                 .iter()
                 .enumerate()
                 .filter(|(t, _)| self.types.contains(&Some(*t)))
-                .map(|(_, (name, c, _))| LegendItem {
-                    swatch: Swatch::Color {
-                        color: c.to_string(),
-                    },
-                    text: name.to_string(),
-                    ..LegendItem::default()
-                })
-                .collect();
-            scene.overlays.push(Overlay::panel(svg::Panel {
-                origin: svg::Point::new(drawing.bounds.max.x + 24.0, drawing.bounds.min.y),
-                sections: vec![PanelSection {
-                    title: Some("Object types".to_string()),
-                    items,
-                    ..PanelSection::default()
-                }],
-                ..svg::Panel::default()
-            }));
+                .map(|(_, (name, c, _))| LegendItem::new(Swatch::color(*c), *name));
+            let origin = Point::new(drawing.bounds.max.x + 24.0, drawing.bounds.min.y);
+            let legend = svg::Panel::legend(origin, "Object types", items);
+            scene.overlays.push(Overlay::panel(legend));
         }
         Panel::new(caption, graph, &options, drawing).scene(scene, Palette::default())
     }
@@ -487,14 +439,14 @@ fn object_centric_dfg() -> Panel {
         if let Some(&(name, _, n)) = ACTIVITIES.get(i) {
             node.stroke = Some(Stroke::new(INK, 1.6));
             node.content = vec![
-                NodeContent::Text(TextRun {
-                    color: Some(INK.to_string()),
-                    ..TextRun::new(name).at(0.0, -7.0).weight(600.0)
-                }),
-                NodeContent::Text(TextRun {
-                    color: Some(MUTED.to_string()),
-                    ..TextRun::new(count(n)).at(0.0, 9.0).size(10.5).weight(500.0)
-                }),
+                NodeContent::Text(TextRun::new(name).at(0.0, -7.0).weight(600.0).color(INK)),
+                NodeContent::Text(
+                    TextRun::new(count(n))
+                        .at(0.0, 9.0)
+                        .size(10.5)
+                        .weight(500.0)
+                        .color(MUTED),
+                ),
             ];
         } else if let Some(&(name, c, _)) = TYPES.get(i - ACTIVITIES.len()) {
             node.shape = svg::Shape::Rect {
@@ -502,10 +454,9 @@ fn object_centric_dfg() -> Panel {
             };
             node.fill = Some(c.to_string());
             node.stroke = Some(Stroke::new(c, 1.6));
-            node.content = vec![NodeContent::Text(TextRun {
-                color: Some("#ffffff".to_string()),
-                ..TextRun::new(name).weight(600.0)
-            })];
+            node.content = vec![NodeContent::Text(
+                TextRun::new(name).weight(600.0).color("#ffffff"),
+            )];
         } else {
             let c = TYPES[i - ACTIVITIES.len() - TYPES.len()].1;
             node.shape = svg::Shape::Circle;
@@ -570,7 +521,7 @@ fn fines_dfg() -> Panel {
             _ => {
                 node.fill = Some("#f8fafc".to_string());
                 node.stroke = Some(Stroke::new("#334155", 1.6));
-                if let Some(text) = label(node) {
+                if let Some(text) = node.label_mut() {
                     text.color = Some(INK.to_string());
                     text.weight = Some(600.0);
                 }
@@ -1247,10 +1198,10 @@ A layout is positions and polylines, and the renderer decides how they look. Eve
 use std::path::Path;
 
 use graphlay::svg::{
-    self, sketch_scene, Attrs, BuiltinMarker, Chip, Decoration, EdgeAnchor, EdgeLabel,
-    GlyphCluster, GlyphRow, Gradient, GradientStop, LegendItem, LineCap, MarkerRef, NodeContent,
-    Overlay, Paint, Palette, PanelSection, Ring, SceneNode, SketchOptions, Stroke, Swatch, TextRun,
-    SYMBOL_PLAY_TRIANGLE, SYMBOL_STOP_SQUARE, SYMBOL_SWATCH_DOT,
+    self, sketch_scene, BuiltinMarker, Chip, Decoration, EdgeLabel, GlyphRow, Gradient,
+    GradientStop, LegendItem, LineCap, MarkerRef, NodeContent, Overlay, Paint, Palette, Point,
+    Ring, SketchOptions, Stroke, Swatch, TextRun, SYMBOL_PLAY_TRIANGLE, SYMBOL_STOP_SQUARE,
+    SYMBOL_SWATCH_DOT,
 };
 use graphlay::{
     fixture, layout, Direction, Edge, Graph, GraphBuilder, Layout, LayoutOptions, LoopSide, Node,
@@ -1262,55 +1213,16 @@ use super::Panel;
 const BLUE: &str = "#2563eb";
 const INK: &str = "#1f2937";
 
-/// The label the sketch put in a node, if it has one.
-fn label(node: &mut SceneNode) -> Option<&mut TextRun> {
-    node.content.iter_mut().find_map(|c| match c {
-        NodeContent::Text(text) => Some(text),
-        _ => None,
-    })
-}
-
-/// `text` in a chip, at the spot the layout reserved for edge `i`'s label.
+/// `text` on a chip, at the spot the layout reserved for edge `i`'s label.
 fn chip(drawing: &Layout, i: usize, text: impl Into<String>, colour: &str) -> EdgeLabel {
-    let at = drawing.edges[i]
-        .label_anchor
-        .map_or(EdgeAnchor::default(), |p| {
-            EdgeAnchor::At(svg::Point::new(p.x, p.y))
-        });
-    EdgeLabel {
-        text: TextRun {
-            color: Some(colour.to_string()),
-            ..TextRun::new(text).size(10.0).weight(600.0)
-        },
-        at,
-        chip: Some(Chip::default()),
-        ..EdgeLabel::default()
-    }
+    let text = TextRun::new(text).size(10.0).weight(600.0).color(colour);
+    EdgeLabel::new(text, drawing.edges[i].label_anchor).chip()
 }
 
-/// A legend titled `title`, just right of the drawing.
-fn legend<'a>(
-    drawing: &Layout,
-    title: &str,
-    items: impl IntoIterator<Item = (Swatch, &'a str)>,
-) -> Overlay {
-    let items = items
-        .into_iter()
-        .map(|(swatch, text)| LegendItem {
-            swatch,
-            text: text.to_string(),
-            ..LegendItem::default()
-        })
-        .collect();
-    Overlay::panel(svg::Panel {
-        origin: svg::Point::new(drawing.bounds.max.x + 24.0, drawing.bounds.min.y),
-        sections: vec![PanelSection {
-            title: Some(title.to_string()),
-            items,
-            ..PanelSection::default()
-        }],
-        ..svg::Panel::default()
-    })
+/// A legend just right of the drawing.
+fn legend(drawing: &Layout, title: &str, items: impl IntoIterator<Item = LegendItem>) -> Overlay {
+    let origin = Point::new(drawing.bounds.max.x + 24.0, drawing.bounds.min.y);
+    Overlay::panel(svg::Panel::legend(origin, title, items))
 }
 
 /// Edge `i` runs along `main` when it joins two of its nodes in order.
@@ -1377,19 +1289,13 @@ fn petri_net() -> Panel {
             node.shape = svg::Shape::Circle;
             node.content.clear();
             if i == 0 {
-                let token = GlyphCluster {
-                    radius: 5.5,
-                    ..GlyphCluster::default()
-                };
-                node.content.push(NodeContent::Glyphs(GlyphRow {
-                    clusters: vec![token],
-                    ..GlyphRow::default()
-                }));
+                node.content
+                    .push(NodeContent::Glyphs(GlyphRow::dots(1, 5.5, INK)));
             }
         } else {
             node.fill = Some(INK.to_string());
             node.stroke = Some(Stroke::new(INK, 1.6));
-            if let Some(text) = label(node) {
+            if let Some(text) = node.label_mut() {
                 text.color = Some("#ffffff".to_string());
             }
         }
@@ -1399,14 +1305,11 @@ fn petri_net() -> Panel {
         size: svg::Size::new(10.0, 10.0),
         color: None,
     };
-    let transition = Swatch::Color {
-        color: INK.to_string(),
-    };
-    scene.overlays.push(legend(
-        &drawing,
-        "Petri net",
-        [(place, "place"), (transition, "transition")],
-    ));
+    let items = [
+        LegendItem::new(place, "place"),
+        LegendItem::new(Swatch::color(INK), "transition"),
+    ];
+    scene.overlays.push(legend(&drawing, "Petri net", items));
     Panel::new("a Petri net", net, &options, drawing).scene(scene, Palette::default())
 }
 
@@ -1466,24 +1369,18 @@ fn happy_path() -> Panel {
             node.shape = svg::Shape::Circle;
             node.fill = Some(colour.to_string());
             node.stroke = Some(Stroke::new(colour, 1.6));
-            node.content = vec![NodeContent::Use {
-                symbol: icon.to_string(),
-                at: svg::Point::default(),
-                size,
-                color: Some("#ffffff".to_string()),
-                attrs: Attrs::default(),
-            }];
+            node.content = vec![NodeContent::symbol(icon, size, "#ffffff")];
         } else if main.contains(&i) {
             node.fill = Some("#dbeafe".to_string());
             node.stroke = Some(Stroke::new(BLUE, 1.75));
-            if let Some(text) = label(node) {
+            if let Some(text) = node.label_mut() {
                 text.color = Some("#1e3a8a".to_string());
                 text.weight = Some(600.0);
             }
         } else {
             node.fill = Some("#f8fafc".to_string());
             node.stroke = Some(Stroke::new("#cbd5e1", 1.6));
-            if let Some(text) = label(node) {
+            if let Some(text) = node.label_mut() {
                 text.color = Some("#64748b".to_string());
             }
         }
@@ -1496,16 +1393,12 @@ fn happy_path() -> Panel {
         );
         if on {
             // A soft band under the path draws it as one stroke of colour.
-            edge.decorations.push(Decoration::Band {
-                points: edge.points.clone(),
-                stroke: Stroke {
-                    linecap: LineCap::Round,
-                    opacity: Some(0.45),
-                    ..Stroke::new("#bfdbfe", 14.0)
-                },
-                corner_radius: edge.corner_radius,
-                attrs: Attrs::default(),
-            });
+            let band = Stroke {
+                linecap: LineCap::Round,
+                opacity: Some(0.45),
+                ..Stroke::new("#bfdbfe", 14.0)
+            };
+            edge.decorations.push(Decoration::band(edge, band));
         }
         let text = if on { "#1e3a8a" } else { "#64748b" };
         edge.labels
@@ -1567,7 +1460,7 @@ fn heat_map() -> Panel {
         let (fill, text) = HEAT[bin.min(5)];
         node.fill = Some(fill.to_string());
         node.stroke = Some(Stroke::new("#1e40af", 1.25));
-        if let Some(label) = label(node) {
+        if let Some(label) = node.label_mut() {
             label.color = Some(text.to_string());
             label.weight = Some(600.0);
         }
@@ -1585,14 +1478,8 @@ fn heat_map() -> Panel {
         edge.stroke = Stroke::new(colour, 1.2 + 3.3 * share);
         edge.labels.push(chip(&drawing, i, c.to_string(), colour));
     }
-    let shades = [(5, "every case"), (3, "most cases"), (0, "a few")].map(|(bin, text)| {
-        (
-            Swatch::Color {
-                color: HEAT[bin].0.to_string(),
-            },
-            text,
-        )
-    });
+    let shades = [(5, "every case"), (3, "most cases"), (0, "a few")]
+        .map(|(bin, text)| LegendItem::new(Swatch::color(HEAT[bin].0), text));
     scene.overlays.push(legend(&drawing, "Cases", shades));
     Panel::new("frequencies as heat", g, &options, drawing).scene(scene, Palette::default())
 }
@@ -1734,7 +1621,7 @@ fn service_map() -> Panel {
     for (i, node) in scene.nodes.iter_mut().enumerate() {
         node.fill = Some("#1e293b".to_string());
         node.stroke = Some(Stroke::new(TIER[services[i].1], 1.75));
-        if let Some(text) = label(node) {
+        if let Some(text) = node.label_mut() {
             text.color = Some("#e2e8f0".to_string());
             text.weight = Some(600.0);
         }
@@ -1753,11 +1640,7 @@ fn service_map() -> Panel {
                 to: edge.points[edge.points.len() - 1],
                 stops: vec![stop(0.0, from), stop(1.0, to)],
             });
-            edge.marker_end = MarkerRef::Builtin {
-                marker: BuiltinMarker::Arrow,
-                color: Some(to.to_string()),
-                size: None,
-            };
+            edge.marker_end = MarkerRef::builtin(BuiltinMarker::Arrow).colored(to);
         }
         edge.labels.push(EdgeLabel {
             chip: Some(Chip {
@@ -1770,14 +1653,7 @@ fn service_map() -> Panel {
     let tiers = ["clients", "services", "stores"]
         .into_iter()
         .zip(TIER)
-        .map(|(text, colour)| {
-            (
-                Swatch::Color {
-                    color: colour.to_string(),
-                },
-                text,
-            )
-        });
+        .map(|(text, colour)| LegendItem::new(Swatch::color(colour), text));
     scene.overlays.push(legend(&drawing, "Tiers", tiers));
     scene.background = Some("#0b1220".to_string());
     // The legend's text takes the palette's text colour.

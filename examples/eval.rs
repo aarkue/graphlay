@@ -22,8 +22,7 @@ use graphlay::geometry::{Point, Size};
 use graphlay::metrics::{self, LayoutMetrics, ScoreWeights};
 use graphlay::pipeline::{self, PhaseSteps};
 use graphlay::svg::{
-    render, sketch_scene, Chip, EdgeAnchor, EdgeLabel, HeuristicMeasurer, Point as SvgPoint, Scene,
-    SketchOptions, TextRun, Theme,
+    render, sketch_scene, EdgeLabel, HeuristicMeasurer, Scene, SketchOptions, TextRun, Theme,
 };
 use graphlay::synthetic::synthetic_fixtures;
 use graphlay::{
@@ -1352,15 +1351,9 @@ fn scene(f: &Fixture, graph: &Graph, layout: &Layout) -> Scene {
         if text.is_empty() {
             continue;
         }
-        edge.labels.push(EdgeLabel {
-            text: TextRun::new(text).size(12.0),
-            at: route.label_anchor.map_or(EdgeAnchor::default(), |a| {
-                EdgeAnchor::At(SvgPoint::new(a.x, a.y))
-            }),
-            // A chip, since a halo lets edges show through between letters.
-            chip: Some(Chip::default()),
-            ..EdgeLabel::default()
-        });
+        // A chip, since a halo lets edges show through between letters.
+        let label = EdgeLabel::new(TextRun::new(text).size(12.0), route.label_anchor).chip();
+        edge.labels.push(label);
     }
     scene
 }

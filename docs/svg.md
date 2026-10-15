@@ -90,8 +90,22 @@ let l = layout(&g, &LayoutOptions::layered_default()).expect("a valid graph");
 
 let mut scene = svg::sketch_scene(&g, &l, &svg::SketchOptions::default());
 scene.background = Some("#f8fafc".into());
+let node = &mut scene.nodes[0];
+node.fill = Some("#dbeafe".into());
+node.content.push(svg::NodeContent::Glyphs(svg::GlyphRow::dots(1, 5.0, "#1e3a8a")));
+if let Some(label) = node.label_mut() {
+    label.weight = Some(600.0);
+}
+let edge = &mut scene.edges[0];
+edge.marker_end = svg::MarkerRef::builtin(svg::BuiltinMarker::Arrow).colored("#2563eb");
+edge.labels.push(svg::EdgeLabel::new("42", l.edges[0].label_anchor).chip());
 let svg = svg::render(&scene, &svg::Theme::default(), &svg::HeuristicMeasurer::new());
 ```
+
+Scene node `i` is graph node `i` unless the graph has compounds, which come first. The builders
+`label_mut`, `GlyphRow::dots`, `NodeContent::symbol`, `EdgeLabel::new(..).chip()`,
+`MarkerRef::builtin(..).colored(..)`, `Decoration::band`, `LegendItem::new` and `Panel::legend`
+cover the usual restyling. [The gallery](gallery.md#drawing-styles) has complete examples.
 
 The JSON form takes the same steps: `json::sketch_scene` returns the scene as JSON,
 `json::render_scene` draws a scene, and `json::sketch` does both.

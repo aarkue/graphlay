@@ -82,7 +82,7 @@ enum Command {
         #[command(flatten)]
         out: OutputArgs,
     },
-    /// Print the JSON schemas of the request, layout and metrics types
+    /// Print the JSON schemas of every input and output type
     Schema {
         #[command(flatten)]
         out: OutputArgs,
