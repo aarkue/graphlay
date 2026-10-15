@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24.80 -55.00 1142.65 185.80" width="1142.65" height="185.80" font-family="Inter, system-ui, -apple-system, sans-serif">
+<defs>
+<symbol id="gl-swatch-dot" viewBox="0.00 0.00 10.00 10.00" overflow="visible">
+<circle cx="5" cy="5" r="3.5" fill="currentColor"/>
+</symbol>
+<marker id="gl-mk-0" markerWidth="12.00" markerHeight="12.00" viewBox="0 0 12.00 12" orient="auto" refX="1.00" refY="6" markerUnits="userSpaceOnUse"><path d="M 1,1 L 11,6 L 1,11 Z" fill="#3b4658" stroke="#3b4658" stroke-linejoin="round"/></marker>
+</defs>
+<rect x="-24.80" y="-55.00" width="1142.65" height="185.80" fill="#ffffff"/>
+<g id="edges">
+<path d="M 34.00,0.00 L 79.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 188.00,0.00 L 233.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 276.00,0.00 L 321.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 430.00,0.00 L 475.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 518.00,0.00 L 563.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 501.00,17.00 L 501.00,81.00 Q 501.00,86.00 506.00,86.00 L 563.00,86.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 672.00,0.00 L 717.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 672.00,86.00 L 738.00,86.00 Q 743.00,86.00 743.00,81.00 L 743.00,26.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 760.00,0.00 L 848.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 757.42,9.00 L 782.00,9.00 Q 787.00,9.00 787.00,14.00 L 787.00,81.00 Q 787.00,86.00 792.00,86.00 L 805.00,86.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 871.00,0.00 L 959.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 914.00,86.00 L 980.00,86.00 Q 985.00,86.00 985.00,81.00 L 985.00,26.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+</g>
+<g id="nodes">
+<circle cx="17.00" cy="0.00" r="17.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<circle cx="17.00" cy="0.00" r="5.50" fill="#111827"/>
+<circle cx="259.00" cy="0.00" r="17.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<circle cx="501.00" cy="0.00" r="17.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<circle cx="743.00" cy="0.00" r="17.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<circle cx="985.00" cy="0.00" r="17.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<rect x="88.00" y="-20.00" width="100.00" height="40.00" rx="5.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
+<text x="138.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#ffffff">Register</text>
+<rect x="330.00" y="-20.00" width="100.00" height="40.00" rx="5.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
+<text x="380.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#ffffff">Check</text>
+<rect x="572.00" y="-20.00" width="100.00" height="40.00" rx="5.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
+<text x="622.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#ffffff">Approve</text>
+<rect x="572.00" y="66.00" width="100.00" height="40.00" rx="5.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
+<text x="622.00" y="86.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#ffffff">Reject</text>
+<rect x="857.00" y="-20.00" width="14.00" height="40.00" rx="5.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
+<rect x="814.00" y="66.00" width="100.00" height="40.00" rx="5.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
+<text x="864.00" y="86.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#ffffff">Notify</text>
+</g>
+<g id="overlays">
+<text x="1026.00" y="-20.00" text-anchor="start" font-size="11.00" font-weight="600.00" fill="#111827">Petri net</text>
+<use href="#gl-swatch-dot" x="1026.00" y="-12.00" width="10.00" height="10.00" color="#374151"/>
+<text x="1046.00" y="-4.00" text-anchor="start" font-size="11.00" font-weight="400.00" fill="#111827">place</text>
+<rect x="1026.00" y="4.00" width="10.00" height="10.00" rx="2.00" fill="#1f2937"/>
+<text x="1046.00" y="12.00" text-anchor="start" font-size="11.00" font-weight="400.00" fill="#111827">transition</text>
+</g>
+</svg>

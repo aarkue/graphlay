@@ -1,0 +1,133 @@
+{
+  "name": "tree-small-example-im",
+  "kind": "tree",
+  "source": "test_data/xes/small-example.xes, Inductive Miner (imf, noise=0) process tree",
+  "direction": "TB",
+  "options": {
+    "flow_edges": false,
+    "flow_diagonal": false,
+    "tree": true,
+    "compact": false
+  },
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "×",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n1",
+      "label": "↺",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n2",
+      "label": "",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n3",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n4",
+      "label": "→",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n5",
+      "label": "Register client",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n6",
+      "label": "Mail rejection",
+      "width": 136.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    }
+  ],
+  "edges": [
+    {
+      "from": 1,
+      "to": 2,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 1,
+      "to": 3,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 0,
+      "to": 1,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 4,
+      "to": 5,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 4,
+      "to": 6,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 0,
+      "to": 4,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    }
+  ]
+}

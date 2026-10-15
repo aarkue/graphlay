@@ -1,0 +1,862 @@
+{
+  "name": "pn-rtfm-imf02-reference",
+  "kind": "petri",
+  "source": "test_data/petri-net/rtfm-imf-02.apnml",
+  "direction": "LR",
+  "options": {
+    "flow_edges": false,
+    "flow_diagonal": false,
+    "tree": false,
+    "compact": false
+  },
+  "nodes": [
+    {
+      "id": "0a066b53-b7b2-436b-b16a-a8c67a7567fc",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "0c1bdfe2-1d2d-43a6-a17d-532ee29fa742",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "0f302ffb-647b-4150-8c3b-1d095c03b96d",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "17a9fdf0-da77-45fc-a1d1-45922eacfd42",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "4d245c97-093d-4cd5-baab-fff71a602b75",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "63bf9d19-b2a3-4932-8c5e-d3f54c25df65",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "6fd65553-b23c-4d07-b757-4ae5dda8e0fb",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "7b2b6c11-8eb5-43aa-b6ba-90db88d8b24e",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "861194df-4c88-4851-92c2-1d14c96fef8e",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "9577daae-bda4-44d1-930c-ca2dad503cf0",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "9c5ce947-ebbd-46db-991b-ebca040fdbfd",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "9ed21d80-22c8-4651-bb6b-39674f3d5a06",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "a8adaaf8-21ea-4382-a0b5-9f5e5de74a5a",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "ae8f6e48-cb18-4fab-aadf-78f6c3cf7ab1",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "c0c66e6e-f955-4d41-b37a-08bdd3229660",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "d47d6fed-d55c-41e4-ab03-55222478b8dd",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "d6c6be5c-3fad-49e1-8693-ea30bd37481b",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "dd47b462-4803-4405-89e5-de8337342453",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "dea233fc-73b6-4fea-b47d-dddffc2e81fa",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "debe3773-6bbb-4d3a-a202-892a0f6d07a4",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "0f6ef663-d863-4a76-ab2c-ec702c8b6786",
+      "label": "Notify Result Appeal to Offender",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "154a101c-fd28-4133-9ac2-70b0a25de7d0",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "2f820f0b-3eb9-4933-82d7-2d2939fbd2f1",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "52bec379-d8f1-4153-ae36-bea56e758ae4",
+      "label": "Insert Fine Notification",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "54e59d02-bd47-4fe8-b5da-ba90b8e1fb39",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "55168069-c086-4a11-a063-6ef0d8da8e9a",
+      "label": "Receive Result Appeal from Prefecture",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "5e9772b1-8358-4688-bb71-f6e7fe75cf66",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "6394b996-06ed-4edc-b9a8-f7e87a2fa6cf",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "75add0b2-14cb-45b2-b17a-6be059530162",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "825ea848-196e-488d-9f7b-8d957727b9e3",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "9deca93e-432b-401d-9e7f-cb13ac282601",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "aa381c41-a81c-43b5-94ff-1ad0d49b049c",
+      "label": "Appeal to Judge",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "b27b0172-b9ed-432b-ba1e-e04e2e236139",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "b9b1f21f-b52d-4314-8252-65b455e9c692",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "c1898283-812e-41b0-a316-92fc5e888385",
+      "label": "Send for Credit Collection",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "ca165747-f6b9-4690-a811-99f220e8dd37",
+      "label": "Insert Date Appeal to Prefecture",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "cf365f24-3c96-4fc3-ba92-2645501c3f34",
+      "label": "Send Appeal to Prefecture",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "e07ad0b4-e817-4d3c-88d5-88cb39319ced",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "e0ecc841-20b0-4fd4-b7c3-cd3858d118c7",
+      "label": "Add penalty",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "f300b705-8180-4acc-b64b-1964e284f31b",
+      "label": "Send Fine",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "f4b4a010-196d-43f5-949e-99a89c67aabf",
+      "label": "Create Fine",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "fcc881dd-67fb-4b5b-b325-8cbc18cdf3bb",
+      "label": "Payment",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    }
+  ],
+  "edges": [
+    {
+      "from": 0,
+      "to": 32,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 1,
+      "to": 20,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 1,
+      "to": 21,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 29,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 34,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 3,
+      "to": 28,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 4,
+      "to": 40,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 5,
+      "to": 37,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 6,
+      "to": 35,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 7,
+      "to": 32,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 8,
+      "to": 38,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 9,
+      "to": 22,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 9,
+      "to": 33,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 32,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 11,
+      "to": 32,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 12,
+      "to": 25,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 13,
+      "to": 28,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 14,
+      "to": 36,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 16,
+      "to": 30,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 16,
+      "to": 41,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 17,
+      "to": 26,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 17,
+      "to": 39,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 18,
+      "to": 24,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 18,
+      "to": 31,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 19,
+      "to": 23,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 19,
+      "to": 27,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 20,
+      "to": 7,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 21,
+      "to": 7,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 22,
+      "to": 5,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 23,
+      "to": 8,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 24,
+      "to": 11,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 25,
+      "to": 0,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 26,
+      "to": 3,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 27,
+      "to": 3,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 28,
+      "to": 2,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 29,
+      "to": 15,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 30,
+      "to": 13,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 31,
+      "to": 11,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 32,
+      "to": 5,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 33,
+      "to": 6,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 33,
+      "to": 12,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 33,
+      "to": 14,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 33,
+      "to": 18,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 34,
+      "to": 15,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 35,
+      "to": 1,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 36,
+      "to": 10,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 37,
+      "to": 16,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 37,
+      "to": 17,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 38,
+      "to": 3,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 39,
+      "to": 19,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 40,
+      "to": 9,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 41,
+      "to": 13,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    }
+  ]
+}

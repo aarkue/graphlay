@@ -1,0 +1,26 @@
+[package]
+name = "graphlay-wasm"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "The graphlay layout engine for the browser and Node, through wasm-bindgen"
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[features]
+default = ["svg"]
+# The SVG renderer. Leave it out for a smaller binary when the host never exports an image.
+svg = ["graphlay/svg"]
+
+[dependencies]
+graphlay = { path = "../..", version = "0.2.0", default-features = false, features = ["serde"] }
+wasm-bindgen = "0.2"
+
+# wasm-opt would need a binaryen download at build time. Opt-level z with LTO already gives a
+# small binary, so the build stays self-contained.
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false

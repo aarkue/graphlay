@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24.80 -44.80 865.60 148.80" width="865.60" height="148.80" font-family="Inter, system-ui, -apple-system, sans-serif">
+<defs>
+<marker id="gl-mk-0" markerWidth="12.00" markerHeight="12.00" viewBox="0 0 12.00 12" orient="auto" refX="1.00" refY="6" markerUnits="userSpaceOnUse"><path d="M 1,1 L 11,6 L 1,11 Z" fill="#3b4658" stroke="#3b4658" stroke-linejoin="round"/></marker>
+</defs>
+<rect x="-24.80" y="-44.80" width="865.60" height="148.80" fill="#ffffff"/>
+<g id="edges">
+<path d="M 120.00,18.00 L 142.00,18.00 Q 147.00,18.00 147.00,23.00 L 147.00,45.00 Q 147.00,50.00 152.00,50.00 L 165.00,50.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 294.00,68.00 L 339.00,68.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 468.00,50.00 L 490.00,50.00 Q 495.00,50.00 495.00,45.00 L 495.00,23.00 Q 495.00,18.00 500.00,18.00 L 513.00,18.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 642.00,0.00 L 687.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 348.00,50.00 L 303.00,50.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 522.00,0.00 L 129.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+</g>
+<g id="nodes">
+<rect x="0.00" y="-20.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="60.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Receive claim</text>
+<rect x="174.00" y="30.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="234.00" y="50.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Assess claim</text>
+<rect x="348.00" y="30.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="408.00" y="50.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Approve</text>
+<rect x="522.00" y="-20.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="582.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Pay out</text>
+<rect x="696.00" y="-20.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="756.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Archive</text>
+</g>
+</svg>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-47.00 -255.00 1780.00 524.00" width="1780.00" height="524.00" font-family="Inter, system-ui, -apple-system, sans-serif">
+<defs>
+<marker id="gl-mk-0" markerWidth="12.00" markerHeight="12.00" viewBox="0 0 12.00 12" orient="auto" refX="1.00" refY="6" markerUnits="userSpaceOnUse"><path d="M 1,1 L 11,6 L 1,11 Z" fill="#3b4658" stroke="#3b4658" stroke-linejoin="round"/></marker>
+</defs>
+<rect x="-47.00" y="-255.00" width="1780.00" height="524.00" fill="#ffffff"/>
+<g id="overlays-under">
+<rect x="-23.00" y="-231.00" width="1732.00" height="135.50" fill="#f3f5f8" stroke="#d5dae1" stroke-width="1"/><text x="-17.00" y="-217.00" font-size="11" font-weight="600" fill="#6b7280" font-family="sans-serif">Warehouse</text><rect x="-23.00" y="-95.50" width="1732.00" height="152.00" fill="#fafbfc" stroke="#d5dae1" stroke-width="1"/><text x="-17.00" y="-81.50" font-size="11" font-weight="600" fill="#6b7280" font-family="sans-serif">Customer</text><rect x="-23.00" y="56.50" width="1732.00" height="102.50" fill="#f3f5f8" stroke="#d5dae1" stroke-width="1"/><text x="-17.00" y="70.50" font-size="11" font-weight="600" fill="#6b7280" font-family="sans-serif">Sales</text><rect x="-23.00" y="159.00" width="1732.00" height="86.00" fill="#fafbfc" stroke="#d5dae1" stroke-width="1"/><text x="-17.00" y="173.00" font-size="11" font-weight="600" fill="#6b7280" font-family="sans-serif">Finance</text>
+</g>
+<g id="edges">
+<path d="M 120.00,-3.00 L 142.00,-3.00 Q 147.00,-3.00 147.00,2.00 L 147.00,111.00 Q 147.00,116.00 152.00,116.00 L 165.00,116.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 294.00,116.00 L 316.00,116.00 Q 321.00,116.00 321.00,121.00 L 321.00,197.00 Q 321.00,202.00 326.00,202.00 L 339.00,202.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 468.00,202.00 L 490.00,202.00 Q 495.00,202.00 495.00,197.00 L 495.00,121.00 Q 495.00,116.00 500.00,116.00 L 513.00,116.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 642.00,103.40 L 655.00,103.40 Q 660.00,103.40 660.00,98.40 L 660.00,-150.00 Q 660.00,-155.00 665.00,-155.00 L 687.00,-155.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 816.00,-155.00 L 838.00,-155.00 Q 843.00,-155.00 843.00,-160.00 L 843.00,-183.00 Q 843.00,-188.00 848.00,-188.00 L 861.00,-188.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 990.00,-188.00 L 1035.00,-188.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 642.00,128.60 L 673.00,128.60 Q 678.00,128.60 678.00,133.60 L 678.00,197.50 Q 678.00,202.00 682.50,202.00 L 687.00,202.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1164.00,-188.00 L 1186.00,-188.00 Q 1191.00,-188.00 1191.00,-183.00 L 1191.00,-41.00 Q 1191.00,-36.00 1196.00,-36.00 L 1209.00,-36.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 816.00,202.00 L 1369.00,202.00 Q 1374.00,202.00 1374.00,197.00 L 1374.00,14.10 Q 1374.00,9.60 1378.50,9.60 L 1383.00,9.60" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1338.00,-36.00 L 1351.00,-36.00 Q 1356.00,-36.00 1356.00,-31.00 L 1356.00,-20.60 Q 1356.00,-15.60 1361.00,-15.60 L 1383.00,-15.60" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1512.00,-3.00 L 1534.00,-3.00 Q 1539.00,-3.00 1539.00,2.00 L 1539.00,197.00 Q 1539.00,202.00 1544.00,202.00 L 1557.00,202.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+</g>
+<g id="nodes">
+<rect x="0.00" y="-23.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="60.00" y="-3.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Place order</text>
+<rect x="174.00" y="96.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="234.00" y="116.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Receive order</text>
+<rect x="348.00" y="182.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="408.00" y="202.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Check credit</text>
+<rect x="522.00" y="96.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="582.00" y="116.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Confirm order</text>
+<rect x="696.00" y="-175.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="756.00" y="-155.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Pick items</text>
+<rect x="870.00" y="-208.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="930.00" y="-188.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Pack</text>
+<rect x="1044.00" y="-208.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="1104.00" y="-188.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Ship</text>
+<rect x="696.00" y="182.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="756.00" y="202.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Send invoice</text>
+<rect x="1218.00" y="-56.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="1278.00" y="-36.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Receive goods</text>
+<rect x="1392.00" y="-23.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="1452.00" y="-3.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Pay invoice</text>
+<rect x="1566.00" y="182.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="1626.00" y="202.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Book payment</text>
+</g>
+</svg>

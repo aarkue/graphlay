@@ -1,0 +1,343 @@
+{
+  "name": "ocdeclare-ocel2-p2p",
+  "kind": "ocdeclare",
+  "source": "test_data/ocel/ocel2-p2p.json, OC-DECLARE discovery (EF/EP only, counts <= 20, lossless reduction, noise=0.2)",
+  "direction": "LR",
+  "options": {
+    "flow_edges": true,
+    "flow_diagonal": false,
+    "tree": false,
+    "compact": false
+  },
+  "nodes": [
+    {
+      "id": "Approve Purchase Order",
+      "label": "Approve Purchase Order",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Approve Purchase Requisition",
+      "label": "Approve Purchase Requisition",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Create Goods Receipt",
+      "label": "Create Goods Receipt",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Create Invoice Receipt",
+      "label": "Create Invoice Receipt",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Create Purchase Order",
+      "label": "Create Purchase Order",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Create Purchase Requisition",
+      "label": "Create Purchase Requisition",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Create Request for Quotation",
+      "label": "Create Request for Quotation",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Delegate Purchase Requisition Approval",
+      "label": "Delegate Purchase Requisition Approval",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Execute Payment",
+      "label": "Execute Payment",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Perform Two-Way Match",
+      "label": "Perform Two-Way Match",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    }
+  ],
+  "edges": [
+    {
+      "from": 0,
+      "to": 2,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(purchase_order) 1..∞",
+      "label_size": [
+        204.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 0,
+      "to": 4,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(purchase_order,quotation) 1..∞",
+      "label_size": [
+        274.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 1,
+      "to": 5,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(purchase_requisition), All(material) 1..∞",
+      "label_size": [
+        351.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 1,
+      "to": 6,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(purchase_requisition) 1..∞",
+      "label_size": [
+        246.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 0,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(purchase_order) 1..∞",
+      "label_size": [
+        204.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 2,
+      "to": 8,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(goods receipt,purchase_order) 1..∞",
+      "label_size": [
+        302.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 9,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(goods receipt) 1..∞",
+      "label_size": [
+        197.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 3,
+      "to": 2,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(goods receipt) 1..∞",
+      "label_size": [
+        197.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 3,
+      "to": 9,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(goods receipt,invoice receipt) 1..∞",
+      "label_size": [
+        309.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 4,
+      "to": 0,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(purchase_order,quotation) 1..∞",
+      "label_size": [
+        274.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 4,
+      "to": 6,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(quotation) 1..∞",
+      "label_size": [
+        169.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 5,
+      "to": 1,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(purchase_requisition), All(material) 1..∞",
+      "label_size": [
+        351.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 6,
+      "to": 4,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(quotation) 1..∞",
+      "label_size": [
+        169.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 7,
+      "to": 5,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(purchase_requisition), All(material) 1..∞",
+      "label_size": [
+        351.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 7,
+      "to": 6,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(purchase_requisition) 1..∞",
+      "label_size": [
+        246.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 8,
+      "to": 2,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(goods receipt,purchase_order) 1..∞",
+      "label_size": [
+        302.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 8,
+      "to": 9,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(goods receipt,invoice receipt) 1..∞",
+      "label_size": [
+        309.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 9,
+      "to": 3,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(goods receipt,invoice receipt) 1..∞",
+      "label_size": [
+        309.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 9,
+      "to": 8,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(goods receipt,invoice receipt) 1..∞",
+      "label_size": [
+        309.0,
+        14.0
+      ],
+      "category": null
+    }
+  ]
+}

@@ -1,0 +1,581 @@
+{
+  "name": "ocdeclare-container-logistics",
+  "kind": "ocdeclare",
+  "source": "test_data/ocel/ContainerLogistics.json, OC-DECLARE discovery (EF/EP only, counts <= 20, lossless reduction, noise=0.2)",
+  "direction": "LR",
+  "options": {
+    "flow_edges": true,
+    "flow_diagonal": false,
+    "tree": false,
+    "compact": false
+  },
+  "nodes": [
+    {
+      "id": "Book Vehicles",
+      "label": "Book Vehicles",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Bring to Loading Bay",
+      "label": "Bring to Loading Bay",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Collect Goods",
+      "label": "Collect Goods",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Create Transport Document",
+      "label": "Create Transport Document",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Depart",
+      "label": "Depart",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Drive to Terminal",
+      "label": "Drive to Terminal",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Load Truck",
+      "label": "Load Truck",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Load to Vehicle",
+      "label": "Load to Vehicle",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Order Empty Containers",
+      "label": "Order Empty Containers",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Pick Up Empty Container",
+      "label": "Pick Up Empty Container",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Place in Stock",
+      "label": "Place in Stock",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Register Customer Order",
+      "label": "Register Customer Order",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Reschedule Container",
+      "label": "Reschedule Container",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "Weigh",
+      "label": "Weigh",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    }
+  ],
+  "edges": [
+    {
+      "from": 0,
+      "to": 3,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(Transport Document) 1..∞",
+      "label_size": [
+        232.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 0,
+      "to": 4,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(Transport Document,Vehicle) 1..∞",
+      "label_size": [
+        288.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 0,
+      "to": 8,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(Transport Document) 1..∞",
+      "label_size": [
+        232.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 1,
+      "to": 7,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(Container) 1..∞",
+      "label_size": [
+        169.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 1,
+      "to": 10,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(Container) 1..∞",
+      "label_size": [
+        169.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 2,
+      "to": 6,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(Handling Unit) 1..∞",
+      "label_size": [
+        197.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 3,
+      "to": 0,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(Transport Document) 1..∞",
+      "label_size": [
+        232.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 3,
+      "to": 11,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(Customer Order) 1..∞",
+      "label_size": [
+        204.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 4,
+      "to": 0,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(Transport Document,Vehicle) 1..∞",
+      "label_size": [
+        288.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 4,
+      "to": 8,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(Container), Any(Transport Document) 1..∞",
+      "label_size": [
+        344.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 4,
+      "to": 8,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(Transport Document), Any(Container) 1..∞",
+      "label_size": [
+        344.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 4,
+      "to": 10,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Any(Container) 1..∞",
+      "label_size": [
+        162.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 5,
+      "to": 6,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(Container) 1..∞",
+      "label_size": [
+        169.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 5,
+      "to": 13,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(Container) 1..∞",
+      "label_size": [
+        169.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 6,
+      "to": 2,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(Handling Unit) 1..∞",
+      "label_size": [
+        197.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 6,
+      "to": 5,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(Container) 1..∞",
+      "label_size": [
+        169.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 6,
+      "to": 9,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(Container) 1..∞",
+      "label_size": [
+        169.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 7,
+      "to": 0,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(Vehicle) 1..∞",
+      "label_size": [
+        155.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 7,
+      "to": 1,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(Container) 1..∞",
+      "label_size": [
+        169.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 7,
+      "to": 4,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(Container,Vehicle) 1..∞",
+      "label_size": [
+        225.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 8,
+      "to": 0,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(Transport Document) 1..∞",
+      "label_size": [
+        232.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 8,
+      "to": 4,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(Container,Transport Document) 1..∞",
+      "label_size": [
+        302.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 8,
+      "to": 5,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(Container) 1..∞",
+      "label_size": [
+        169.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 9,
+      "to": 6,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(Container) 1..∞",
+      "label_size": [
+        169.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 9,
+      "to": 8,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(Container) 1..∞",
+      "label_size": [
+        169.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 10,
+      "to": 1,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(Container) 1..∞",
+      "label_size": [
+        169.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 13,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(Container) 1..∞",
+      "label_size": [
+        169.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 11,
+      "to": 3,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(Customer Order) 1..∞",
+      "label_size": [
+        204.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 12,
+      "to": 0,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(Vehicle) 1..∞",
+      "label_size": [
+        155.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 12,
+      "to": 1,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(Container) 1..∞",
+      "label_size": [
+        169.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 12,
+      "to": 4,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(Container,Transport Document,Vehicle) 1..∞",
+      "label_size": [
+        358.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 12,
+      "to": 7,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(Container) 1..∞",
+      "label_size": [
+        169.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 12,
+      "to": 8,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(Container,Transport Document) 1..∞",
+      "label_size": [
+        302.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 13,
+      "to": 5,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(Container) 1..∞",
+      "label_size": [
+        169.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 13,
+      "to": 10,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(Container) 1..∞",
+      "label_size": [
+        169.0,
+        14.0
+      ],
+      "category": null
+    }
+  ]
+}

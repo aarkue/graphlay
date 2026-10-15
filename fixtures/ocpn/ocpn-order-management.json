@@ -1,0 +1,3733 @@
+{
+  "name": "ocpn-order-management",
+  "kind": "ocpn",
+  "source": "test_data/ocel/order-management.json, OCPN discovery (Inductive Miner imf, noise=0.2)",
+  "direction": "LR",
+  "options": {
+    "flow_edges": false,
+    "flow_diagonal": false,
+    "tree": false,
+    "compact": false
+  },
+  "nodes": [
+    {
+      "id": "T:confirm order",
+      "label": "confirm order",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "T:create package",
+      "label": "create package",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "T:failed delivery",
+      "label": "failed delivery",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "T:item out of stock",
+      "label": "item out of stock",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "T:package delivered",
+      "label": "package delivered",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "T:pay order",
+      "label": "pay order",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "T:payment reminder",
+      "label": "payment reminder",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "T:pick item",
+      "label": "pick item",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "T:place order",
+      "label": "place order",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "T:reorder item",
+      "label": "reorder item",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "T:send package",
+      "label": "send package",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "P:customers:00000000-0000-4000-8000-0000000000cb",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 0
+    },
+    {
+      "id": "P:customers:00000000-0000-4000-8000-0000000000cc",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 0
+    },
+    {
+      "id": "P:customers:00000000-0000-4000-8000-0000000000cf",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 0
+    },
+    {
+      "id": "P:customers:00000000-0000-4000-8000-0000000000d0",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 0
+    },
+    {
+      "id": "P:customers:00000000-0000-4000-8000-0000000000d1",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 0
+    },
+    {
+      "id": "Tau:customers:00000000-0000-4000-8000-0000000000cd",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 0
+    },
+    {
+      "id": "Tau:customers:00000000-0000-4000-8000-0000000000ce",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 0
+    },
+    {
+      "id": "Tau:customers:00000000-0000-4000-8000-0000000000d4",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 0
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-0000000000e9",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-0000000000ea",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-0000000000ed",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-0000000000ee",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-0000000000f3",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-0000000000f4",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-0000000000f7",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-0000000000f8",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-0000000000fb",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-0000000000fc",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-0000000000ff",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-000000000100",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-000000000103",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-000000000104",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-000000000105",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-000000000108",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-000000000109",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-00000000010e",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-00000000010f",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-000000000112",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-000000000113",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-000000000118",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-000000000119",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-00000000011c",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-00000000011d",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-000000000121",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-000000000122",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-000000000125",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:employees:00000000-0000-4000-8000-000000000126",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-0000000000eb",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-0000000000ec",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-0000000000f0",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-0000000000f1",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-0000000000f2",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-0000000000f5",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-0000000000f6",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-0000000000f9",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-0000000000fa",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-0000000000fe",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-000000000101",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-000000000102",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-000000000106",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-000000000107",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-00000000010b",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-00000000010d",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-000000000110",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-000000000111",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-000000000115",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-000000000116",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-000000000117",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-00000000011a",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-00000000011b",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-00000000011f",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-000000000123",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-000000000124",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "Tau:employees:00000000-0000-4000-8000-000000000128",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 1
+    },
+    {
+      "id": "P:items:00000000-0000-4000-8000-000000000170",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "P:items:00000000-0000-4000-8000-000000000171",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "P:items:00000000-0000-4000-8000-000000000172",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "P:items:00000000-0000-4000-8000-000000000176",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "P:items:00000000-0000-4000-8000-000000000177",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "P:items:00000000-0000-4000-8000-000000000179",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "P:items:00000000-0000-4000-8000-00000000017a",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "P:items:00000000-0000-4000-8000-00000000017b",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "P:items:00000000-0000-4000-8000-00000000017d",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "P:items:00000000-0000-4000-8000-000000000182",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "P:items:00000000-0000-4000-8000-000000000183",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "P:items:00000000-0000-4000-8000-000000000185",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "P:items:00000000-0000-4000-8000-000000000186",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "P:items:00000000-0000-4000-8000-000000000188",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "P:items:00000000-0000-4000-8000-000000000189",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "P:items:00000000-0000-4000-8000-00000000018b",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "P:items:00000000-0000-4000-8000-00000000018c",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "P:items:00000000-0000-4000-8000-00000000018d",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "P:items:00000000-0000-4000-8000-000000000191",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "P:items:00000000-0000-4000-8000-000000000192",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "P:items:00000000-0000-4000-8000-000000000193",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "Tau:items:00000000-0000-4000-8000-000000000174",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "Tau:items:00000000-0000-4000-8000-000000000175",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "Tau:items:00000000-0000-4000-8000-00000000017c",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "Tau:items:00000000-0000-4000-8000-000000000180",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "Tau:items:00000000-0000-4000-8000-000000000181",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "Tau:items:00000000-0000-4000-8000-00000000018f",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "Tau:items:00000000-0000-4000-8000-000000000194",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 2
+    },
+    {
+      "id": "P:orders:00000000-0000-4000-8000-0000000000df",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 3
+    },
+    {
+      "id": "P:orders:00000000-0000-4000-8000-0000000000e0",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 3
+    },
+    {
+      "id": "P:orders:00000000-0000-4000-8000-0000000000e1",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 3
+    },
+    {
+      "id": "P:orders:00000000-0000-4000-8000-0000000000e3",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 3
+    },
+    {
+      "id": "P:orders:00000000-0000-4000-8000-0000000000e5",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 3
+    },
+    {
+      "id": "Tau:orders:00000000-0000-4000-8000-0000000000e6",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 3
+    },
+    {
+      "id": "P:packages:00000000-0000-4000-8000-0000000000d5",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 4
+    },
+    {
+      "id": "P:packages:00000000-0000-4000-8000-0000000000d6",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 4
+    },
+    {
+      "id": "P:packages:00000000-0000-4000-8000-0000000000d7",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 4
+    },
+    {
+      "id": "P:packages:00000000-0000-4000-8000-0000000000d9",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 4
+    },
+    {
+      "id": "P:packages:00000000-0000-4000-8000-0000000000db",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 4
+    },
+    {
+      "id": "Tau:packages:00000000-0000-4000-8000-0000000000dc",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 4
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-000000000129",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-00000000012a",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-00000000012d",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-00000000012e",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-000000000131",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-000000000132",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-000000000135",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-000000000136",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-000000000139",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-00000000013a",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-00000000013d",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-00000000013e",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-000000000141",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-000000000142",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-000000000143",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-000000000147",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-000000000148",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-00000000014a",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-00000000014b",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-00000000014f",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-000000000150",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-000000000153",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-000000000154",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-000000000155",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-00000000015a",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-00000000015b",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-00000000015e",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-00000000015f",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-000000000160",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-000000000165",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-000000000166",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-000000000169",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-00000000016a",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "P:products:00000000-0000-4000-8000-00000000016b",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-00000000012b",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-00000000012c",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-00000000012f",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-000000000130",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-000000000134",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-000000000137",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-000000000138",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-00000000013c",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-00000000013f",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-000000000140",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-000000000145",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-000000000146",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-00000000014c",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-00000000014e",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-000000000151",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-000000000152",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-000000000156",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-000000000159",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-00000000015c",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-00000000015d",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-000000000162",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-000000000164",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-000000000167",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-000000000168",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-00000000016c",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    },
+    {
+      "id": "Tau:products:00000000-0000-4000-8000-00000000016f",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": 5
+    }
+  ],
+  "edges": [
+    {
+      "from": 11,
+      "to": 16,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 0
+    },
+    {
+      "from": 13,
+      "to": 8,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 0
+    },
+    {
+      "from": 14,
+      "to": 17,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 0
+    },
+    {
+      "from": 14,
+      "to": 18,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 0
+    },
+    {
+      "from": 15,
+      "to": 0,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 0
+    },
+    {
+      "from": 16,
+      "to": 13,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 0
+    },
+    {
+      "from": 17,
+      "to": 12,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 0
+    },
+    {
+      "from": 8,
+      "to": 15,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 0
+    },
+    {
+      "from": 0,
+      "to": 14,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 0
+    },
+    {
+      "from": 18,
+      "to": 13,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 0
+    },
+    {
+      "from": 19,
+      "to": 48,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 19,
+      "to": 51,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 21,
+      "to": 0,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 22,
+      "to": 49,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 22,
+      "to": 50,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 23,
+      "to": 53,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 23,
+      "to": 67,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 24,
+      "to": 52,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 25,
+      "to": 55,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 26,
+      "to": 54,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 27,
+      "to": 7,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 28,
+      "to": 56,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 28,
+      "to": 57,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 29,
+      "to": 58,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 30,
+      "to": 54,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 31,
+      "to": 60,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 32,
+      "to": 59,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 32,
+      "to": 63,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 33,
+      "to": 1,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 34,
+      "to": 3,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 35,
+      "to": 61,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 35,
+      "to": 62,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 36,
+      "to": 64,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 37,
+      "to": 54,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 38,
+      "to": 9,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 39,
+      "to": 65,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 39,
+      "to": 66,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 40,
+      "to": 69,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 41,
+      "to": 68,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 41,
+      "to": 2,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 42,
+      "to": 4,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 43,
+      "to": 70,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 43,
+      "to": 71,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 44,
+      "to": 72,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 45,
+      "to": 52,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 46,
+      "to": 10,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 47,
+      "to": 73,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 47,
+      "to": 74,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 48,
+      "to": 21,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 49,
+      "to": 20,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 0,
+      "to": 22,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 50,
+      "to": 21,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 51,
+      "to": 23,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 51,
+      "to": 44,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 52,
+      "to": 20,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 53,
+      "to": 25,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 53,
+      "to": 29,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 53,
+      "to": 36,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 54,
+      "to": 24,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 55,
+      "to": 27,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 56,
+      "to": 26,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 7,
+      "to": 28,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 57,
+      "to": 27,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 58,
+      "to": 31,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 59,
+      "to": 30,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 60,
+      "to": 34,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 61,
+      "to": 33,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 3,
+      "to": 35,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 62,
+      "to": 34,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 1,
+      "to": 32,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 63,
+      "to": 31,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 64,
+      "to": 38,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 65,
+      "to": 37,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 9,
+      "to": 39,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 66,
+      "to": 38,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 67,
+      "to": 40,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 68,
+      "to": 24,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 69,
+      "to": 42,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 70,
+      "to": 41,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 4,
+      "to": 43,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 71,
+      "to": 42,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 2,
+      "to": 40,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 72,
+      "to": 46,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 73,
+      "to": 45,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 10,
+      "to": 47,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 74,
+      "to": 46,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 1
+    },
+    {
+      "from": 75,
+      "to": 8,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 77,
+      "to": 96,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 78,
+      "to": 0,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 79,
+      "to": 97,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 80,
+      "to": 98,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 80,
+      "to": 3,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 81,
+      "to": 97,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 82,
+      "to": 99,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 83,
+      "to": 9,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 84,
+      "to": 1,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 85,
+      "to": 100,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 86,
+      "to": 4,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 87,
+      "to": 100,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 88,
+      "to": 10,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 89,
+      "to": 100,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 90,
+      "to": 7,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 91,
+      "to": 100,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 92,
+      "to": 101,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 92,
+      "to": 2,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 93,
+      "to": 102,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 93,
+      "to": 6,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 94,
+      "to": 100,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 95,
+      "to": 5,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 8,
+      "to": 77,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 96,
+      "to": 78,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 96,
+      "to": 80,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 97,
+      "to": 76,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 0,
+      "to": 79,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 98,
+      "to": 82,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 3,
+      "to": 83,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 9,
+      "to": 82,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 99,
+      "to": 84,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 99,
+      "to": 86,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 99,
+      "to": 88,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 99,
+      "to": 90,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 99,
+      "to": 93,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 100,
+      "to": 81,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 1,
+      "to": 85,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 4,
+      "to": 87,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 10,
+      "to": 89,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 7,
+      "to": 92,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 101,
+      "to": 91,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 2,
+      "to": 91,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 102,
+      "to": 95,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 6,
+      "to": 95,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 5,
+      "to": 94,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 2
+    },
+    {
+      "from": 103,
+      "to": 8,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 3
+    },
+    {
+      "from": 105,
+      "to": 0,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 3
+    },
+    {
+      "from": 106,
+      "to": 108,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 3
+    },
+    {
+      "from": 106,
+      "to": 6,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 3
+    },
+    {
+      "from": 107,
+      "to": 5,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 3
+    },
+    {
+      "from": 8,
+      "to": 105,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 3
+    },
+    {
+      "from": 0,
+      "to": 106,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 3
+    },
+    {
+      "from": 108,
+      "to": 107,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 3
+    },
+    {
+      "from": 6,
+      "to": 107,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 3
+    },
+    {
+      "from": 5,
+      "to": 104,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 3
+    },
+    {
+      "from": 109,
+      "to": 1,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 4
+    },
+    {
+      "from": 111,
+      "to": 10,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 4
+    },
+    {
+      "from": 112,
+      "to": 114,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 4
+    },
+    {
+      "from": 112,
+      "to": 2,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 4
+    },
+    {
+      "from": 113,
+      "to": 4,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 4
+    },
+    {
+      "from": 1,
+      "to": 111,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 4
+    },
+    {
+      "from": 10,
+      "to": 112,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 4
+    },
+    {
+      "from": 114,
+      "to": 113,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 4
+    },
+    {
+      "from": 2,
+      "to": 113,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 4
+    },
+    {
+      "from": 4,
+      "to": 110,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 4
+    },
+    {
+      "from": 115,
+      "to": 149,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 117,
+      "to": 151,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 118,
+      "to": 150,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 119,
+      "to": 8,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 120,
+      "to": 152,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 120,
+      "to": 153,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 121,
+      "to": 154,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 122,
+      "to": 150,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 123,
+      "to": 4,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 124,
+      "to": 155,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 124,
+      "to": 156,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 125,
+      "to": 157,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 126,
+      "to": 150,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 127,
+      "to": 0,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 128,
+      "to": 158,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 128,
+      "to": 162,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 129,
+      "to": 159,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 130,
+      "to": 1,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 131,
+      "to": 160,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 132,
+      "to": 161,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 132,
+      "to": 2,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 133,
+      "to": 160,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 134,
+      "to": 163,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 135,
+      "to": 150,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 136,
+      "to": 165,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 136,
+      "to": 9,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 137,
+      "to": 164,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 137,
+      "to": 166,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 138,
+      "to": 10,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 139,
+      "to": 167,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 140,
+      "to": 150,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 141,
+      "to": 7,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 142,
+      "to": 168,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 142,
+      "to": 170,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 143,
+      "to": 169,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 143,
+      "to": 6,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 144,
+      "to": 171,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 145,
+      "to": 150,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 146,
+      "to": 173,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 146,
+      "to": 3,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 147,
+      "to": 172,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 147,
+      "to": 174,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 148,
+      "to": 5,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 149,
+      "to": 117,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 149,
+      "to": 121,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 149,
+      "to": 125,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 149,
+      "to": 134,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 149,
+      "to": 139,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 149,
+      "to": 144,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 150,
+      "to": 116,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 151,
+      "to": 119,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 152,
+      "to": 118,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 8,
+      "to": 120,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 153,
+      "to": 119,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 154,
+      "to": 123,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 155,
+      "to": 122,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 4,
+      "to": 124,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 156,
+      "to": 123,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 157,
+      "to": 127,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 158,
+      "to": 126,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 0,
+      "to": 129,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 159,
+      "to": 130,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 159,
+      "to": 132,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 160,
+      "to": 128,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 1,
+      "to": 131,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 161,
+      "to": 133,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 2,
+      "to": 133,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 162,
+      "to": 127,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 163,
+      "to": 136,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 164,
+      "to": 135,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 165,
+      "to": 138,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 9,
+      "to": 138,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 10,
+      "to": 137,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 166,
+      "to": 136,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 167,
+      "to": 141,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 168,
+      "to": 140,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 7,
+      "to": 143,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 169,
+      "to": 142,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 6,
+      "to": 142,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 170,
+      "to": 141,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 171,
+      "to": 146,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 172,
+      "to": 145,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 173,
+      "to": 148,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 3,
+      "to": 148,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 5,
+      "to": 147,
+      "weight": 1.0,
+      "thickness": 4.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    },
+    {
+      "from": 174,
+      "to": 146,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": 5
+    }
+  ]
+}

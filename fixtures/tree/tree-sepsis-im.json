@@ -1,0 +1,709 @@
+{
+  "name": "tree-sepsis-im",
+  "kind": "tree",
+  "source": "test_data/xes/Sepsis Cases - Event Log.xes.gz, Inductive Miner (imf, noise=0.2) process tree",
+  "direction": "TB",
+  "options": {
+    "flow_edges": false,
+    "flow_diagonal": false,
+    "tree": true,
+    "compact": false
+  },
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "∧",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n1",
+      "label": "ER Registration",
+      "width": 120.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n2",
+      "label": "×",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n3",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n4",
+      "label": "Admission NC",
+      "width": 120.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n5",
+      "label": "→",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n6",
+      "label": "ER Triage",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n7",
+      "label": "×",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n8",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n9",
+      "label": "ER Sepsis Triage",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n10",
+      "label": "∧",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n11",
+      "label": "×",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n12",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n13",
+      "label": "Admission IC",
+      "width": 120.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n14",
+      "label": "IV Antibiotics",
+      "width": 136.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n15",
+      "label": "↺",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n16",
+      "label": "CRP",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n17",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n18",
+      "label": "×",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n19",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n20",
+      "label": "IV Liquid",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n21",
+      "label": "LacticAcid",
+      "width": 104.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n22",
+      "label": "↺",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n23",
+      "label": "Leucocytes",
+      "width": 104.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n24",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n25",
+      "label": "×",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n26",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n27",
+      "label": "Release A",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n28",
+      "label": "×",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n29",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n30",
+      "label": "Release C",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n31",
+      "label": "Release D",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n32",
+      "label": "Release E",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n33",
+      "label": "×",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n34",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n35",
+      "label": "Return ER",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n36",
+      "label": "×",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n37",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n38",
+      "label": "Release B",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    }
+  ],
+  "edges": [
+    {
+      "from": 0,
+      "to": 1,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 4,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 0,
+      "to": 2,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 5,
+      "to": 6,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 7,
+      "to": 8,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 7,
+      "to": 9,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 5,
+      "to": 7,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 11,
+      "to": 12,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 11,
+      "to": 13,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 11,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 14,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 15,
+      "to": 16,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 15,
+      "to": 17,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 15,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 18,
+      "to": 19,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 18,
+      "to": 20,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 18,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 21,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 22,
+      "to": 23,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 22,
+      "to": 24,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 22,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 5,
+      "to": 10,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 25,
+      "to": 26,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 25,
+      "to": 27,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 5,
+      "to": 25,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 28,
+      "to": 29,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 28,
+      "to": 30,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 28,
+      "to": 31,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 28,
+      "to": 32,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 5,
+      "to": 28,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 33,
+      "to": 34,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 33,
+      "to": 35,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 5,
+      "to": 33,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 36,
+      "to": 37,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 36,
+      "to": 38,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 5,
+      "to": 36,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 0,
+      "to": 5,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    }
+  ]
+}

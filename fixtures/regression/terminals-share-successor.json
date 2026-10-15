@@ -1,0 +1,61 @@
+{
+  "name": "terminals-share-successor",
+  "kind": "ocdfg",
+  "source": "regression repro: two rank-pinned terminals with the same successor got the same median cross-position (phase-3 defect D1)",
+  "direction": "TB",
+  "options": {
+    "flow_edges": true,
+    "flow_diagonal": false,
+    "tree": false,
+    "compact": false
+  },
+  "nodes": [
+    {
+      "id": "START:a",
+      "label": "START:a",
+      "width": 80.0,
+      "height": 36.0,
+      "shape": "box",
+      "pin": "first",
+      "category": 0
+    },
+    {
+      "id": "START:b",
+      "label": "START:b",
+      "width": 80.0,
+      "height": 36.0,
+      "shape": "box",
+      "pin": "first",
+      "category": 1
+    },
+    {
+      "id": "act",
+      "label": "act",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    }
+  ],
+  "edges": [
+    {
+      "from": 0,
+      "to": 2,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 1,
+      "to": 2,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24.75 -268.80 2791.10 510.55" width="2791.10" height="510.55" font-family="Inter, system-ui, -apple-system, sans-serif">
+<defs>
+<marker id="gl-mk-0" markerWidth="12.00" markerHeight="12.00" viewBox="0 0 12.00 12" orient="auto" refX="1.00" refY="6" markerUnits="userSpaceOnUse"><path d="M 1,1 L 11,6 L 1,11 Z" fill="#1f2937" stroke="#1f2937" stroke-linejoin="round"/></marker>
+</defs>
+<rect x="-24.75" y="-268.80" width="2791.10" height="510.55" fill="#ffffff"/>
+<g id="edges">
+<path d="M 786.80,118.00 L 1175.80,118.00 Q 1181.80,118.00 1181.80,112.00 L 1181.80,20.10 Q 1181.80,14.10 1187.80,14.10 L 1199.60,14.10" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 786.80,0.00 L 831.60,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 771.80,15.00 L 771.80,78.00 Q 771.80,84.00 777.80,84.00 L 941.60,84.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 2398.80,0.00 L 2541.00,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 2383.80,15.00 L 2383.80,78.00 Q 2383.80,84.00 2389.80,84.00 L 2443.60,84.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 2250.80,0.00 L 2295.60,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 30.00,0.00 L 74.80,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1302.80,0.00 L 1347.60,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 418.80,0.00 L 463.60,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1154.80,0.00 L 1199.60,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 2010.00,0.00 L 2054.80,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 255.80,-15.00 L 255.80,-219.00 Q 255.80,-225.00 261.80,-225.00 L 315.60,-225.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 270.80,0.00 L 315.60,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 786.80,194.00 L 1212.30,194.00 Q 1218.30,194.00 1218.30,188.00 L 1218.30,28.20" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 786.80,-84.00 L 1207.80,-84.00 Q 1213.80,-84.00 1213.80,-78.00 L 1213.80,-28.20" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 418.80,76.00 L 448.80,76.00 Q 454.80,76.00 454.80,82.00 L 454.80,109.60 Q 454.80,114.00 459.20,114.00 L 463.60,114.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1680.80,141.00 L 2271.80,141.00 Q 2277.80,141.00 2277.80,135.00 L 2277.80,23.10 Q 2277.80,17.10 2283.80,17.10 L 2295.60,17.10" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 418.80,194.00 L 479.60,194.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1435.80,99.00 L 1435.80,162.00 Q 1435.80,168.00 1441.80,168.00 L 1536.60,168.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1450.80,84.00 L 1495.60,84.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1435.80,-15.00 L 1435.80,-78.00 Q 1435.80,-84.00 1441.80,-84.00 L 1536.60,-84.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1450.80,0.00 L 1495.60,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 418.80,-84.00 L 573.60,-84.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 403.80,-99.00 L 403.80,-162.00 Q 403.80,-168.00 409.80,-168.00 L 513.60,-168.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1680.80,0.00 L 1725.60,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1677.80,9.00 L 1701.80,9.00 Q 1707.80,9.00 1707.80,15.00 L 1707.80,78.00 Q 1707.80,84.00 1713.80,84.00 L 1816.20,84.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1070.80,0.00 L 1115.60,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 960.80,84.00 L 1133.80,84.00 Q 1139.80,84.00 1139.80,78.00 L 1139.80,24.20" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 334.80,-225.00 L 1281.80,-225.00 Q 1287.80,-225.00 1287.80,-219.00 L 1287.80,-24.20" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1926.00,0.00 L 1970.80,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 592.80,-84.00 L 747.60,-84.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 702.80,118.00 L 747.60,118.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1555.80,-84.00 L 2229.80,-84.00 Q 2235.80,-84.00 2235.80,-78.00 L 2235.80,-24.20" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1835.40,84.00 L 2229.80,84.00 Q 2235.80,84.00 2235.80,78.00 L 2235.80,24.20" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 2314.80,0.00 L 2359.60,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 2560.20,0.00 L 2702.40,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1555.80,168.00 L 1626.80,168.00 Q 1632.80,168.00 1632.80,162.00 L 1632.80,145.40 Q 1632.80,141.00 1637.20,141.00 L 1641.60,141.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 652.80,-168.00 L 765.80,-168.00 Q 771.80,-168.00 771.80,-162.00 L 771.80,-108.20" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1218.80,0.00 L 1263.60,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 334.80,0.00 L 379.60,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 334.80,14.10 L 369.30,14.10 Q 375.30,14.10 375.30,20.10 L 375.30,73.85 Q 375.30,76.00 377.45,76.00 L 379.60,76.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 325.30,19.00 L 325.30,188.00 Q 325.30,194.00 331.30,194.00 L 379.60,194.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 329.80,-19.00 L 329.80,-78.00 Q 329.80,-84.00 335.80,-84.00 L 379.60,-84.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 2657.60,84.00 L 2720.60,84.00 Q 2726.60,84.00 2726.60,78.00 L 2726.60,24.20" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 702.80,0.00 L 747.60,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 686.80,194.00 L 747.60,194.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1366.80,17.10 L 1387.80,17.10 Q 1393.80,17.10 1393.80,23.10 L 1393.80,78.00 Q 1393.80,84.00 1399.80,84.00 L 1411.60,84.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1366.80,0.00 L 1411.60,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 2166.80,0.00 L 2211.60,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1596.80,0.00 L 1641.60,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 186.80,0.00 L 231.60,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1596.80,84.00 L 1659.80,84.00 Q 1665.80,84.00 1665.80,90.00 L 1665.80,116.80" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+</g>
+<g id="nodes">
+<circle cx="771.80" cy="118.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="771.80" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="2383.80" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="2235.80" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="15.00" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="15.00" cy="0.00" r="5.50" fill="#1f2937"/>
+<circle cx="1287.80" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="403.80" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="1139.80" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="1995.00" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="255.80" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="771.80" cy="194.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="771.80" cy="-84.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="403.80" cy="76.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="1665.80" cy="141.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="403.80" cy="194.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="2726.60" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="2726.60" cy="0.00" r="10.75" fill="none" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="1435.80" cy="84.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="1435.80" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="403.80" cy="-84.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="1665.80" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<rect x="840.80" y="-19.00" width="230.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="955.80" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Notify Result Appeal to Offender</text>
+<rect x="950.80" y="65.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
+<rect x="324.80" y="-244.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
+<rect x="1734.80" y="-19.00" width="191.20" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="1830.40" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Insert Fine Notification</text>
+<rect x="582.80" y="-103.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
+<rect x="472.80" y="95.00" width="230.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="587.80" y="114.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Receive Result Appeal from Prefecture</text>
+<rect x="1545.80" y="-103.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
+<rect x="1825.40" y="65.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
+<rect x="2304.80" y="-19.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
+<rect x="2550.20" y="-19.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
+<rect x="1545.80" y="149.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
+<rect x="522.80" y="-187.00" width="130.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="587.80" y="-168.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Appeal to Judge</text>
+<rect x="1208.80" y="-19.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
+<rect x="324.80" y="-19.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
+<rect x="2452.80" y="65.00" width="204.80" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="2555.20" y="84.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Send for Credit Collection</text>
+<rect x="472.80" y="-19.00" width="230.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="587.80" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Insert Date Appeal to Prefecture</text>
+<rect x="488.80" y="179.00" width="198.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="587.80" y="198.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Send Appeal to Prefecture</text>
+<rect x="1356.80" y="-19.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
+<rect x="2064.00" y="-19.00" width="102.80" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="2115.40" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Add penalty</text>
+<rect x="1504.80" y="-19.00" width="92.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="1550.80" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Send Fine</text>
+<rect x="84.00" y="-19.00" width="102.80" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="135.40" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Create Fine</text>
+<rect x="1504.80" y="65.00" width="92.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="1550.80" y="84.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Payment</text>
+</g>
+</svg>

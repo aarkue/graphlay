@@ -1,0 +1,4 @@
+packages:
+  - bindings/wasm/js
+  - site
+  - bench

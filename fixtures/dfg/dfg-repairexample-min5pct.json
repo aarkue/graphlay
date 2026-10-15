@@ -1,0 +1,406 @@
+{
+  "name": "dfg-repairexample-min5pct",
+  "kind": "dfg",
+  "source": "test_data/xes/RepairExample.xes, DFG discovery, >= 5% of max edges",
+  "direction": "TB",
+  "options": {
+    "flow_edges": true,
+    "flow_diagonal": false,
+    "tree": false,
+    "compact": false
+  },
+  "nodes": [
+    {
+      "id": "START",
+      "label": "",
+      "width": 80.0,
+      "height": 36.0,
+      "shape": "box",
+      "pin": "first",
+      "category": null
+    },
+    {
+      "id": "END",
+      "label": "",
+      "width": 80.0,
+      "height": 36.0,
+      "shape": "box",
+      "pin": "last",
+      "category": null
+    },
+    {
+      "id": "act:Analyze Defect",
+      "label": "Analyze Defect",
+      "width": 136.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Archive Repair",
+      "label": "Archive Repair",
+      "width": 136.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Inform User",
+      "label": "Inform User",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Register",
+      "label": "Register",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Repair (Complex)",
+      "label": "Repair (Complex)",
+      "width": 152.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Repair (Simple)",
+      "label": "Repair (Simple)",
+      "width": 144.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Restart Repair",
+      "label": "Restart Repair",
+      "width": 136.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Test Repair",
+      "label": "Test Repair",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    }
+  ],
+  "edges": [
+    {
+      "from": 2,
+      "to": 2,
+      "weight": 8.00669522683704,
+      "thickness": 5.595264679871076,
+      "label": "1104",
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 4,
+      "weight": 6.043425116919247,
+      "thickness": 3.0344872638085656,
+      "label": "155",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 6,
+      "weight": 7.269096283706261,
+      "thickness": 4.3321379294294315,
+      "label": "528",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 7,
+      "weight": 7.042632833682381,
+      "thickness": 4.028939774707185,
+      "label": "421",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 4,
+      "to": 3,
+      "weight": 6.3230099791384085,
+      "thickness": 3.264714156460899,
+      "label": "205",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 4,
+      "to": 6,
+      "weight": 6.996452088619021,
+      "thickness": 3.971214625529591,
+      "label": "402",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 4,
+      "to": 7,
+      "weight": 6.407171771460119,
+      "thickness": 3.3405595385245523,
+      "label": "223",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 4,
+      "to": 9,
+      "weight": 6.19295685089021,
+      "thickness": 3.153612290835461,
+      "label": "180",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 5,
+      "to": 2,
+      "weight": 8.00669522683704,
+      "thickness": 5.595264679871076,
+      "label": "1104",
+      "label_size": [
+        30.88,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 6,
+      "to": 4,
+      "weight": 6.746203190540153,
+      "thickness": 3.6805678661887056,
+      "label": "313",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 6,
+      "to": 6,
+      "weight": 7.025865973825314,
+      "thickness": 4.007827206831609,
+      "label": "414",
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 6,
+      "to": 9,
+      "weight": 7.579251212010101,
+      "thickness": 4.807224581670922,
+      "label": "720",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 7,
+      "to": 4,
+      "weight": 6.081404364984463,
+      "thickness": 3.0639050321990253,
+      "label": "161",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 7,
+      "to": 7,
+      "weight": 7.439350371100098,
+      "thickness": 4.583788650039027,
+      "label": "626",
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 7,
+      "to": 9,
+      "weight": 7.663132695990803,
+      "thickness": 4.94888187628239,
+      "label": "783",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 8,
+      "to": 6,
+      "weight": 5.653960350157523,
+      "thickness": 2.7629672488104715,
+      "label": "105",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 8,
+      "to": 7,
+      "weight": 6.703782474656201,
+      "thickness": 3.6348042878298785,
+      "label": "300",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 9,
+      "to": 3,
+      "weight": 7.678342114654332,
+      "thickness": 4.975209600936699,
+      "label": "795",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 9,
+      "to": 4,
+      "weight": 7.156978985585555,
+      "thickness": 4.177740198963164,
+      "label": "472",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 9,
+      "to": 8,
+      "weight": 6.831882477283517,
+      "thickness": 3.7760124248649296,
+      "label": "341",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 9,
+      "to": 9,
+      "weight": 8.195187320178709,
+      "thickness": 6.0,
+      "label": "1333",
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 0,
+      "to": 5,
+      "weight": 8.00669522683704,
+      "thickness": 5.595264679871076,
+      "label": "1104",
+      "label_size": [
+        30.88,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 3,
+      "to": 1,
+      "weight": 7.907755278982137,
+      "thickness": 5.397601547677253,
+      "label": "1000",
+      "label_size": [
+        30.88,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 4,
+      "to": 1,
+      "weight": 4.295836866004329,
+      "thickness": 2.1404412863489632,
+      "label": "27",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 6,
+      "to": 1,
+      "weight": 1.6931471805599454,
+      "thickness": 1.6743060401962944,
+      "label": "2",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 9,
+      "to": 1,
+      "weight": 5.31748811353631,
+      "thickness": 2.567402143914939,
+      "label": "75",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    }
+  ]
+}

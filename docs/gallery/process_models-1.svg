@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24.75 -127.75 1733.50 255.50" width="1733.50" height="255.50" font-family="Inter, system-ui, -apple-system, sans-serif">
+<defs>
+<marker id="gl-mk-0" markerWidth="12.00" markerHeight="12.00" viewBox="0 0 12.00 12" orient="auto" refX="1.00" refY="6" markerUnits="userSpaceOnUse"><path d="M 1,1 L 11,6 L 1,11 Z" fill="#1f2937" stroke="#1f2937" stroke-linejoin="round"/></marker>
+</defs>
+<rect x="-24.75" y="-127.75" width="1733.50" height="255.50" fill="#ffffff"/>
+<g id="edges">
+<path d="M 30.00,0.00 L 74.80,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 200.40,0.00 L 245.20,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 284.40,0.00 L 329.20,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 348.40,0.00 L 393.20,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 348.40,17.10 L 369.40,17.10 Q 375.40,17.10 375.40,23.10 L 375.40,70.00 Q 375.40,76.00 381.40,76.00 L 393.20,76.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 432.40,0.00 L 480.60,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 432.40,76.00 L 477.20,76.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 592.60,0.00 L 640.80,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 596.00,84.00 L 640.80,84.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 680.00,0.00 L 724.80,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 677.00,75.00 L 710.00,75.00 Q 716.00,75.00 716.00,69.00 L 716.00,21.50 Q 716.00,17.10 720.40,17.10 L 724.80,17.10" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 665.00,15.00 L 665.00,60.90 Q 665.00,66.90 671.00,66.90 L 712.00,66.90 A 4.00,4.00 0 0 1 720.00,66.90 L 728.20,66.90" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 680.00,84.00 L 728.20,84.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 850.40,0.00 L 895.20,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 934.40,0.00 L 979.20,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1084.40,0.00 L 1129.20,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1168.40,0.00 L 1213.20,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1332.00,0.00 L 1376.80,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1401.00,-15.00 L 1401.00,-78.90 Q 1401.00,-84.90 1407.00,-84.90 L 1467.60,-84.90" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1476.80,-66.90 L 1458.00,-66.90 Q 1452.00,-66.90 1452.00,-60.90 L 1452.00,-11.85 Q 1452.00,-5.85 1446.00,-5.85 L 1424.01,-5.85" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1414.81,5.85 L 1460.80,5.85" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 1600.00,0.00 L 1644.80,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 847.00,84.00 L 1663.00,84.00 Q 1669.00,84.00 1669.00,78.00 L 1669.00,24.20" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+</g>
+<g id="nodes">
+<circle cx="15.00" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="15.00" cy="0.00" r="5.50" fill="#1f2937"/>
+<rect x="84.00" y="-19.00" width="116.40" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="142.20" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Receive order</text>
+<circle cx="269.40" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<rect x="338.40" y="-19.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
+<circle cx="417.40" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="417.40" cy="76.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<rect x="489.80" y="-19.00" width="102.80" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="541.20" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Check stock</text>
+<rect x="486.40" y="65.00" width="109.60" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="541.20" y="84.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Check credit</text>
+<circle cx="665.00" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="665.00" cy="84.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<rect x="734.00" y="-19.00" width="116.40" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="792.20" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Approve order</text>
+<rect x="737.40" y="65.00" width="109.60" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="792.20" y="84.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Reject order</text>
+<circle cx="919.40" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<rect x="988.40" y="-19.00" width="96.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="1036.40" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Ship goods</text>
+<circle cx="1153.40" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<rect x="1222.40" y="-19.00" width="109.60" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="1277.20" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Send invoice</text>
+<circle cx="1401.00" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<rect x="1476.80" y="-103.00" width="116.40" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="1535.00" y="-84.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Send reminder</text>
+<rect x="1470.00" y="-19.00" width="130.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="1535.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Receive payment</text>
+<circle cx="1669.00" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="1669.00" cy="0.00" r="10.75" fill="none" stroke="#1f2937" stroke-width="1.50"/>
+</g>
+</svg>

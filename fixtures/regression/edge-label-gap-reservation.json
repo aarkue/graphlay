@@ -1,0 +1,79 @@
+{
+  "name": "edge-label-gap-reservation",
+  "kind": "ocdeclare",
+  "source": "regression repro: every edge carries a 500px label; the middle-dummy inflation and the per-gap reservation each paid for it, widening the drawing twice over (phase-3 defect D4)",
+  "direction": "LR",
+  "options": {
+    "flow_edges": true,
+    "flow_diagonal": false,
+    "tree": false,
+    "compact": false
+  },
+  "nodes": [
+    {
+      "id": "a",
+      "label": "a",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "b",
+      "label": "b",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "c",
+      "label": "c",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    }
+  ],
+  "edges": [
+    {
+      "from": 0,
+      "to": 1,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "L1",
+      "label_size": [
+        500.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 1,
+      "to": 2,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "L2",
+      "label_size": [
+        500.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 0,
+      "to": 2,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "L3",
+      "label_size": [
+        500.0,
+        14.0
+      ],
+      "category": null
+    }
+  ]
+}

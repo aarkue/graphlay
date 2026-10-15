@@ -1,0 +1,970 @@
+{
+  "name": "pn-repairexample-im",
+  "kind": "petri",
+  "source": "test_data/xes/RepairExample.xes, Inductive Miner (im, noise=0) -> Petri net",
+  "direction": "LR",
+  "options": {
+    "flow_edges": false,
+    "flow_diagonal": false,
+    "tree": false,
+    "compact": false
+  },
+  "nodes": [
+    {
+      "id": "00000000-0000-4000-8000-00000000001b",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-00000000001c",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-00000000001d",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-00000000001f",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000022",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000023",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000026",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000029",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-00000000002a",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-00000000002d",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-00000000002e",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000032",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000033",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000036",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000037",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-00000000003a",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-00000000003b",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-00000000003e",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-00000000003f",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000044",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000045",
+      "label": "",
+      "width": 52.0,
+      "height": 52.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-00000000001e",
+      "label": "Register",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000020",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000021",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000024",
+      "label": "Analyze Defect",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000025",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000027",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000028",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-00000000002b",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-00000000002c",
+      "label": "Inform User",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-00000000002f",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000030",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000031",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000034",
+      "label": "Test Repair",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000035",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000038",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000039",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-00000000003c",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-00000000003d",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000040",
+      "label": "Repair (Complex)",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000041",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000042",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000043",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000046",
+      "label": "Repair (Simple)",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000047",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000048",
+      "label": "Restart Repair",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000049",
+      "label": "",
+      "width": 14.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-00000000004a",
+      "label": "Archive Repair",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    }
+  ],
+  "edges": [
+    {
+      "from": 0,
+      "to": 21,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 22,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 3,
+      "to": 26,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 4,
+      "to": 24,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 5,
+      "to": 23,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 5,
+      "to": 25,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 6,
+      "to": 46,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 6,
+      "to": 47,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 7,
+      "to": 28,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 7,
+      "to": 29,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 8,
+      "to": 27,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 9,
+      "to": 30,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 9,
+      "to": 31,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 27,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 11,
+      "to": 33,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 12,
+      "to": 32,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 12,
+      "to": 34,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 13,
+      "to": 35,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 14,
+      "to": 27,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 15,
+      "to": 37,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 15,
+      "to": 41,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 16,
+      "to": 36,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 16,
+      "to": 45,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 17,
+      "to": 39,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 18,
+      "to": 38,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 18,
+      "to": 40,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 19,
+      "to": 43,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 20,
+      "to": 42,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 20,
+      "to": 44,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 21,
+      "to": 2,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 22,
+      "to": 4,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 23,
+      "to": 3,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 24,
+      "to": 5,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 25,
+      "to": 4,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 26,
+      "to": 7,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 26,
+      "to": 9,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 26,
+      "to": 13,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 27,
+      "to": 6,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 28,
+      "to": 8,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 29,
+      "to": 8,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 30,
+      "to": 10,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 31,
+      "to": 11,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 32,
+      "to": 10,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 33,
+      "to": 12,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 34,
+      "to": 11,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 35,
+      "to": 15,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 36,
+      "to": 14,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 37,
+      "to": 17,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 38,
+      "to": 16,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 39,
+      "to": 18,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 40,
+      "to": 17,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 41,
+      "to": 19,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 42,
+      "to": 16,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 43,
+      "to": 20,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 44,
+      "to": 19,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 45,
+      "to": 15,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 46,
+      "to": 1,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 47,
+      "to": 1,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    }
+  ]
+}

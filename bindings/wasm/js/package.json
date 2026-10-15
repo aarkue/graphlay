@@ -1,0 +1,48 @@
+{
+  "name": "graphlay",
+  "version": "0.2.0",
+  "description": "Deterministic layered graph layout, tidy trees and SVG rendering. Rust compiled to WebAssembly, for the browser and Node.",
+  "license": "MIT OR Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aarkue/graphlay",
+    "directory": "bindings/wasm/js"
+  },
+  "homepage": "https://aarkue.github.io/graphlay/",
+  "keywords": [
+    "graph",
+    "layout",
+    "sugiyama",
+    "layered",
+    "svg",
+    "wasm"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./graphlay_bg.wasm": "./dist/pkg/graphlay_bg.wasm"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "pnpm build:wasm && pnpm build:types && pnpm build:ts",
+    "build:wasm": "wasm-pack build .. --target web --out-dir js/src/pkg --out-name graphlay --release -- --config profile.release.opt-level=3 --config profile.release.lto=true --config profile.release.codegen-units=1 --config 'profile.release.panic=\"abort\"' --config profile.release.strip=true && wasm-opt -O3 --enable-bulk-memory --enable-nontrapping-float-to-int -o src/pkg/graphlay_bg.wasm src/pkg/graphlay_bg.wasm && node scripts/inline-wasm.mjs",
+    "build:types": "node scripts/gen-types.mjs",
+    "build:ts": "tsc -p tsconfig.json && node scripts/copy-pkg.mjs",
+    "test": "node --test \"test/**/*.test.mjs\""
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "binaryen": "^132.0.0",
+    "json-schema-to-typescript": "^15.0.0",
+    "typescript": "^5.6.0"
+  }
+}

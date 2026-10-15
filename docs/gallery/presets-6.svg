@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24.80 -74.80 637.60 389.60" width="637.60" height="389.60" font-family="Inter, system-ui, -apple-system, sans-serif">
+<defs>
+<marker id="gl-mk-0" markerWidth="12.00" markerHeight="12.00" viewBox="0 0 12.00 12" orient="auto" refX="1.00" refY="6" markerUnits="userSpaceOnUse"><path d="M 1,1 L 11,6 L 1,11 Z" fill="#3b4658" stroke="#3b4658" stroke-linejoin="round"/></marker>
+</defs>
+<rect x="-24.80" y="-74.80" width="637.60" height="389.60" fill="#ffffff"/>
+<g id="edges">
+<path d="M 91.20,70.00 L 91.20,63.00 Q 91.20,58.00 96.20,58.00 L 237.00,58.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 246.00,40.00 L 78.20,40.00 Q 73.20,40.00 73.20,45.00 L 73.20,61.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 342.00,40.00 L 483.00,40.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 96.00,90.00 L 535.00,90.00 Q 540.00,90.00 540.00,85.00 L 540.00,69.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 55.20,70.00 L 55.20,-7.00 Q 55.20,-12.00 60.20,-12.00 L 237.00,-12.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 246.00,-30.00 L 42.20,-30.00 Q 37.20,-30.00 37.20,-25.00 L 37.20,61.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 85.20,110.00 L 85.20,195.00 Q 85.20,200.00 90.20,200.00 L 237.00,200.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 294.00,180.00 L 294.00,173.00 Q 294.00,168.00 299.00,168.00 L 483.00,168.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 96.00,99.00 L 412.00,99.00 Q 417.00,99.00 417.00,104.00 L 417.00,127.00 Q 417.00,132.00 422.00,132.00 L 483.00,132.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 492.00,150.00 L 217.67,150.00 Q 212.67,150.00 212.67,145.00 L 212.67,113.00 Q 212.67,108.00 207.67,108.00 L 105.00,108.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 73.20,110.00 L 73.20,265.00 Q 73.20,270.00 78.20,270.00 L 237.00,270.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+</g>
+<g id="nodes">
+<rect x="0.00" y="70.00" width="96.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="48.00" y="90.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Order</text>
+<rect x="246.00" y="20.00" width="96.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="294.00" y="40.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Item</text>
+<rect x="492.00" y="20.00" width="96.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="540.00" y="40.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Customer</text>
+<rect x="246.00" y="-50.00" width="96.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="294.00" y="-30.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Invoice</text>
+<rect x="246.00" y="180.00" width="96.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="294.00" y="200.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Package</text>
+<rect x="492.00" y="130.00" width="96.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="540.00" y="150.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Payment</text>
+<rect x="246.00" y="250.00" width="96.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="294.00" y="270.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Route</text>
+</g>
+</svg>

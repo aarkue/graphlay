@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24.75 -138.00 897.78 265.75" width="897.78" height="265.75" font-family="Inter, system-ui, -apple-system, sans-serif">
+<defs>
+<marker id="gl-mk-0" markerWidth="12.00" markerHeight="12.00" viewBox="0 0 12.00 12" orient="auto" refX="1.00" refY="6" markerUnits="userSpaceOnUse"><path d="M 1,1 L 11,6 L 1,11 Z" fill="#2563eb" stroke="#2563eb" stroke-linejoin="round"/></marker>
+<marker id="gl-mk-1" markerWidth="12.00" markerHeight="12.00" viewBox="0 0 12.00 12" orient="auto" refX="1.00" refY="6" markerUnits="userSpaceOnUse"><path d="M 1,1 L 11,6 L 1,11 Z" fill="#059669" stroke="#059669" stroke-linejoin="round"/></marker>
+</defs>
+<rect x="-24.75" y="-138.00" width="897.78" height="265.75" fill="#ffffff"/>
+<g id="edges">
+<path d="M 30.00,0.00 L 74.80,0.00" fill="none" stroke="#2563eb" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 30.00,-76.00 L 51.00,-76.00 Q 57.00,-76.00 57.00,-70.00 L 57.00,-23.10 Q 57.00,-17.10 63.00,-17.10 L 84.00,-17.10" fill="none" stroke="#059669" stroke-width="6.50" stroke-linecap="round"/>
+<path d="M 30.00,-76.00 L 51.00,-76.00 Q 57.00,-76.00 57.00,-70.00 L 57.00,-23.10 Q 57.00,-17.10 63.00,-17.10 L 75.25,-17.10" fill="none" stroke="#ffffff" stroke-width="2.50" marker-end="url(#gl-mk-1)"/>
+<path d="M 186.80,0.00 L 231.60,0.00" fill="none" stroke="#2563eb" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 186.80,-17.10 L 207.80,-17.10 Q 213.80,-17.10 213.80,-23.10 L 213.80,-70.00 Q 213.80,-76.00 219.80,-76.00 L 240.80,-76.00" fill="none" stroke="#059669" stroke-width="6.50" stroke-linecap="round"/>
+<path d="M 186.80,-17.10 L 207.80,-17.10 Q 213.80,-17.10 213.80,-23.10 L 213.80,-70.00 Q 213.80,-76.00 219.80,-76.00 L 232.05,-76.00" fill="none" stroke="#ffffff" stroke-width="2.50" marker-end="url(#gl-mk-1)"/>
+<path d="M 270.80,0.00 L 315.60,0.00" fill="none" stroke="#2563eb" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 441.20,0.00 L 486.00,0.00" fill="none" stroke="#2563eb" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 255.80,15.00 L 255.80,78.00 Q 255.80,84.00 261.80,84.00 L 319.00,84.00" fill="none" stroke="#2563eb" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 437.80,84.00 L 738.20,84.00 Q 744.20,84.00 744.20,78.00 L 744.20,24.20" fill="none" stroke="#2563eb" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 270.80,-76.00 L 327.80,-76.00" fill="none" stroke="#059669" stroke-width="1.60" marker-end="url(#gl-mk-1)"/>
+<path d="M 429.00,-76.00 L 486.00,-76.00" fill="none" stroke="#059669" stroke-width="1.60" marker-end="url(#gl-mk-1)"/>
+<path d="M 525.20,0.00 L 570.00,0.00" fill="none" stroke="#2563eb" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 525.20,-76.00 L 546.20,-76.00 Q 552.20,-76.00 552.20,-70.00 L 552.20,-23.10 Q 552.20,-17.10 558.20,-17.10 L 579.20,-17.10" fill="none" stroke="#059669" stroke-width="6.50" stroke-linecap="round"/>
+<path d="M 525.20,-76.00 L 546.20,-76.00 Q 552.20,-76.00 552.20,-70.00 L 552.20,-23.10 Q 552.20,-17.10 558.20,-17.10 L 570.45,-17.10" fill="none" stroke="#ffffff" stroke-width="2.50" marker-end="url(#gl-mk-1)"/>
+<path d="M 675.20,0.00 L 720.00,0.00" fill="none" stroke="#2563eb" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 675.20,-17.10 L 687.20,-17.10 Q 693.20,-17.10 693.20,-23.10 L 693.20,-70.00 Q 693.20,-76.00 699.20,-76.00 L 729.20,-76.00" fill="none" stroke="#059669" stroke-width="6.50" stroke-linecap="round"/>
+<path d="M 675.20,-17.10 L 687.20,-17.10 Q 693.20,-17.10 693.20,-23.10 L 693.20,-70.00 Q 693.20,-76.00 699.20,-76.00 L 720.45,-76.00" fill="none" stroke="#ffffff" stroke-width="2.50" marker-end="url(#gl-mk-1)"/>
+</g>
+<g id="nodes">
+<circle cx="15.00" cy="0.00" r="15.00" fill="#dbeafe" stroke="#2563eb" stroke-width="1.50"/>
+<circle cx="15.00" cy="0.00" r="5.50" fill="#2563eb"/>
+<circle cx="15.00" cy="-76.00" r="15.00" fill="#d1fae5" stroke="#059669" stroke-width="1.50"/>
+<circle cx="15.00" cy="-76.00" r="5.50" fill="#059669"/>
+<rect x="84.00" y="-19.00" width="102.80" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="135.40" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Place order</text>
+<circle cx="255.80" cy="0.00" r="15.00" fill="#dbeafe" stroke="#2563eb" stroke-width="1.50"/>
+<circle cx="255.80" cy="-76.00" r="15.00" fill="#d1fae5" stroke="#059669" stroke-width="1.50"/>
+<rect x="324.80" y="-19.00" width="116.40" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="383.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Confirm order</text>
+<rect x="328.20" y="65.00" width="109.60" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="383.00" y="84.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Cancel order</text>
+<circle cx="510.20" cy="0.00" r="15.00" fill="#dbeafe" stroke="#2563eb" stroke-width="1.50"/>
+<rect x="337.00" y="-103.00" width="92.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="383.00" y="-84.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Pick item</text>
+<circle cx="510.20" cy="-76.00" r="15.00" fill="#d1fae5" stroke="#059669" stroke-width="1.50"/>
+<rect x="579.20" y="-19.00" width="96.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
+<text x="627.20" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Ship order</text>
+<circle cx="744.20" cy="0.00" r="15.00" fill="#dbeafe" stroke="#2563eb" stroke-width="1.50"/>
+<circle cx="744.20" cy="0.00" r="10.75" fill="none" stroke="#2563eb" stroke-width="1.50"/>
+<circle cx="744.20" cy="-76.00" r="15.00" fill="#d1fae5" stroke="#059669" stroke-width="1.50"/>
+<circle cx="744.20" cy="-76.00" r="10.75" fill="none" stroke="#059669" stroke-width="1.50"/>
+</g>
+<g id="overlays">
+<text x="783.20" y="-103.00" text-anchor="start" font-size="11.00" font-weight="600.00" fill="#111827">Object types</text>
+<rect x="783.20" y="-95.00" width="10.00" height="10.00" rx="2.00" fill="#2563eb"/>
+<text x="803.20" y="-87.00" text-anchor="start" font-size="11.00" font-weight="400.00" fill="#111827">orders</text>
+<rect x="783.20" y="-79.00" width="10.00" height="10.00" rx="2.00" fill="#059669"/>
+<text x="803.20" y="-71.00" text-anchor="start" font-size="11.00" font-weight="400.00" fill="#111827">items</text>
+</g>
+</svg>

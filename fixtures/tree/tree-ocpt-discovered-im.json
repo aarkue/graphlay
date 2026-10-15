@@ -1,0 +1,817 @@
+{
+  "name": "tree-ocpt-discovered-im",
+  "kind": "tree",
+  "source": "test_data/ocpt-discovered-im.json, object-centric process tree (Inductive Miner)",
+  "direction": "TB",
+  "options": {
+    "flow_edges": false,
+    "flow_diagonal": false,
+    "tree": true,
+    "compact": false
+  },
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "→",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n1",
+      "label": "place order",
+      "width": 112.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n2",
+      "label": "∧",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n3",
+      "label": "→",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n4",
+      "label": "×",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n5",
+      "label": "↺",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n6",
+      "label": "payment reminder",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n7",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n8",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n9",
+      "label": "pay order",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n10",
+      "label": "∧",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n11",
+      "label": "∧",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n12",
+      "label": "×",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n13",
+      "label": "→",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n14",
+      "label": "×",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n15",
+      "label": "item out of stock",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n16",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n17",
+      "label": "∧",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n18",
+      "label": "→",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n19",
+      "label": "×",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n20",
+      "label": "create package",
+      "width": 136.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n21",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n22",
+      "label": "×",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n23",
+      "label": "package delivered",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n24",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n25",
+      "label": "×",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n26",
+      "label": "pick item",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n27",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n28",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n29",
+      "label": "∧",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n30",
+      "label": "∧",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n31",
+      "label": "×",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n32",
+      "label": "confirm order",
+      "width": 128.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n33",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n34",
+      "label": "×",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n35",
+      "label": "send package",
+      "width": 120.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n36",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n37",
+      "label": "×",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n38",
+      "label": "reorder item",
+      "width": 120.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n39",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n40",
+      "label": "×",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n41",
+      "label": "↺",
+      "width": 64.0,
+      "height": 64.0,
+      "shape": "ellipse",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n42",
+      "label": "failed delivery",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n43",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "n44",
+      "label": "τ",
+      "width": 96.0,
+      "height": 76.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    }
+  ],
+  "edges": [
+    {
+      "from": 0,
+      "to": 1,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 5,
+      "to": 6,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 5,
+      "to": 7,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 4,
+      "to": 5,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 4,
+      "to": 8,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 3,
+      "to": 4,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 3,
+      "to": 9,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 14,
+      "to": 15,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 14,
+      "to": 16,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 13,
+      "to": 14,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 19,
+      "to": 20,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 19,
+      "to": 21,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 18,
+      "to": 19,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 22,
+      "to": 23,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 22,
+      "to": 24,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 18,
+      "to": 22,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 17,
+      "to": 18,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 25,
+      "to": 26,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 25,
+      "to": 27,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 17,
+      "to": 25,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 13,
+      "to": 17,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 12,
+      "to": 13,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 12,
+      "to": 28,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 11,
+      "to": 12,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 31,
+      "to": 32,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 31,
+      "to": 33,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 30,
+      "to": 31,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 34,
+      "to": 35,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 34,
+      "to": 36,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 30,
+      "to": 34,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 29,
+      "to": 30,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 37,
+      "to": 38,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 37,
+      "to": 39,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 29,
+      "to": 37,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 11,
+      "to": 29,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 11,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 41,
+      "to": 42,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 41,
+      "to": 43,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 40,
+      "to": 41,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 40,
+      "to": 44,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 40,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 10,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 0,
+      "to": 2,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": null,
+      "label_size": null,
+      "category": null
+    }
+  ]
+}

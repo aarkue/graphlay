@@ -1,0 +1,301 @@
+{
+  "name": "dfg-rtfm-min5pct",
+  "kind": "dfg",
+  "source": "test_data/xes/Road_Traffic_Fine_Management_Process.xes.gz, DFG discovery, >= 5% of max edges",
+  "direction": "TB",
+  "options": {
+    "flow_edges": true,
+    "flow_diagonal": false,
+    "tree": false,
+    "compact": false
+  },
+  "nodes": [
+    {
+      "id": "START",
+      "label": "",
+      "width": 80.0,
+      "height": 36.0,
+      "shape": "box",
+      "pin": "first",
+      "category": null
+    },
+    {
+      "id": "END",
+      "label": "",
+      "width": 80.0,
+      "height": 36.0,
+      "shape": "box",
+      "pin": "last",
+      "category": null
+    },
+    {
+      "id": "act:Add penalty",
+      "label": "Add penalty",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Appeal to Judge",
+      "label": "Appeal to Judge",
+      "width": 144.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Create Fine",
+      "label": "Create Fine",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Insert Date Appeal to Prefecture",
+      "label": "Insert Date Appeal to Prefecture",
+      "width": 260.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Insert Fine Notification",
+      "label": "Insert Fine Notification",
+      "width": 216.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Notify Result Appeal to Offender",
+      "label": "Notify Result Appeal to Offender",
+      "width": 260.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Payment",
+      "label": "Payment",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Receive Result Appeal from Prefecture",
+      "label": "Receive Result Appeal from Prefecture",
+      "width": 260.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Send Appeal to Prefecture",
+      "label": "Send Appeal to Prefecture",
+      "width": 224.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Send Fine",
+      "label": "Send Fine",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Send for Credit Collection",
+      "label": "Send for Credit Collection",
+      "width": 232.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    }
+  ],
+  "edges": [
+    {
+      "from": 2,
+      "to": 8,
+      "weight": 10.832045255081763,
+      "thickness": 3.0835559556434546,
+      "label": "18621",
+      "label_size": [
+        37.6,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 12,
+      "weight": 11.95399444252939,
+      "thickness": 4.274991035611158,
+      "label": "57182",
+      "label_size": [
+        37.6,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 4,
+      "to": 8,
+      "weight": 11.75688108223817,
+      "thickness": 4.014542394845728,
+      "label": "46952",
+      "label_size": [
+        37.6,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 4,
+      "to": 11,
+      "weight": 12.546282868624225,
+      "thickness": 5.2314307150501485,
+      "label": "103392",
+      "label_size": [
+        44.32,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 6,
+      "to": 2,
+      "weight": 12.189049560401877,
+      "thickness": 4.621067453124148,
+      "label": "72334",
+      "label_size": [
+        37.6,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 11,
+      "to": 6,
+      "weight": 12.286739791089824,
+      "thickness": 4.777300912366787,
+      "label": "79757",
+      "label_size": [
+        37.6,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 0,
+      "to": 4,
+      "weight": 12.920854202516367,
+      "thickness": 6.0,
+      "label": "150370",
+      "label_size": [
+        44.32,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 3,
+      "to": 1,
+      "weight": 5.897839799950911,
+      "thickness": 1.634333494694242,
+      "label": "134",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 7,
+      "to": 1,
+      "weight": 5.454347296253507,
+      "thickness": 1.6076170640120908,
+      "label": "86",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 8,
+      "to": 1,
+      "weight": 12.1154434073529,
+      "thickness": 4.508290566098816,
+      "label": "67201",
+      "label_size": [
+        37.6,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 9,
+      "to": 1,
+      "weight": 4.970291913552122,
+      "thickness": 1.5844831014291016,
+      "label": "53",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 1,
+      "weight": 9.053251153549096,
+      "thickness": 2.1506885769146047,
+      "label": "3144",
+      "label_size": [
+        30.88,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 11,
+      "to": 1,
+      "weight": 10.940542460487139,
+      "thickness": 3.171834498749309,
+      "label": "20755",
+      "label_size": [
+        37.6,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 12,
+      "to": 1,
+      "weight": 11.985241874137454,
+      "thickness": 4.318687166021609,
+      "label": "58997",
+      "label_size": [
+        37.6,
+        14.0
+      ],
+      "category": null
+    }
+  ]
+}

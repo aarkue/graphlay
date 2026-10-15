@@ -1,0 +1,82 @@
+[workspace]
+members = ["cli", "bindings/wasm", "bindings/python"]
+default-members = ["."]
+
+[workspace.package]
+version = "0.2.0"
+edition = "2021"
+rust-version = "1.88"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/aarkue/graphlay"
+
+[package]
+name = "graphlay"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+description = "Deterministic layered (Sugiyama-style) graph layout, tidy trees and an SVG renderer, in pure Rust."
+license.workspace = true
+repository.workspace = true
+keywords = ["graph", "layout", "sugiyama", "svg", "visualization"]
+categories = ["visualization", "algorithms"]
+readme = "README.md"
+exclude = ["fixtures/**/*.svg", "/target", "/bindings", "/cli", "/site", "/tests/conformance", "/.github"]
+
+[package.metadata.docs.rs]
+all-features = true
+
+[lib]
+crate-type = ["rlib"]
+
+[dependencies]
+# The same sin, cos and atan2 on every target. See `geometry::fp`.
+libm = "0.2"
+serde = { version = "1", features = ["derive"] }
+schemars = { version = "1.1.0", optional = true }
+serde_json = { version = "1", optional = true }
+serde_path_to_error = { version = "0.1", optional = true }
+
+[dev-dependencies]
+serde_json = "1"
+
+[features]
+default = ["serde", "svg", "parallel"]
+# The `json` module: layout requests as JSON. `serde` itself is always on, since the data model
+# derives on it unconditionally.
+serde = ["dep:serde_json", "dep:serde_path_to_error"]
+# The `svg` module: the Scene model, the renderer and text measurement.
+svg = []
+# `JsonSchema` derives on the public data types, for the TypeScript and Python bindings.
+schemars = ["dep:schemars"]
+# Crossing minimisation on several threads, with the same result as on one. No-op on wasm.
+parallel = []
+# Fixture loading (`fixture`, `synthetic`) and the `eval` example. Format: `fixtures/FORMAT.md`.
+fixtures = ["dep:serde_json", "serde"]
+
+[[example]]
+name = "eval"
+required-features = ["fixtures", "svg"]
+
+[[example]]
+name = "bench_corpus"
+required-features = ["fixtures"]
+
+[[test]]
+name = "fixtures_layout"
+required-features = ["fixtures"]
+
+[[test]]
+name = "golden"
+required-features = ["fixtures"]
+
+[[test]]
+name = "conformance"
+required-features = ["fixtures"]
+
+[[test]]
+name = "swimlanes"
+required-features = ["fixtures"]
+
+[[test]]
+name = "gallery"
+required-features = ["fixtures", "svg"]

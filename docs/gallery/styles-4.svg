@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24.80 -79.00 548.80 162.00" width="548.80" height="162.00" font-family="Inter, system-ui, -apple-system, sans-serif">
+<defs>
+<marker id="gl-mk-0" markerWidth="12.00" markerHeight="12.00" viewBox="0 0 12.00 12" orient="auto" refX="1.00" refY="6" markerUnits="userSpaceOnUse"><path d="M 1,1 L 11,6 L 1,11 Z" fill="#1f2937" stroke="#1f2937" stroke-linejoin="round"/></marker>
+</defs>
+<rect x="-24.80" y="-79.00" width="548.80" height="162.00" fill="#ffffff"/>
+<g id="edges">
+<path d="M 2.00,0.00 L 46.80,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<path d="M 100.00,0.00 L 144.80,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<rect x="122.17" y="-7.00" width="9.66" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="127.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1f2937">a</text>
+<path d="M 60.00,-12.65 L 60.00,-32.00 Q 60.00,-37.00 65.00,-37.00 L 91.00,-37.00 Q 96.00,-37.00 96.00,-32.00 L 96.00,-21.85" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<rect x="73.17" y="-55.00" width="9.66" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="78.00" y="-48.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1f2937">b</text>
+<path d="M 158.00,-12.65 L 158.00,-32.00 Q 158.00,-37.00 163.00,-37.00 L 189.00,-37.00 Q 194.00,-37.00 194.00,-32.00 L 194.00,-21.85" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<rect x="171.17" y="-55.00" width="9.66" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="176.00" y="-48.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1f2937">a</text>
+<path d="M 198.00,0.00 L 242.80,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<rect x="220.17" y="-7.00" width="9.66" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="225.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1f2937">b</text>
+<path d="M 296.00,0.00 L 340.80,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<rect x="318.17" y="-7.00" width="9.66" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="323.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1f2937">a</text>
+<path d="M 274.00,22.00 L 274.00,47.00 Q 274.00,52.00 269.00,52.00 L 83.00,52.00 Q 78.00,52.00 78.00,47.00 L 78.00,31.20" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<rect x="171.17" y="45.00" width="9.66" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="176.00" y="52.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1f2937">b</text>
+<path d="M 394.00,0.00 L 438.80,0.00" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<rect x="416.17" y="-7.00" width="9.66" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="421.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1f2937">b</text>
+<path d="M 354.00,-12.65 L 354.00,-32.00 Q 354.00,-37.00 359.00,-37.00 L 385.00,-37.00 Q 390.00,-37.00 390.00,-32.00 L 390.00,-21.85" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<rect x="367.17" y="-55.00" width="9.66" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="372.00" y="-48.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1f2937">a</text>
+<path d="M 452.00,-12.65 L 452.00,-32.00 Q 452.00,-37.00 457.00,-37.00 L 483.00,-37.00 Q 488.00,-37.00 488.00,-32.00 L 488.00,-21.85" fill="none" stroke="#1f2937" stroke-width="1.60" marker-end="url(#gl-mk-0)"/>
+<rect x="459.25" y="-55.00" width="21.51" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="470.00" y="-48.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1f2937">a, b</text>
+</g>
+<g id="nodes">
+<circle cx="78.00" cy="0.00" r="22.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.75"/>
+<text x="78.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">q0</text>
+<circle cx="176.00" cy="0.00" r="22.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.75"/>
+<text x="176.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">q1</text>
+<circle cx="274.00" cy="0.00" r="22.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.75"/>
+<text x="274.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">q2</text>
+<circle cx="274.00" cy="0.00" r="17.25" fill="none" stroke="#1f2937" stroke-width="1.50"/>
+<circle cx="372.00" cy="0.00" r="22.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.75"/>
+<text x="372.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">q3</text>
+<circle cx="470.00" cy="0.00" r="22.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.75"/>
+<text x="470.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">q4</text>
+<circle cx="470.00" cy="0.00" r="17.25" fill="none" stroke="#1f2937" stroke-width="1.50"/>
+<rect x="0.00" y="-1.00" width="2.00" height="2.00" rx="1.00" fill="none" stroke="none" stroke-width="1.60"/>
+</g>
+</svg>

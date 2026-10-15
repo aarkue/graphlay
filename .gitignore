@@ -1,0 +1,19 @@
+/target
+node_modules/
+# Build output of the bindings and the site.
+/bindings/wasm/js/src/pkg/
+/bindings/wasm/js/dist/
+/bindings/python/target/
+/bindings/python/dist/
+/bindings/python/.venv/
+/site/build/
+/site/.docusaurus/
+__pycache__/
+*.pyc
+*.so
+*.egg-info/
+/site/generated/
+/site/static/gallery/
+/site/static/api/
+/bench/corpus/
+/bench/results.json

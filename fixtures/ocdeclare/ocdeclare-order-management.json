@@ -1,0 +1,428 @@
+{
+  "name": "ocdeclare-order-management",
+  "kind": "ocdeclare",
+  "source": "test_data/ocel/order-management.json, OC-DECLARE discovery (EF/EP only, counts <= 20, lossless reduction, noise=0.2)",
+  "direction": "LR",
+  "options": {
+    "flow_edges": true,
+    "flow_diagonal": false,
+    "tree": false,
+    "compact": false
+  },
+  "nodes": [
+    {
+      "id": "confirm order",
+      "label": "confirm order",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "create package",
+      "label": "create package",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "failed delivery",
+      "label": "failed delivery",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "item out of stock",
+      "label": "item out of stock",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "package delivered",
+      "label": "package delivered",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "pay order",
+      "label": "pay order",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "payment reminder",
+      "label": "payment reminder",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "pick item",
+      "label": "pick item",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "place order",
+      "label": "place order",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "reorder item",
+      "label": "reorder item",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "send package",
+      "label": "send package",
+      "width": 140.0,
+      "height": 44.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    }
+  ],
+  "edges": [
+    {
+      "from": 0,
+      "to": 1,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(items) 1..∞",
+      "label_size": [
+        141.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 0,
+      "to": 5,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(orders), All(items) 1..∞",
+      "label_size": [
+        232.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 0,
+      "to": 8,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(orders), All(items) 1..∞",
+      "label_size": [
+        232.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 1,
+      "to": 7,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(items) 1..∞",
+      "label_size": [
+        141.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 1,
+      "to": 10,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(packages), All(items) 1..∞",
+      "label_size": [
+        246.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 4,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(packages), All(items) 1..∞",
+      "label_size": [
+        246.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 10,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(packages), All(items) 1..∞",
+      "label_size": [
+        246.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 3,
+      "to": 5,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(items) 1..∞",
+      "label_size": [
+        141.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 3,
+      "to": 8,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(items) 1..∞",
+      "label_size": [
+        141.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 3,
+      "to": 9,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(items) 1..∞",
+      "label_size": [
+        141.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 4,
+      "to": 10,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(packages), All(items) 1..∞",
+      "label_size": [
+        246.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 5,
+      "to": 0,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(orders), All(items) 1..∞",
+      "label_size": [
+        232.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 6,
+      "to": 0,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(orders), All(items) 1..∞",
+      "label_size": [
+        232.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 6,
+      "to": 4,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(items) 1..∞",
+      "label_size": [
+        141.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 6,
+      "to": 5,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(orders), All(items) 1..∞",
+      "label_size": [
+        232.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 7,
+      "to": 1,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(items) 1..∞",
+      "label_size": [
+        141.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 7,
+      "to": 8,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(items) 1..∞",
+      "label_size": [
+        141.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 8,
+      "to": 0,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(orders), All(items) 1..∞",
+      "label_size": [
+        232.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 8,
+      "to": 7,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(items) 1..∞",
+      "label_size": [
+        141.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 9,
+      "to": 0,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(items) 1..∞",
+      "label_size": [
+        141.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 9,
+      "to": 3,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(items) 1..∞",
+      "label_size": [
+        141.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 9,
+      "to": 7,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(items) 1..∞",
+      "label_size": [
+        141.0,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 0,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(items) 1..∞",
+      "label_size": [
+        141.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 10,
+      "to": 1,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EP Each(packages), All(items) 1..∞",
+      "label_size": [
+        246.0,
+        14.0
+      ],
+      "category": null,
+      "reversed": true
+    },
+    {
+      "from": 10,
+      "to": 4,
+      "weight": 1.0,
+      "thickness": 2.0,
+      "label": "EF Each(packages), All(items) 1..∞",
+      "label_size": [
+        246.0,
+        14.0
+      ],
+      "category": null
+    }
+  ]
+}

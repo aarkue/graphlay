@@ -1,0 +1,130 @@
+{
+  "name": "dfg-small-example-min5pct",
+  "kind": "dfg",
+  "source": "test_data/xes/small-example.xes, DFG discovery, >= 5% of max edges",
+  "direction": "TB",
+  "options": {
+    "flow_edges": true,
+    "flow_diagonal": false,
+    "tree": false,
+    "compact": false
+  },
+  "nodes": [
+    {
+      "id": "START",
+      "label": "",
+      "width": 80.0,
+      "height": 36.0,
+      "shape": "box",
+      "pin": "first",
+      "category": null
+    },
+    {
+      "id": "END",
+      "label": "",
+      "width": 80.0,
+      "height": 36.0,
+      "shape": "box",
+      "pin": "last",
+      "category": null
+    },
+    {
+      "id": "act:",
+      "label": "",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Mail rejection",
+      "label": "Mail rejection",
+      "width": 136.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Register client",
+      "label": "Register client",
+      "width": 144.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    }
+  ],
+  "edges": [
+    {
+      "from": 2,
+      "to": 2,
+      "weight": 2.09861228866811,
+      "thickness": 6.0,
+      "label": "3",
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 4,
+      "to": 3,
+      "weight": 1.0,
+      "thickness": 4.098076211353316,
+      "label": "1",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 0,
+      "to": 2,
+      "weight": 1.0,
+      "thickness": 4.098076211353316,
+      "label": "1",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 0,
+      "to": 4,
+      "weight": 1.0,
+      "thickness": 4.098076211353316,
+      "label": "1",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 1,
+      "weight": 1.0,
+      "thickness": 4.098076211353316,
+      "label": "1",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 3,
+      "to": 1,
+      "weight": 1.0,
+      "thickness": 4.098076211353316,
+      "label": "1",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    }
+  ]
+}

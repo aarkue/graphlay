@@ -1,0 +1,338 @@
+{
+  "graph": {
+    "edges": [
+      {
+        "group": null,
+        "label_size": null,
+        "reverse_for_ranking": false,
+        "source": 0,
+        "source_port": null,
+        "target": 1,
+        "target_port": null,
+        "thickness": 2.0,
+        "weight": 1.0
+      },
+      {
+        "group": null,
+        "label_size": null,
+        "reverse_for_ranking": false,
+        "source": 1,
+        "source_port": null,
+        "target": 2,
+        "target_port": null,
+        "thickness": 2.0,
+        "weight": 1.0
+      },
+      {
+        "group": null,
+        "label_size": null,
+        "reverse_for_ranking": false,
+        "source": 0,
+        "source_port": null,
+        "target": 3,
+        "target_port": null,
+        "thickness": 2.0,
+        "weight": 1.0
+      },
+      {
+        "group": null,
+        "label_size": null,
+        "reverse_for_ranking": false,
+        "source": 3,
+        "source_port": null,
+        "target": 4,
+        "target_port": null,
+        "thickness": 2.0,
+        "weight": 1.0
+      },
+      {
+        "group": null,
+        "label_size": null,
+        "reverse_for_ranking": false,
+        "source": 4,
+        "source_port": null,
+        "target": 5,
+        "target_port": null,
+        "thickness": 2.0,
+        "weight": 1.0
+      },
+      {
+        "group": null,
+        "label_size": null,
+        "reverse_for_ranking": false,
+        "source": 2,
+        "source_port": null,
+        "target": 5,
+        "target_port": null,
+        "thickness": 2.0,
+        "weight": 1.0
+      }
+    ],
+    "nodes": [
+      {
+        "group": 0,
+        "lane_key": null,
+        "margin": {
+          "along_neg": 0.0,
+          "along_pos": 0.0,
+          "cross_neg": 0.0,
+          "cross_pos": 0.0
+        },
+        "parent": null,
+        "pinned": false,
+        "port_sides": null,
+        "position": null,
+        "rank": "free",
+        "shape": "box",
+        "size": {
+          "height": 44.0,
+          "width": 100.0
+        }
+      },
+      {
+        "group": 0,
+        "lane_key": null,
+        "margin": {
+          "along_neg": 0.0,
+          "along_pos": 0.0,
+          "cross_neg": 0.0,
+          "cross_pos": 0.0
+        },
+        "parent": null,
+        "pinned": false,
+        "port_sides": null,
+        "position": null,
+        "rank": "free",
+        "shape": "box",
+        "size": {
+          "height": 44.0,
+          "width": 100.0
+        }
+      },
+      {
+        "group": 0,
+        "lane_key": null,
+        "margin": {
+          "along_neg": 0.0,
+          "along_pos": 0.0,
+          "cross_neg": 0.0,
+          "cross_pos": 0.0
+        },
+        "parent": null,
+        "pinned": false,
+        "port_sides": null,
+        "position": null,
+        "rank": "free",
+        "shape": "box",
+        "size": {
+          "height": 44.0,
+          "width": 100.0
+        }
+      },
+      {
+        "group": 1,
+        "lane_key": null,
+        "margin": {
+          "along_neg": 0.0,
+          "along_pos": 0.0,
+          "cross_neg": 0.0,
+          "cross_pos": 0.0
+        },
+        "parent": null,
+        "pinned": false,
+        "port_sides": null,
+        "position": null,
+        "rank": "free",
+        "shape": "box",
+        "size": {
+          "height": 44.0,
+          "width": 100.0
+        }
+      },
+      {
+        "group": 1,
+        "lane_key": null,
+        "margin": {
+          "along_neg": 0.0,
+          "along_pos": 0.0,
+          "cross_neg": 0.0,
+          "cross_pos": 0.0
+        },
+        "parent": null,
+        "pinned": false,
+        "port_sides": null,
+        "position": null,
+        "rank": "free",
+        "shape": "box",
+        "size": {
+          "height": 44.0,
+          "width": 100.0
+        }
+      },
+      {
+        "group": 1,
+        "lane_key": null,
+        "margin": {
+          "along_neg": 0.0,
+          "along_pos": 0.0,
+          "cross_neg": 0.0,
+          "cross_pos": 0.0
+        },
+        "parent": null,
+        "pinned": false,
+        "port_sides": null,
+        "position": null,
+        "rank": "free",
+        "shape": "box",
+        "size": {
+          "height": 44.0,
+          "width": 100.0
+        }
+      }
+    ]
+  },
+  "options": {
+    "compaction": {
+      "mode": "none"
+    },
+    "coords": {
+      "branch_bands": true,
+      "branch_style": "straight_main",
+      "placement": "network_simplex",
+      "terminal_centering": true
+    },
+    "cycles": {
+      "strategy": "minimum_reversal"
+    },
+    "direction": "topbottom",
+    "effort": "balanced",
+    "labels": {
+      "clearance": 4.0,
+      "placement": "candidates",
+      "reservation": "when_needed"
+    },
+    "limits": {
+      "max_dummies": null,
+      "max_edges": null,
+      "max_nodes": null
+    },
+    "order": {
+      "group_lane_area_percent": 0,
+      "group_lane_budget_percent": 0,
+      "group_lanes": "strict",
+      "heuristic": "alternate"
+    },
+    "routing": {
+      "bundle_parallel": true,
+      "centre_ports": "round",
+      "lane_gap": 8.0,
+      "merge_edges": "none",
+      "port_sides": "facing_preferred",
+      "style": "orthogonal"
+    },
+    "seed": 0,
+    "seed_mode": "placement",
+    "self_loops": {
+      "gap": 10.0,
+      "label_gap": 4.0,
+      "side": "auto",
+      "size": 15.0
+    },
+    "spacing": {
+      "bundle_lane_gap": 8.0,
+      "compound_header": 0.0,
+      "compound_padding": 20.0,
+      "dummy_gap": 30.0,
+      "edge_label_margin": 24.0,
+      "edge_label_stack_gap": 6.0,
+      "isolated_gap": 46.0,
+      "isolated_max_columns": 24,
+      "layer_gap": 64.0,
+      "node_gap": 54.0,
+      "port_gap": 18.0,
+      "port_stroke_clear": 14.0,
+      "reroute_node_gap": 54.0,
+      "self_loop_gap": 10.0,
+      "stub": 15.0
+    },
+    "tuning": {
+      "compaction": {
+        "offset_rounds": 24,
+        "refine_rounds": 8
+      },
+      "coords": {
+        "balance_width_slack": 20,
+        "branch_rounds": 3,
+        "flatten_room": 300,
+        "main_path_room": 15,
+        "pullin_rounds": 3,
+        "simplex_face_rounds": 2,
+        "simplex_max_nodes": 10000,
+        "simplex_max_pivots": 50000,
+        "snap_rounds": 8
+      },
+      "labels": {
+        "fractions": [
+          0.5,
+          0.32,
+          0.68,
+          0.18,
+          0.82
+        ],
+        "rounds": 2,
+        "side_steps": [
+          1.0,
+          2.0,
+          4.0,
+          8.0
+        ]
+      },
+      "order": {
+        "balance_rounds": 4,
+        "chain_lane_max_span": 12,
+        "chain_lane_max_steps": 5,
+        "chain_lane_rounds": 3,
+        "chain_lane_size_threshold": 2000,
+        "exhaustive_layer_max": 5,
+        "group_lane_budget_floor": 0,
+        "group_lane_order_rounds": 2,
+        "group_lane_repair_rounds": 3,
+        "group_lane_sweeps": 4,
+        "group_relax_iters": 64,
+        "group_sort_rounds": 8,
+        "kick_max_span": 8,
+        "kick_patience": 64,
+        "kick_rounds": 30000,
+        "seeds": 9,
+        "sifting_max_work": 160000,
+        "sifting_min_layer": 2,
+        "sifting_rounds": 8,
+        "sifting_sweep_max_arcs": 20000,
+        "sweep_stall": 2,
+        "sweeps": 8
+      },
+      "routing": {
+        "bundle_nest_gap": 12.0,
+        "diagonal_clear": 8.0,
+        "diagonal_detour_margin": 12.0,
+        "endpoint_snap": 6.0,
+        "endpoint_snap_min_track": 25.0,
+        "overlap_repair_rounds": 8,
+        "overlap_repair_step": 8.0,
+        "port_relax_clear": 10.0,
+        "port_relax_rounds": 48,
+        "port_relax_step": 3.0,
+        "step_flatten": 1000000.0
+      },
+      "wrap": {
+        "max_cut_edges": 4,
+        "max_rows": 4,
+        "min_gain": 1.2
+      }
+    },
+    "wrap": {
+      "viewport_aspect": 0.0
+    }
+  },
+  "preset": "layered"
+}

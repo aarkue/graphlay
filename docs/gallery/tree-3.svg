@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24.80 -24.80 437.60 405.60" width="437.60" height="405.60" font-family="Inter, system-ui, -apple-system, sans-serif">
+<defs>
+<marker id="gl-mk-0" markerWidth="12.00" markerHeight="12.00" viewBox="0 0 12.00 12" orient="auto" refX="1.00" refY="6" markerUnits="userSpaceOnUse"><path d="M 1,1 L 11,6 L 1,11 Z" fill="#3b4658" stroke="#3b4658" stroke-linejoin="round"/></marker>
+</defs>
+<rect x="-24.80" y="-24.80" width="437.60" height="405.60" fill="#ffffff"/>
+<g id="edges">
+<path d="M 240.00,50.00 L 263.00,50.00 Q 268.00,50.00 268.00,45.00 L 268.00,23.00 Q 268.00,18.00 273.00,18.00 L 287.00,18.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 240.00,50.00 L 263.00,50.00 Q 268.00,50.00 268.00,55.00 L 268.00,77.00 Q 268.00,82.00 273.00,82.00 L 287.00,82.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 240.00,210.00 L 263.00,210.00 Q 268.00,210.00 268.00,205.00 L 268.00,151.00 Q 268.00,146.00 273.00,146.00 L 287.00,146.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 240.00,210.00 L 287.00,210.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 240.00,210.00 L 263.00,210.00 Q 268.00,210.00 268.00,215.00 L 268.00,269.00 Q 268.00,274.00 273.00,274.00 L 287.00,274.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 240.00,338.00 L 287.00,338.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 92.00,194.00 L 115.00,194.00 Q 120.00,194.00 120.00,189.00 L 120.00,55.00 Q 120.00,50.00 125.00,50.00 L 139.00,50.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 92.00,194.00 L 115.00,194.00 Q 120.00,194.00 120.00,199.00 L 120.00,205.00 Q 120.00,210.00 125.00,210.00 L 139.00,210.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 92.00,194.00 L 115.00,194.00 Q 120.00,194.00 120.00,199.00 L 120.00,333.00 Q 120.00,338.00 125.00,338.00 L 139.00,338.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+</g>
+<g id="nodes">
+<rect x="0.00" y="176.00" width="92.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="46.00" y="194.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Company</text>
+<rect x="148.00" y="32.00" width="92.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="194.00" y="50.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Sales</text>
+<rect x="148.00" y="192.00" width="92.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="194.00" y="210.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Product</text>
+<rect x="148.00" y="320.00" width="92.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="194.00" y="338.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Finance</text>
+<rect x="296.00" y="0.00" width="92.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="342.00" y="18.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Inbound</text>
+<rect x="296.00" y="64.00" width="92.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="342.00" y="82.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Accounts</text>
+<rect x="296.00" y="128.00" width="92.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="342.00" y="146.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Design</text>
+<rect x="296.00" y="192.00" width="92.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="342.00" y="210.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Platform</text>
+<rect x="296.00" y="256.00" width="92.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="342.00" y="274.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Mobile</text>
+<rect x="296.00" y="320.00" width="92.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="342.00" y="338.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Payroll</text>
+</g>
+</svg>

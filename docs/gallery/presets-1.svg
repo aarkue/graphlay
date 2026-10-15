@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24.80 -130.80 1143.60 225.60" width="1143.60" height="225.60" font-family="Inter, system-ui, -apple-system, sans-serif">
+<defs>
+<marker id="gl-mk-0" markerWidth="12.00" markerHeight="12.00" viewBox="0 0 12.00 12" orient="auto" refX="1.00" refY="6" markerUnits="userSpaceOnUse"><path d="M 1,1 L 11,6 L 1,11 Z" fill="#3b4658" stroke="#3b4658" stroke-linejoin="round"/></marker>
+</defs>
+<rect x="-24.80" y="-130.80" width="1143.60" height="225.60" fill="#ffffff"/>
+<g id="edges">
+<path d="M 110.00,0.00 L 156.00,0.00" fill="none" stroke="#3b4658" stroke-width="4.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 274.00,0.00 L 319.97,0.00" fill="none" stroke="#3b4658" stroke-width="3.94" marker-end="url(#gl-mk-0)"/>
+<path d="M 274.00,-18.00 L 287.00,-18.00 Q 292.00,-18.00 292.00,-23.00 L 292.00,-81.00 Q 292.00,-86.00 297.00,-86.00 L 319.42,-86.00" fill="none" stroke="#3b4658" stroke-width="2.84" marker-end="url(#gl-mk-0)"/>
+<path d="M 438.00,18.00 L 460.00,18.00 Q 465.00,18.00 465.00,23.00 L 465.00,27.00 Q 465.00,32.00 470.00,32.00 L 483.97,32.00" fill="none" stroke="#3b4658" stroke-width="3.94" marker-end="url(#gl-mk-0)"/>
+<path d="M 602.00,50.00 L 647.96,50.00" fill="none" stroke="#3b4658" stroke-width="3.93" marker-end="url(#gl-mk-0)"/>
+<path d="M 766.00,50.00 L 788.00,50.00 Q 793.00,50.00 793.00,45.00 L 793.00,23.00 Q 793.00,18.00 798.00,18.00 L 811.96,18.00" fill="none" stroke="#3b4658" stroke-width="3.93" marker-end="url(#gl-mk-0)"/>
+<path d="M 930.00,0.00 L 975.96,0.00" fill="none" stroke="#3b4658" stroke-width="3.93" marker-end="url(#gl-mk-0)"/>
+<path d="M 438.00,-86.00 L 952.00,-86.00 Q 957.00,-86.00 957.00,-81.00 L 957.00,-23.00 Q 957.00,-18.00 962.00,-18.00 L 975.42,-18.00" fill="none" stroke="#3b4658" stroke-width="2.84" marker-end="url(#gl-mk-0)"/>
+<path d="M 438.00,0.00 L 811.08,0.00" fill="none" stroke="#3b4658" stroke-width="2.15" marker-end="url(#gl-mk-0)"/>
+<path d="M 492.00,50.00 L 315.00,50.00 Q 310.00,50.00 310.00,45.00 L 310.00,23.00 Q 310.00,18.00 305.00,18.00 L 282.70,18.00" fill="none" stroke="#3b4658" stroke-width="2.61" marker-end="url(#gl-mk-0)"/>
+</g>
+<g id="nodes">
+<rect x="0.00" y="-20.00" width="110.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="55.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Receive</text>
+<rect x="164.00" y="-20.00" width="110.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="219.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Check</text>
+<rect x="328.00" y="-20.00" width="110.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="383.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Reserve</text>
+<rect x="492.00" y="30.00" width="110.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="547.00" y="50.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Pick</text>
+<rect x="656.00" y="30.00" width="110.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="711.00" y="50.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Ship</text>
+<rect x="820.00" y="-20.00" width="110.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="875.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Invoice</text>
+<rect x="984.00" y="-20.00" width="110.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="1039.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Close</text>
+<rect x="328.00" y="-106.00" width="110.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="383.00" y="-86.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Reject</text>
+</g>
+</svg>

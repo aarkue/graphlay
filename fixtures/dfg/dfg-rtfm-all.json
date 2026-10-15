@@ -1,0 +1,1066 @@
+{
+  "name": "dfg-rtfm-all",
+  "kind": "dfg",
+  "source": "test_data/xes/Road_Traffic_Fine_Management_Process.xes.gz, DFG discovery, all edges",
+  "direction": "TB",
+  "options": {
+    "flow_edges": true,
+    "flow_diagonal": false,
+    "tree": false,
+    "compact": false
+  },
+  "nodes": [
+    {
+      "id": "START",
+      "label": "",
+      "width": 80.0,
+      "height": 36.0,
+      "shape": "box",
+      "pin": "first",
+      "category": null
+    },
+    {
+      "id": "END",
+      "label": "",
+      "width": 80.0,
+      "height": 36.0,
+      "shape": "box",
+      "pin": "last",
+      "category": null
+    },
+    {
+      "id": "act:Add penalty",
+      "label": "Add penalty",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Appeal to Judge",
+      "label": "Appeal to Judge",
+      "width": 144.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Create Fine",
+      "label": "Create Fine",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Insert Date Appeal to Prefecture",
+      "label": "Insert Date Appeal to Prefecture",
+      "width": 260.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Insert Fine Notification",
+      "label": "Insert Fine Notification",
+      "width": 216.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Notify Result Appeal to Offender",
+      "label": "Notify Result Appeal to Offender",
+      "width": 260.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Payment",
+      "label": "Payment",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Receive Result Appeal from Prefecture",
+      "label": "Receive Result Appeal from Prefecture",
+      "width": 260.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Send Appeal to Prefecture",
+      "label": "Send Appeal to Prefecture",
+      "width": 224.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Send Fine",
+      "label": "Send Fine",
+      "width": 120.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    },
+    {
+      "id": "act:Send for Credit Collection",
+      "label": "Send for Credit Collection",
+      "width": 232.0,
+      "height": 52.0,
+      "shape": "box",
+      "pin": null,
+      "category": null
+    }
+  ],
+  "edges": [
+    {
+      "from": 2,
+      "to": 3,
+      "weight": 5.382026634673881,
+      "thickness": 1.603795113325769,
+      "label": "80",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 5,
+      "weight": 7.489204931325317,
+      "thickness": 1.7976767124773005,
+      "label": "658",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 7,
+      "weight": 4.970291913552122,
+      "thickness": 1.5844831014291016,
+      "label": "53",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 8,
+      "weight": 10.832045255081763,
+      "thickness": 3.0835559556434546,
+      "label": "18621",
+      "label_size": [
+        37.6,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 9,
+      "weight": 6.860786223465865,
+      "thickness": 1.717412981677686,
+      "label": "351",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 10,
+      "weight": 8.977625098784593,
+      "thickness": 2.1265434490036528,
+      "label": "2915",
+      "label_size": [
+        30.88,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 2,
+      "to": 12,
+      "weight": 11.95399444252939,
+      "thickness": 4.274991035611158,
+      "label": "57182",
+      "label_size": [
+        37.6,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 3,
+      "to": 2,
+      "weight": 6.638354669333745,
+      "thickness": 1.6945293223281808,
+      "label": "281",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 3,
+      "to": 5,
+      "weight": 3.70805020110221,
+      "thickness": 1.5449446024644002,
+      "label": "15",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 3,
+      "to": 7,
+      "weight": 3.1972245773362196,
+      "thickness": 1.534813939369307,
+      "label": "9",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 3,
+      "to": 8,
+      "weight": 5.248495242049359,
+      "thickness": 1.5970914381216006,
+      "label": "70",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 3,
+      "to": 9,
+      "weight": 1.0,
+      "thickness": 1.5116046464564357,
+      "label": "1",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 3,
+      "to": 10,
+      "weight": 3.1972245773362196,
+      "thickness": 1.534813939369307,
+      "label": "9",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 3,
+      "to": 11,
+      "weight": 2.386294361119891,
+      "thickness": 1.5232092929128713,
+      "label": "4",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 3,
+      "to": 12,
+      "weight": 4.465735902799727,
+      "thickness": 1.565645793620945,
+      "label": "32",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 4,
+      "to": 3,
+      "weight": 2.386294361119891,
+      "thickness": 1.5232092929128713,
+      "label": "4",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 4,
+      "to": 5,
+      "weight": 4.091042453358316,
+      "thickness": 1.554430616626445,
+      "label": "22",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 4,
+      "to": 8,
+      "weight": 11.75688108223817,
+      "thickness": 4.014542394845728,
+      "label": "46952",
+      "label_size": [
+        37.6,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 4,
+      "to": 11,
+      "weight": 12.546282868624225,
+      "thickness": 5.2314307150501485,
+      "label": "103392",
+      "label_size": [
+        44.32,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 5,
+      "to": 2,
+      "weight": 8.98378106897745,
+      "thickness": 2.1284749113832726,
+      "label": "2933",
+      "label_size": [
+        30.88,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 5,
+      "to": 3,
+      "weight": 2.9459101490553135,
+      "thickness": 1.5307030085765558,
+      "label": "7",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 5,
+      "to": 6,
+      "weight": 4.218875824868201,
+      "thickness": 1.5580232322821785,
+      "label": "25",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 5,
+      "to": 8,
+      "weight": 3.6390573296152584,
+      "thickness": 1.5434206111346227,
+      "label": "14",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 5,
+      "to": 9,
+      "weight": 4.555348061489413,
+      "thickness": 1.5686540142909378,
+      "label": "35",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 5,
+      "to": 10,
+      "weight": 8.055312843339753,
+      "thickness": 1.8950696174854567,
+      "label": "1159",
+      "label_size": [
+        30.88,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 5,
+      "to": 11,
+      "weight": 3.70805020110221,
+      "thickness": 1.5449446024644002,
+      "label": "15",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 6,
+      "to": 2,
+      "weight": 12.189049560401877,
+      "thickness": 4.621067453124148,
+      "label": "72334",
+      "label_size": [
+        37.6,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 6,
+      "to": 3,
+      "weight": 6.66988092298052,
+      "thickness": 1.6976200081466222,
+      "label": "290",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 6,
+      "to": 5,
+      "weight": 9.109826276018477,
+      "thickness": 2.1693577780779765,
+      "label": "3327",
+      "label_size": [
+        30.88,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 6,
+      "to": 8,
+      "weight": 9.266421472984554,
+      "thickness": 2.223873252167232,
+      "label": "3891",
+      "label_size": [
+        30.88,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 6,
+      "to": 9,
+      "weight": 1.6931471805599454,
+      "thickness": 1.5164114484052362,
+      "label": "2",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 6,
+      "to": 10,
+      "weight": 3.772588722239781,
+      "thickness": 1.5464185858257429,
+      "label": "16",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 7,
+      "to": 2,
+      "weight": 3.4849066497880004,
+      "thickness": 1.5401996745328415,
+      "label": "12",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 7,
+      "to": 3,
+      "weight": 5.976733742420574,
+      "thickness": 1.6397384478586172,
+      "label": "145",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 7,
+      "to": 8,
+      "weight": 6.968707559985366,
+      "thickness": 1.7294670289543497,
+      "label": "391",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 7,
+      "to": 9,
+      "weight": 1.6931471805599454,
+      "thickness": 1.5164114484052362,
+      "label": "2",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 7,
+      "to": 10,
+      "weight": 2.09861228866811,
+      "thickness": 1.5200998372664207,
+      "label": "3",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 7,
+      "to": 12,
+      "weight": 6.54907608489522,
+      "thickness": 1.6860366350490366,
+      "label": "257",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 8,
+      "to": 2,
+      "weight": 9.269244521183056,
+      "thickness": 2.22489573816952,
+      "label": "3902",
+      "label_size": [
+        30.88,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 8,
+      "to": 3,
+      "weight": 1.6931471805599454,
+      "thickness": 1.5164114484052362,
+      "label": "2",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 8,
+      "to": 5,
+      "weight": 1.6931471805599454,
+      "thickness": 1.5164114484052362,
+      "label": "2",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 8,
+      "to": 6,
+      "weight": 5.30406509320417,
+      "thickness": 1.5998269434272934,
+      "label": "74",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 8,
+      "to": 7,
+      "weight": 1.0,
+      "thickness": 1.5116046464564357,
+      "label": "1",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 8,
+      "to": 8,
+      "weight": 9.367764677924308,
+      "thickness": 2.2614982798702794,
+      "label": "4306",
+      "label_size": null,
+      "category": null
+    },
+    {
+      "from": 8,
+      "to": 9,
+      "weight": 1.6931471805599454,
+      "thickness": 1.5164114484052362,
+      "label": "2",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 8,
+      "to": 10,
+      "weight": 2.386294361119891,
+      "thickness": 1.5232092929128713,
+      "label": "4",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 8,
+      "to": 11,
+      "weight": 7.343880434126331,
+      "thickness": 1.7768139975264519,
+      "label": "569",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 8,
+      "to": 12,
+      "weight": 8.338238150065589,
+      "thickness": 1.955103401662408,
+      "label": "1538",
+      "label_size": [
+        30.88,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 9,
+      "to": 2,
+      "weight": 4.931825632724326,
+      "thickness": 1.582873752107179,
+      "label": "51",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 9,
+      "to": 3,
+      "weight": 3.5649493574615367,
+      "thickness": 1.5418411478323104,
+      "label": "13",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 9,
+      "to": 5,
+      "weight": 1.0,
+      "thickness": 1.5116046464564357,
+      "label": "1",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 9,
+      "to": 7,
+      "weight": 7.720220155135295,
+      "thickness": 1.834125159581076,
+      "label": "829",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 9,
+      "to": 8,
+      "weight": 4.58351893845611,
+      "thickness": 1.5696278787386142,
+      "label": "36",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 9,
+      "to": 10,
+      "weight": 3.70805020110221,
+      "thickness": 1.5449446024644002,
+      "label": "15",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 9,
+      "to": 12,
+      "weight": 1.0,
+      "thickness": 1.5116046464564357,
+      "label": "1",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 2,
+      "weight": 6.849324779946859,
+      "thickness": 1.7161706116114452,
+      "label": "347",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 3,
+      "weight": 2.386294361119891,
+      "thickness": 1.5232092929128713,
+      "label": "4",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 5,
+      "weight": 1.6931471805599454,
+      "thickness": 1.5164114484052362,
+      "label": "2",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 6,
+      "weight": 2.386294361119891,
+      "thickness": 1.5232092929128713,
+      "label": "4",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 7,
+      "weight": 2.386294361119891,
+      "thickness": 1.5232092929128713,
+      "label": "4",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 8,
+      "weight": 3.995732273553991,
+      "thickness": 1.5518975566628845,
+      "label": "20",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 9,
+      "weight": 7.406879986069314,
+      "thickness": 1.7856723622326676,
+      "label": "606",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 11,
+      "weight": 2.9459101490553135,
+      "thickness": 1.5307030085765558,
+      "label": "7",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 12,
+      "weight": 2.09861228866811,
+      "thickness": 1.5200998372664207,
+      "label": "3",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 11,
+      "to": 3,
+      "weight": 3.302585092994046,
+      "thickness": 1.5366971142433388,
+      "label": "10",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 11,
+      "to": 5,
+      "weight": 6.081404364984463,
+      "thickness": 1.647246456391987,
+      "label": "161",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 11,
+      "to": 6,
+      "weight": 12.286739791089824,
+      "thickness": 4.777300912366787,
+      "label": "79757",
+      "label_size": [
+        37.6,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 11,
+      "to": 8,
+      "weight": 9.101677747454572,
+      "thickness": 2.1666361855992036,
+      "label": "3300",
+      "label_size": [
+        30.88,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 11,
+      "to": 10,
+      "weight": 2.386294361119891,
+      "thickness": 1.5232092929128713,
+      "label": "4",
+      "label_size": [
+        10.719999999999999,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 12,
+      "to": 10,
+      "weight": 3.772588722239781,
+      "thickness": 1.5464185858257429,
+      "label": "16",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 0,
+      "to": 4,
+      "weight": 12.920854202516367,
+      "thickness": 6.0,
+      "label": "150370",
+      "label_size": [
+        44.32,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 3,
+      "to": 1,
+      "weight": 5.897839799950911,
+      "thickness": 1.634333494694242,
+      "label": "134",
+      "label_size": [
+        24.16,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 7,
+      "to": 1,
+      "weight": 5.454347296253507,
+      "thickness": 1.6076170640120908,
+      "label": "86",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 8,
+      "to": 1,
+      "weight": 12.1154434073529,
+      "thickness": 4.508290566098816,
+      "label": "67201",
+      "label_size": [
+        37.6,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 9,
+      "to": 1,
+      "weight": 4.970291913552122,
+      "thickness": 1.5844831014291016,
+      "label": "53",
+      "label_size": [
+        17.439999999999998,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 10,
+      "to": 1,
+      "weight": 9.053251153549096,
+      "thickness": 2.1506885769146047,
+      "label": "3144",
+      "label_size": [
+        30.88,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 11,
+      "to": 1,
+      "weight": 10.940542460487139,
+      "thickness": 3.171834498749309,
+      "label": "20755",
+      "label_size": [
+        37.6,
+        14.0
+      ],
+      "category": null
+    },
+    {
+      "from": 12,
+      "to": 1,
+      "weight": 11.985241874137454,
+      "thickness": 4.318687166021609,
+      "label": "58997",
+      "label_size": [
+        37.6,
+        14.0
+      ],
+      "category": null
+    }
+  ]
+}

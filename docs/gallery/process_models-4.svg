@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-507.81 -24.80 852.61 1090.80" width="852.61" height="1090.80" font-family="Inter, system-ui, -apple-system, sans-serif">
+<defs>
+<marker id="gl-mk-0" markerWidth="12.00" markerHeight="12.00" viewBox="0 0 12.00 12" orient="auto" refX="1.00" refY="6" markerUnits="userSpaceOnUse"><path d="M 1,1 L 11,6 L 1,11 Z" fill="#64748b" stroke="#64748b" stroke-linejoin="round"/></marker>
+<marker id="gl-mk-1" markerWidth="12.00" markerHeight="12.00" viewBox="0 0 12.00 12" orient="auto" refX="1.00" refY="6" markerUnits="userSpaceOnUse"><path d="M 1,1 L 11,6 L 1,11 Z" fill="#1e293b" stroke="#1e293b" stroke-linejoin="round"/></marker>
+</defs>
+<rect x="-507.81" y="-24.80" width="852.61" height="1090.80" fill="#ffffff"/>
+<g id="edges">
+<path d="M -37.80,552.00 L -37.80,536.67 Q -37.80,530.67 -43.80,530.67 L -72.10,530.67 Q -78.10,530.67 -78.10,524.67 L -78.10,496.42" fill="none" stroke="#64748b" stroke-width="3.16" marker-end="url(#gl-mk-0)"/>
+<rect x="-79.11" y="523.67" width="21.00" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="-68.62" y="530.67" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#64748b">658</text>
+<path d="M 36.00,604.00 L 36.00,646.00 Q 36.00,652.00 42.00,652.00 L 61.96,652.00 Q 66.00,652.00 66.00,656.04 L 66.00,660.08" fill="none" stroke="#1e293b" stroke-width="4.17" marker-end="url(#gl-mk-1)"/>
+<rect x="18.19" y="644.00" width="35.62" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="36.00" y="651.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1e293b">18,621</text>
+<path d="M -37.80,604.00 L -37.80,614.00 Q -37.80,620.00 -43.80,620.00 L -69.44,620.00 Q -75.44,620.00 -75.44,626.00 L -75.44,659.80" fill="none" stroke="#64748b" stroke-width="3.61" marker-end="url(#gl-mk-0)"/>
+<rect x="-87.60" y="613.00" width="29.96" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="-72.62" y="620.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#64748b">2,915</text>
+<path d="M 0.00,604.00 L 0.00,776.25" fill="none" stroke="#1e293b" stroke-width="4.51" marker-end="url(#gl-mk-1)"/>
+<rect x="-17.81" y="687.00" width="35.62" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="0.00" y="694.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1e293b">57,182</text>
+<path d="M 37.80,140.00 L 37.80,166.00 Q 37.80,172.00 43.80,172.00 L 162.00,172.00 Q 168.00,172.00 168.00,178.00 L 168.00,660.22" fill="none" stroke="#1e293b" stroke-width="4.45" marker-end="url(#gl-mk-1)"/>
+<rect x="150.19" y="413.00" width="35.62" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="168.00" y="420.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1e293b">46,952</text>
+<path d="M 0.00,140.00 L 0.00,196.34" fill="none" stroke="#1e293b" stroke-width="4.69" marker-end="url(#gl-mk-1)"/>
+<rect x="-20.64" y="165.00" width="41.29" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="0.00" y="172.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1e293b">103,392</text>
+<path d="M -60.10,488.00 L -60.10,503.33 Q -60.10,509.33 -54.10,509.33 L -25.80,509.33 Q -19.80,509.33 -19.80,515.33 L -19.80,543.81" fill="none" stroke="#64748b" stroke-width="3.61" marker-end="url(#gl-mk-0)"/>
+<rect x="-44.26" y="502.33" width="29.96" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="-29.28" y="509.33" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#64748b">2,933</text>
+<path d="M -160.00,488.00 L -160.00,659.67" fill="none" stroke="#64748b" stroke-width="3.33" marker-end="url(#gl-mk-0)"/>
+<rect x="-174.98" y="571.00" width="29.96" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="-160.00" y="578.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#64748b">1,159</text>
+<path d="M 0.00,372.00 L 0.00,544.29" fill="none" stroke="#1e293b" stroke-width="4.58" marker-end="url(#gl-mk-1)"/>
+<rect x="-17.81" y="455.00" width="35.62" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="0.00" y="462.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1e293b">72,334</text>
+<path d="M -68.04,372.00 L -68.04,427.82" fill="none" stroke="#64748b" stroke-width="3.65" marker-end="url(#gl-mk-0)"/>
+<rect x="-83.02" y="397.00" width="29.96" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="-68.04" y="404.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#64748b">3,327</text>
+<path d="M 90.00,372.00 L 90.00,659.85" fill="none" stroke="#64748b" stroke-width="3.70" marker-end="url(#gl-mk-0)"/>
+<rect x="75.02" y="513.00" width="29.96" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="90.00" y="520.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#64748b">3,891</text>
+<path d="M 76.93,668.00 L 76.93,642.00 Q 76.93,636.00 70.93,636.00 L 60.00,636.00 Q 54.00,636.00 54.00,630.00 L 54.00,612.15" fill="none" stroke="#64748b" stroke-width="3.70" marker-end="url(#gl-mk-0)"/>
+<rect x="50.49" y="616.15" width="29.96" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="65.47" y="623.15" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#64748b">3,902</text>
+<path d="M 180.00,676.00 L 189.00,676.00 Q 195.00,676.00 195.00,682.00 L 195.00,708.57 Q 195.00,712.00 191.57,712.00 L 188.14,712.00" fill="none" stroke="#64748b" stroke-width="3.73" marker-end="url(#gl-mk-0)"/>
+<rect x="191.02" y="687.00" width="29.96" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="206.00" y="694.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#64748b">4,306</text>
+<path d="M 82.20,720.00 L 82.20,775.71" fill="none" stroke="#64748b" stroke-width="3.42" marker-end="url(#gl-mk-0)"/>
+<rect x="67.22" y="745.00" width="29.96" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="82.20" y="752.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#64748b">1,538</text>
+<path d="M -276.00,836.00 L -276.00,891.61" fill="none" stroke="#64748b" stroke-width="3.23" marker-end="url(#gl-mk-0)"/>
+<rect x="-286.50" y="861.00" width="21.00" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="-276.00" y="868.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#64748b">829</text>
+<path d="M -216.56,720.00 L -216.56,775.57" fill="none" stroke="#64748b" stroke-width="3.13" marker-end="url(#gl-mk-0)"/>
+<rect x="-227.06" y="745.00" width="21.00" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="-216.56" y="752.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#64748b">606</text>
+<path d="M 0.00,256.00 L 0.00,312.30" fill="none" stroke="#1e293b" stroke-width="4.61" marker-end="url(#gl-mk-1)"/>
+<rect x="-17.81" y="281.00" width="35.62" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="0.00" y="288.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1e293b">79,757</text>
+<path d="M 37.80,256.00 L 37.80,292.67 Q 37.80,298.67 43.80,298.67 L 132.00,298.67 Q 138.00,298.67 138.00,304.67 L 138.00,659.82" fill="none" stroke="#64748b" stroke-width="3.65" marker-end="url(#gl-mk-0)"/>
+<rect x="123.02" y="476.33" width="29.96" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="138.00" y="483.33" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#64748b">3,300</text>
+<path d="M 0.00,24.00 L 0.00,80.40" fill="none" stroke="#1e293b" stroke-width="4.80" marker-end="url(#gl-mk-1)"/>
+<rect x="-20.64" y="49.00" width="41.29" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="0.00" y="56.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1e293b">150,370</text>
+<path d="M 248.00,952.00 L 248.00,1022.00 Q 248.00,1028.00 242.00,1028.00 L 20.66,1028.00" fill="none" stroke="#64748b" stroke-width="2.68" marker-end="url(#gl-mk-0)"/>
+<rect x="157.50" y="1021.00" width="21.00" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="168.00" y="1028.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#64748b">134</text>
+<path d="M -276.00,952.00 L -276.00,970.00 Q -276.00,976.00 -270.00,976.00 L -11.45,976.00 Q -5.45,976.00 -5.45,982.00 L -5.45,1007.27" fill="none" stroke="#64748b" stroke-width="2.55" marker-end="url(#gl-mk-0)"/>
+<rect x="-200.61" y="969.00" width="15.33" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="-192.94" y="976.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#64748b">86</text>
+<path d="M 146.00,720.00 L 146.00,994.00 Q 146.00,1000.00 140.00,1000.00 L 14.94,1000.00 Q 10.80,1000.00 10.80,1004.14 L 10.80,1008.28" fill="none" stroke="#1e293b" stroke-width="4.56" marker-end="url(#gl-mk-1)"/>
+<rect x="128.19" y="928.60" width="35.62" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="146.00" y="935.60" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1e293b">67,201</text>
+<path d="M -387.90,836.00 L -387.90,851.33 Q -387.90,857.33 -393.90,857.33 L -430.00,857.33 Q -436.00,857.33 -436.00,863.33 L -436.00,978.00 Q -436.00,984.00 -430.00,984.00 L -16.80,984.00 Q -10.80,984.00 -10.80,990.00 L -10.80,1007.20" fill="none" stroke="#64748b" stroke-width="2.40" marker-end="url(#gl-mk-0)"/>
+<rect x="-313.12" y="977.00" width="15.33" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="-305.45" y="984.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#64748b">53</text>
+<path d="M -146.00,720.00 L -146.00,962.00 Q -146.00,968.00 -140.00,968.00 L -6.09,968.00 Q -0.09,968.00 -0.09,974.00 L -0.09,1007.82" fill="none" stroke="#64748b" stroke-width="3.63" marker-end="url(#gl-mk-0)"/>
+<rect x="-160.98" y="837.00" width="29.96" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="-146.00" y="844.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#64748b">3,144</text>
+<path d="M -37.80,256.00 L -37.80,271.33 Q -37.80,277.33 -43.80,277.33 L -460.00,277.33 Q -466.00,277.33 -466.00,283.33 L -466.00,1022.00 Q -466.00,1028.00 -460.00,1028.00 L -19.90,1028.00" fill="none" stroke="#1e293b" stroke-width="4.20" marker-end="url(#gl-mk-1)"/>
+<rect x="-483.81" y="647.90" width="35.62" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="-466.00" y="654.90" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1e293b">20,755</text>
+<path d="M 5.29,836.00 L 5.29,1008.26" fill="none" stroke="#1e293b" stroke-width="4.52" marker-end="url(#gl-mk-1)"/>
+<rect x="-12.52" y="919.00" width="35.62" height="14.00" rx="3.00" fill="#ffffff"/>
+<text x="5.29" y="926.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1e293b">58,997</text>
+</g>
+<g id="nodes">
+<circle cx="0.00" cy="12.00" r="12.00" fill="#16a34a" stroke="#16a34a" stroke-width="1.60"/>
+<circle cx="0.00" cy="1028.00" r="12.00" fill="#ffffff" stroke="#1f2937" stroke-width="4.00"/>
+<rect x="-60.00" y="552.00" width="120.00" height="52.00" rx="5.00" fill="#f8fafc" stroke="#334155" stroke-width="1.60"/>
+<text x="0.00" y="578.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="600.00" fill="#1f2937">Add penalty</text>
+<rect x="176.00" y="900.00" width="144.00" height="52.00" rx="5.00" fill="#f8fafc" stroke="#334155" stroke-width="1.60"/>
+<text x="248.00" y="926.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="600.00" fill="#1f2937">Appeal to Judge</text>
+<rect x="-60.00" y="88.00" width="120.00" height="52.00" rx="5.00" fill="#f8fafc" stroke="#334155" stroke-width="1.60"/>
+<text x="0.00" y="114.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="600.00" fill="#1f2937">Create Fine</text>
+<rect x="-290.00" y="436.00" width="260.00" height="52.00" rx="5.00" fill="#f8fafc" stroke="#334155" stroke-width="1.60"/>
+<text x="-160.00" y="462.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="600.00" fill="#1f2937">Insert Date Appeal to Prefecture</text>
+<rect x="-108.00" y="320.00" width="216.00" height="52.00" rx="5.00" fill="#f8fafc" stroke="#334155" stroke-width="1.60"/>
+<text x="0.00" y="346.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="600.00" fill="#1f2937">Insert Fine Notification</text>
+<rect x="-406.00" y="900.00" width="260.00" height="52.00" rx="5.00" fill="#f8fafc" stroke="#334155" stroke-width="1.60"/>
+<text x="-276.00" y="926.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="600.00" fill="#1f2937">Notify Result Appeal to Offender</text>
+<rect x="60.00" y="668.00" width="120.00" height="52.00" rx="5.00" fill="#f8fafc" stroke="#334155" stroke-width="1.60"/>
+<text x="120.00" y="694.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="600.00" fill="#1f2937">Payment</text>
+<rect x="-436.00" y="784.00" width="260.00" height="52.00" rx="5.00" fill="#f8fafc" stroke="#334155" stroke-width="1.60"/>
+<text x="-306.00" y="810.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="600.00" fill="#1f2937">Receive Result Appeal from Prefecture</text>
+<rect x="-258.00" y="668.00" width="224.00" height="52.00" rx="5.00" fill="#f8fafc" stroke="#334155" stroke-width="1.60"/>
+<text x="-146.00" y="694.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="600.00" fill="#1f2937">Send Appeal to Prefecture</text>
+<rect x="-60.00" y="204.00" width="120.00" height="52.00" rx="5.00" fill="#f8fafc" stroke="#334155" stroke-width="1.60"/>
+<text x="0.00" y="230.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="600.00" fill="#1f2937">Send Fine</text>
+<rect x="-116.00" y="784.00" width="232.00" height="52.00" rx="5.00" fill="#f8fafc" stroke="#334155" stroke-width="1.60"/>
+<text x="0.00" y="810.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="600.00" fill="#1f2937">Send for Credit Collection</text>
+</g>
+</svg>
