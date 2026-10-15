@@ -6,23 +6,20 @@ a GitHub release with the changelog section.
 
 ## One-time setup
 
-- crates.io needs an API token with publish rights for `graphlay` and `graphlay-cli`, stored as
-  the `CARGO_REGISTRY_TOKEN` repository secret. After the first release, trusted publishing can
-  replace it.
-- npm needs an automation token for the `graphlay` package, stored as `NPM_TOKEN`. The first
-  publish creates the package. After it, a trusted publisher on npmjs.com for this repository and
-  the `release.yml` workflow can replace the token.
-- PyPI needs a pending trusted publisher for the project `graphlay` with this repository, the
-  workflow `release.yml` and the environment `pypi`. Create the `pypi` environment in the
-  repository settings as well. No token is needed.
+- crates.io, npm and PyPI all publish through trusted publishing. Each has a trusted publisher
+  for owner `aarkue`, repository `graphlay` and workflow `release.yml`. PyPI's also names the
+  environment `pypi`. No token secrets are needed.
+- The repository needs a GitHub environment named `pypi`.
 - GitHub Pages needs its source set to GitHub Actions in the repository's Pages settings. The
   `Site` workflow deploys on every push to `main`.
 
 ## Each release
 
-1. Set the version in `Cargo.toml` under `[workspace.package]` and in
-   `bindings/wasm/js/package.json`. The Python package reads it from `Cargo.toml`.
-2. Turn the changelog's `## x.y.z (unreleased)` heading into `## x.y.z (YYYY-MM-DD)`.
+1. Run `scripts/set-version.sh X.Y.Z`. It sets the version in `Cargo.toml`, in the CLI's
+   dependency on `graphlay`, in `bindings/wasm/js/package.json` and in `Cargo.lock`, and adds a
+   dated `## X.Y.Z` heading to the changelog. The Python package reads its version from
+   `Cargo.toml`.
+2. Write the changelog entries under the new heading.
 3. Run the whole suite once more:
 
    ```sh
@@ -35,8 +32,8 @@ a GitHub release with the changelog section.
 4. Commit, tag and push:
 
    ```sh
-   git tag v0.2.0
-   git push origin main v0.2.0
+   git tag vX.Y.Z
+   git push origin main vX.Y.Z
    ```
 
 Before it publishes anything, the workflow stops if the tag differs from the manifest versions or

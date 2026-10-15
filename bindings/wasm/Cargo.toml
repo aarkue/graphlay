@@ -17,7 +17,7 @@ default = ["svg"]
 svg = ["graphlay/svg"]
 
 [dependencies]
-graphlay = { path = "../..", version = "0.2.0", default-features = false, features = ["serde"] }
+graphlay = { path = "../..", default-features = false, features = ["serde"] }
 wasm-bindgen = "0.2"
 
 # wasm-opt would need a binaryen download at build time. Opt-level z with LTO already gives a
