@@ -33,32 +33,32 @@
 <circle cx="15.00" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
 <circle cx="15.00" cy="0.00" r="5.50" fill="#1f2937"/>
 <rect x="84.00" y="-19.00" width="116.40" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="142.20" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Receive order</text>
+<text x="142.20" y="3.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Receive order</text>
 <circle cx="269.40" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
 <rect x="338.40" y="-19.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
 <circle cx="417.40" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
 <circle cx="417.40" cy="76.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
 <rect x="489.80" y="-19.00" width="102.80" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="541.20" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Check stock</text>
+<text x="541.20" y="3.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Check stock</text>
 <rect x="486.40" y="65.00" width="109.60" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="541.20" y="84.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Check credit</text>
+<text x="541.20" y="87.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Check credit</text>
 <circle cx="665.00" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
 <circle cx="665.00" cy="84.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
 <rect x="734.00" y="-19.00" width="116.40" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="792.20" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Approve order</text>
+<text x="792.20" y="3.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Approve order</text>
 <rect x="737.40" y="65.00" width="109.60" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="792.20" y="84.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Reject order</text>
+<text x="792.20" y="87.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Reject order</text>
 <circle cx="919.40" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
 <rect x="988.40" y="-19.00" width="96.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="1036.40" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Ship goods</text>
+<text x="1036.40" y="3.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Ship goods</text>
 <circle cx="1153.40" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
 <rect x="1222.40" y="-19.00" width="109.60" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="1277.20" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Send invoice</text>
+<text x="1277.20" y="3.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Send invoice</text>
 <circle cx="1401.00" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
 <rect x="1476.80" y="-103.00" width="116.40" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="1535.00" y="-84.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Send reminder</text>
+<text x="1535.00" y="-80.55" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Send reminder</text>
 <rect x="1470.00" y="-19.00" width="130.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="1535.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Receive payment</text>
+<text x="1535.00" y="3.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Receive payment</text>
 <circle cx="1669.00" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
 <circle cx="1669.00" cy="0.00" r="10.75" fill="none" stroke="#1f2937" stroke-width="1.50"/>
 </g>

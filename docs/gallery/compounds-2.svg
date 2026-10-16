@@ -18,28 +18,28 @@
 </g>
 <g id="nodes">
 <rect x="-55.00" y="0.00" width="110.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="0.00" y="18.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Order in</text>
+<text x="0.00" y="21.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Order in</text>
 <rect x="121.00" y="90.00" width="200.00" height="724.00" rx="5.00" fill="none" stroke="#8a94a6" stroke-width="1.25" stroke-dasharray="5 4"/>
-<text x="221.00" y="103.00" text-anchor="middle" dominant-baseline="central" font-size="11.00" font-weight="600.00" fill="#5b6577">Fulfilment</text>
+<text x="221.00" y="106.30" text-anchor="middle" font-size="11.00" font-weight="600" fill="#5b6577">Fulfilment</text>
 <rect x="-75.00" y="307.00" width="150.00" height="290.00" rx="5.00" fill="none" stroke="#8a94a6" stroke-width="1.25" stroke-dasharray="5 4"/>
-<text x="0.00" y="320.00" text-anchor="middle" dominant-baseline="central" font-size="11.00" font-weight="600.00" fill="#5b6577">Billing</text>
+<text x="0.00" y="323.30" text-anchor="middle" font-size="11.00" font-weight="600" fill="#5b6577">Billing</text>
 <rect x="-55.00" y="868.00" width="110.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="0.00" y="886.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Done</text>
+<text x="0.00" y="889.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Done</text>
 <rect x="171.00" y="180.00" width="110.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="226.00" y="198.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Check stock</text>
+<text x="226.00" y="201.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Check stock</text>
 <rect x="171.00" y="270.00" width="110.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="226.00" y="288.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Backorder</text>
+<text x="226.00" y="291.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Backorder</text>
 <rect x="151.00" y="360.00" width="150.00" height="290.00" rx="5.00" fill="none" stroke="#8a94a6" stroke-width="1.25" stroke-dasharray="5 4"/>
-<text x="226.00" y="373.00" text-anchor="middle" dominant-baseline="central" font-size="11.00" font-weight="600.00" fill="#5b6577">Packaging</text>
+<text x="226.00" y="376.30" text-anchor="middle" font-size="11.00" font-weight="600" fill="#5b6577">Packaging</text>
 <rect x="171.00" y="704.00" width="110.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="226.00" y="722.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Label</text>
+<text x="226.00" y="725.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Label</text>
 <rect x="-55.00" y="397.00" width="110.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="0.00" y="415.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Invoice</text>
+<text x="0.00" y="418.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Invoice</text>
 <rect x="-55.00" y="487.00" width="110.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="0.00" y="505.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Collect payment</text>
+<text x="0.00" y="508.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Collect payment</text>
 <rect x="171.00" y="450.00" width="110.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="226.00" y="468.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Pick</text>
+<text x="226.00" y="471.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Pick</text>
 <rect x="171.00" y="540.00" width="110.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="226.00" y="558.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Pack</text>
+<text x="226.00" y="561.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Pack</text>
 </g>
 </svg>

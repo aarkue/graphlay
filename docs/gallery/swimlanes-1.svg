@@ -19,26 +19,26 @@
 </g>
 <g id="nodes">
 <rect x="0.00" y="-56.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="60.00" y="-36.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Place order</text>
+<text x="60.00" y="-32.40" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Place order</text>
 <rect x="174.00" y="-56.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="234.00" y="-36.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Receive order</text>
+<text x="234.00" y="-32.40" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Receive order</text>
 <rect x="348.00" y="-56.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="408.00" y="-36.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Check credit</text>
+<text x="408.00" y="-32.40" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Check credit</text>
 <rect x="522.00" y="-56.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="582.00" y="-36.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Confirm order</text>
+<text x="582.00" y="-32.40" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Confirm order</text>
 <rect x="696.00" y="-56.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="756.00" y="-36.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Pick items</text>
+<text x="756.00" y="-32.40" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Pick items</text>
 <rect x="870.00" y="-56.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="930.00" y="-36.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Pack</text>
+<text x="930.00" y="-32.40" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Pack</text>
 <rect x="1044.00" y="-56.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="1104.00" y="-36.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Ship</text>
+<text x="1104.00" y="-32.40" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Ship</text>
 <rect x="696.00" y="30.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="756.00" y="50.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Send invoice</text>
+<text x="756.00" y="53.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Send invoice</text>
 <rect x="1218.00" y="-56.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="1278.00" y="-36.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Receive goods</text>
+<text x="1278.00" y="-32.40" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Receive goods</text>
 <rect x="1392.00" y="-56.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="1452.00" y="-36.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Pay invoice</text>
+<text x="1452.00" y="-32.40" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Pay invoice</text>
 <rect x="1566.00" y="-56.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="1626.00" y="-36.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Book payment</text>
+<text x="1626.00" y="-32.40" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Book payment</text>
 </g>
 </svg>

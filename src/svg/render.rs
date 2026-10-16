@@ -592,8 +592,27 @@ fn stroke_attrs(stroke: &Stroke, defs: &mut Defs) -> String {
 
 // -- text --------------------------------------------------------------------------------------
 
-/// The lines one run occupies: its own text, or the wrapped split.
+/// Qt SVG and librsvg ignore a weight written with decimals, e.g., `700.00`.
+fn fmt_weight(weight: f64) -> String {
+    (weight.round().clamp(1.0, 1000.0) as i64).to_string()
+}
+
+/// The baseline that centres the glyphs on `y`. The renderer writes it out because Qt SVG
+/// ignores `dominant-baseline`.
+fn central_baseline(y: f64, metrics: &TextMetrics) -> f64 {
+    y + (metrics.ascent - metrics.descent) / 2.0
+}
+
+/// The lines one run occupies: its own text, the wrapped split, or its joined spans.
 fn run_lines(run: &TextRun, font: &FontSpec, measurer: &dyn TextMeasurer) -> Vec<String> {
+    if !run.spans.is_empty() {
+        let joined: String = run.spans.iter().map(|s| s.text.as_str()).collect();
+        return if joined.is_empty() {
+            Vec::new()
+        } else {
+            vec![joined]
+        };
+    }
     match &run.wrap {
         Some(w) => measurer.wrap(&run.text, font, w.max_width, w.max_lines),
         None if run.text.is_empty() => Vec::new(),
@@ -649,19 +668,21 @@ fn render_text(
         .clone()
         .unwrap_or_else(|| theme.palette.node_text.clone());
     for (i, line) in lines.iter().enumerate() {
+        let y = y0 + i as f64 * lh;
+        let y = match run.baseline {
+            Baseline::Central => central_baseline(y, &measurer.measure(line, &font)),
+            Baseline::Alphabetic => y,
+        };
         out.push_str(&format!(
             r#"<text x="{x}" y="{y}" text-anchor="{anchor}""#,
             x = fmt(x),
-            y = fmt(y0 + i as f64 * lh),
+            y = fmt(y),
             anchor = run.anchor.as_str(),
         ));
-        if run.baseline == Baseline::Central {
-            out.push_str(r#" dominant-baseline="central""#);
-        }
         out.push_str(&format!(
             r#" font-size="{fs}" font-weight="{fw}""#,
             fs = fmt(font.size),
-            fw = fmt(font.weight),
+            fw = fmt_weight(font.weight),
         ));
         if let Some(family) = &run.family {
             out.push_str(&format!(r#" font-family="{}""#, xml_escape(family)));
@@ -678,7 +699,26 @@ fn render_text(
         }
         out.push_str(&format!(r#" fill="{}""#, xml_escape(&color)));
         out.push_str(&attrs_str(&run.attrs));
-        out.push_str(&format!(">{}</text>\n", xml_escape(line)));
+        if !run.spans.is_empty() {
+            // Qt SVG and librsvg drop a space at either end of a `<tspan>` otherwise.
+            out.push_str(r#" xml:space="preserve""#);
+        }
+        out.push('>');
+        if run.spans.is_empty() {
+            out.push_str(&xml_escape(line));
+        } else {
+            for span in &run.spans {
+                out.push_str("<tspan");
+                if let Some(c) = &span.color {
+                    out.push_str(&format!(r#" fill="{}""#, xml_escape(c)));
+                }
+                if let Some(w) = span.weight {
+                    out.push_str(&format!(r#" font-weight="{}""#, fmt_weight(w)));
+                }
+                out.push_str(&format!(">{}</tspan>", xml_escape(&span.text)));
+            }
+        }
+        out.push_str("</text>\n");
     }
 }
 
@@ -721,15 +761,88 @@ struct PlacedNumeral {
     total: u64,
 }
 
+/// `x` is where the text starts and `y` its vertical centre.
+struct PlacedCount {
+    x: f64,
+    y: f64,
+    text: String,
+    size: f64,
+}
+
 #[derive(Default)]
 struct GlyphPlan {
     glyphs: Vec<PlacedGlyph>,
     separators: Vec<PlacedSeparator>,
     numeral: Option<PlacedNumeral>,
+    counts: Vec<PlacedCount>,
+}
+
+/// Glyph diameter and the gap after it in a counted numeral line, per unit of font size.
+const COUNTED_GLYPH: f64 = 0.8;
+const COUNTED_GAP: f64 = 0.25;
+const COUNTED_LINE_HEIGHT: f64 = 1.3;
+
+fn numeral_font(style: &NumeralStyle, size: f64, font: &FontSpec) -> FontSpec {
+    FontSpec {
+        size,
+        weight: style.weight,
+        italic: false,
+        ..font.clone()
+    }
+}
+
+/// One line per non-empty cluster, glyphs in one column, the block centred on `anchor`.
+fn plan_counted(
+    clusters: &[GlyphCluster],
+    style: &NumeralStyle,
+    max_width: f64,
+    anchor: Point,
+    font: &FontSpec,
+    measurer: &dyn TextMeasurer,
+    plan: &mut GlyphPlan,
+) {
+    let lines: Vec<(usize, String)> = clusters
+        .iter()
+        .enumerate()
+        .filter(|(_, c)| c.count > 0)
+        .map(|(i, c)| (i, format!("\u{d7}{}", c.count)))
+        .collect();
+    let unscaled = numeral_font(style, style.size, font);
+    let text_w = lines
+        .iter()
+        .map(|(_, t)| measurer.measure(t, &unscaled).width)
+        .fold(0.0, f64::max);
+    let width = (COUNTED_GLYPH + COUNTED_GAP) * style.size + text_w;
+    // Text width grows linearly with the font size, so one factor shrinks the whole block.
+    let scale = (max_width / width).min(1.0);
+    let size = style.size * scale;
+    let d = COUNTED_GLYPH * size;
+    let left = anchor.x - width * scale / 2.0;
+    let lh = COUNTED_LINE_HEIGHT * size;
+    let y0 = anchor.y - (lines.len() - 1) as f64 * lh / 2.0;
+    for (i, (cluster, text)) in lines.into_iter().enumerate() {
+        let y = y0 + i as f64 * lh;
+        plan.glyphs.push(PlacedGlyph {
+            cluster,
+            center: Point::new(left + d / 2.0, y),
+            radius: d / 2.0,
+        });
+        plan.counts.push(PlacedCount {
+            x: left + d + COUNTED_GAP * size,
+            y,
+            text,
+            size,
+        });
+    }
 }
 
 /// Place every glyph of a row. Sizes come from the row, except under [`GlyphLayout::Fit`].
-fn plan_glyph_row(row: &GlyphRow, node_center: Point) -> GlyphPlan {
+fn plan_glyph_row(
+    row: &GlyphRow,
+    node_center: Point,
+    font: &FontSpec,
+    measurer: &dyn TextMeasurer,
+) -> GlyphPlan {
     let mut plan = GlyphPlan::default();
     let clusters = &row.clusters;
     let total: u64 = clusters.iter().map(|c| c.count).sum();
@@ -741,13 +854,26 @@ fn plan_glyph_row(row: &GlyphRow, node_center: Point) -> GlyphPlan {
     match &row.layout {
         GlyphLayout::Fit(fit) => {
             let unit = (fit.min_diameter + fit.gap).max(0.01);
-            let max_glyphs = (fit.max_width / unit).floor().max(1.0) as u64;
+            let fitting = (fit.max_width / unit).floor().max(1.0) as u64;
+            let max_glyphs = fit.max_glyphs.map_or(fitting, |m| m.min(fitting));
             if total > max_glyphs {
-                if let Some(_numeral) = &fit.numeral {
-                    plan.numeral = Some(PlacedNumeral {
-                        center: anchor,
-                        total,
-                    });
+                if let Some(numeral) = &fit.numeral {
+                    if numeral.counted {
+                        plan_counted(
+                            clusters,
+                            numeral,
+                            fit.max_width,
+                            anchor,
+                            font,
+                            measurer,
+                            &mut plan,
+                        );
+                    } else {
+                        plan.numeral = Some(PlacedNumeral {
+                            center: anchor,
+                            total,
+                        });
+                    }
                     return plan;
                 }
             }
@@ -864,36 +990,70 @@ fn plan_glyph_row(row: &GlyphRow, node_center: Point) -> GlyphPlan {
     plan
 }
 
+/// `at.y` is the vertical centre of the glyphs.
+fn numeral_text(
+    at: Point,
+    anchor: TextAnchor,
+    text: &str,
+    font: &FontSpec,
+    color: &str,
+    measurer: &dyn TextMeasurer,
+) -> String {
+    format!(
+        r#"<text x="{x}" y="{y}" text-anchor="{anchor}" font-size="{fs}" font-weight="{fw}" fill="{col}">{text}</text>
+"#,
+        x = fmt(at.x),
+        y = fmt(central_baseline(at.y, &measurer.measure(text, font))),
+        anchor = anchor.as_str(),
+        fs = fmt(font.size),
+        fw = fmt_weight(font.weight),
+        col = xml_escape(color),
+        text = xml_escape(text),
+    )
+}
+
 fn render_glyph_row(
     row: &GlyphRow,
     node_center: Point,
+    scene: &Scene,
     theme: &Theme,
+    measurer: &dyn TextMeasurer,
     defs: &mut Defs,
     out: &mut String,
 ) {
-    let plan = plan_glyph_row(row, node_center);
+    let plan = plan_glyph_row(row, node_center, &scene.font, measurer);
     let open_group = !row.attrs.is_empty();
     if open_group {
         out.push_str(&format!("<g{}>\n", attrs_str(&row.attrs)));
     }
-    if let Some(numeral) = &plan.numeral {
-        if let GlyphLayout::Fit(fit) = &row.layout {
-            if let Some(style) = &fit.numeral {
-                let color = style
-                    .color
-                    .clone()
-                    .unwrap_or_else(|| theme.palette.node_text.clone());
-                out.push_str(&format!(
-                    r#"<text x="{x}" y="{y}" text-anchor="middle" dominant-baseline="central" font-size="{fs}" font-weight="{fw}" fill="{col}">{n}</text>
-"#,
-                    x = fmt(numeral.center.x),
-                    y = fmt(numeral.center.y),
-                    fs = fmt(style.size),
-                    fw = fmt(style.weight),
-                    col = xml_escape(&color),
-                    n = numeral.total,
-                ));
-            }
+    if let GlyphLayout::Fit(FitLayout {
+        numeral: Some(style),
+        ..
+    }) = &row.layout
+    {
+        let color = style
+            .color
+            .clone()
+            .unwrap_or_else(|| theme.palette.node_text.clone());
+        if let Some(numeral) = &plan.numeral {
+            out.push_str(&numeral_text(
+                numeral.center,
+                TextAnchor::Middle,
+                &numeral.total.to_string(),
+                &numeral_font(style, style.size, &scene.font),
+                &color,
+                measurer,
+            ));
+        }
+        for count in &plan.counts {
+            out.push_str(&numeral_text(
+                Point::new(count.x, count.y),
+                TextAnchor::Start,
+                &count.text,
+                &numeral_font(style, count.size, &scene.font),
+                &color,
+                measurer,
+            ));
         }
     }
     for sep in &plan.separators {
@@ -980,8 +1140,14 @@ fn render_glyph_row(
     }
 }
 
-fn glyph_row_bounds(row: &GlyphRow, node_center: Point, bounds: &mut Bounds) {
-    let plan = plan_glyph_row(row, node_center);
+fn glyph_row_bounds(
+    row: &GlyphRow,
+    node_center: Point,
+    scene: &Scene,
+    measurer: &dyn TextMeasurer,
+    bounds: &mut Bounds,
+) {
+    let plan = plan_glyph_row(row, node_center, &scene.font, measurer);
     for g in &plan.glyphs {
         let extra = row
             .clusters
@@ -1011,6 +1177,21 @@ fn glyph_row_bounds(row: &GlyphRow, node_center: Point, bounds: &mut Bounds) {
                     style.size,
                 ));
             }
+        }
+    }
+    if let GlyphLayout::Fit(FitLayout {
+        numeral: Some(style),
+        ..
+    }) = &row.layout
+    {
+        for count in &plan.counts {
+            let m = measurer.measure(&count.text, &numeral_font(style, count.size, &scene.font));
+            bounds.add(Rect::new(
+                count.x,
+                count.y - m.height() / 2.0,
+                m.width,
+                m.height(),
+            ));
         }
     }
 }
@@ -1166,7 +1347,9 @@ fn render_node(
     for content in &node.content {
         match content {
             NodeContent::Text(run) => render_text(run, center, scene, theme, measurer, out),
-            NodeContent::Glyphs(row) => render_glyph_row(row, center, theme, defs, out),
+            NodeContent::Glyphs(row) => {
+                render_glyph_row(row, center, scene, theme, measurer, defs, out)
+            }
             NodeContent::Rings { rings } => {
                 for ring in rings {
                     render_ring(node, ring, out);
@@ -1187,12 +1370,54 @@ fn render_node(
                     attrs,
                 ));
             }
+            NodeContent::Polygon {
+                points,
+                fill,
+                stroke,
+                attrs,
+            } => {
+                if !points.is_empty() {
+                    out.push_str(&polygon_element(
+                        points,
+                        center,
+                        fill.as_deref(),
+                        stroke.as_ref(),
+                        attrs,
+                        defs,
+                    ));
+                }
+            }
             NodeContent::Raw(raw) => raw_element(raw, out),
         }
     }
     if wrap {
         out.push_str("</g>\n");
     }
+}
+
+fn polygon_element(
+    points: &[Point],
+    origin: Point,
+    fill: Option<&str>,
+    stroke: Option<&Stroke>,
+    attrs: &Attrs,
+    defs: &mut Defs,
+) -> String {
+    let points = points
+        .iter()
+        .map(|p| format!("{},{}", fmt(origin.x + p.x), fmt(origin.y + p.y)))
+        .collect::<Vec<_>>()
+        .join(" ");
+    let mut out = format!(
+        r#"<polygon points="{points}" fill="{fill}""#,
+        fill = fill.map_or_else(|| "none".to_string(), xml_escape),
+    );
+    if let Some(stroke) = stroke {
+        out.push_str(&stroke_attrs(stroke, defs));
+    }
+    out.push_str(&attrs_str(attrs));
+    out.push_str("/>\n");
+    out
 }
 
 fn node_bounds(
@@ -1212,12 +1437,20 @@ fn node_bounds(
     for content in &node.content {
         match content {
             NodeContent::Text(run) => text_bounds(run, center, scene, measurer, bounds),
-            NodeContent::Glyphs(row) => glyph_row_bounds(row, center, bounds),
+            NodeContent::Glyphs(row) => glyph_row_bounds(row, center, scene, measurer, bounds),
             NodeContent::Rings { .. } => {}
             NodeContent::Use { at, size, .. } => bounds.add(Rect::from_center(
                 Point::new(center.x + at.x, center.y + at.y),
                 *size,
             )),
+            NodeContent::Polygon { points, stroke, .. } => {
+                let half_stroke = stroke.as_ref().map_or(0.0, |s| s.width / 2.0);
+                for p in points {
+                    bounds.add(
+                        Rect::new(center.x + p.x, center.y + p.y, 0.0, 0.0).inflate(half_stroke),
+                    );
+                }
+            }
             NodeContent::Raw(raw) => bounds.add(raw.bounds),
         }
     }
@@ -1229,11 +1462,61 @@ fn pts_of(points: &[Point]) -> Vec<Pt> {
     points.iter().map(|p| (p.x, p.y)).collect()
 }
 
-/// Where one anchor lands, given the edge's untrimmed points.
-fn anchor_point(at: &EdgeAnchor, raw: &[Pt]) -> Point {
+/// Segments a rounded corner is flattened into for anchoring.
+const CORNER_STEPS: usize = 8;
+
+/// The edge's untrimmed line as drawn, with each rounded corner flattened into short segments, so
+/// anchors land on the curve.
+fn drawn_line(edge: &SceneEdge) -> Vec<Pt> {
+    let mut pts = pts_of(&edge.points);
+    if edge.simplify > 0.0 {
+        pts = clean_path(&pts, edge.simplify);
+    }
+    if edge.corner_radius <= 0.0 || pts.len() < 3 {
+        return pts;
+    }
+    let mut line = vec![pts[0]];
+    for i in 1..pts.len() - 1 {
+        if collinear(pts[i - 1], pts[i], pts[i + 1]) {
+            continue;
+        }
+        let (a, b) = corner_ends(pts[i - 1], pts[i], pts[i + 1], edge.corner_radius);
+        let c = pts[i];
+        for k in 0..=CORNER_STEPS {
+            let t = k as f64 / CORNER_STEPS as f64;
+            let (u, v, w) = ((1.0 - t) * (1.0 - t), 2.0 * (1.0 - t) * t, t * t);
+            line.push((u * a.0 + v * c.0 + w * b.0, u * a.1 + v * c.1 + w * b.1));
+        }
+    }
+    line.extend(pts.last());
+    line
+}
+
+/// The fraction of `line`'s length an anchor lands at, or `None` for an explicit point.
+fn anchor_fraction(at: &EdgeAnchor, line: &[Pt]) -> Option<f64> {
+    match *at {
+        EdgeAnchor::At(_) => None,
+        EdgeAnchor::Fraction(f) => Some(f.clamp(0.0, 1.0)),
+        EdgeAnchor::Along { fraction, offset } => {
+            let len: f64 = line
+                .windows(2)
+                .map(|w| f64::hypot(w[1].0 - w[0].0, w[1].1 - w[0].1))
+                .sum();
+            let f = if len > 0.0 {
+                fraction + offset / len
+            } else {
+                fraction
+            };
+            Some(f.clamp(0.0, 1.0))
+        }
+    }
+}
+
+/// Where one anchor lands on the edge's [`drawn_line`].
+fn anchor_point(at: &EdgeAnchor, line: &[Pt]) -> Point {
     match at {
         EdgeAnchor::At(p) => *p,
-        EdgeAnchor::Fraction(f) => polyline_point_at(raw, *f).into(),
+        _ => polyline_point_at(line, anchor_fraction(at, line).unwrap_or(0.5)).into(),
     }
 }
 
@@ -1309,13 +1592,15 @@ fn render_decoration(
         Decoration::Tick {
             at,
             length,
+            slant,
             stroke,
             attrs,
         } => {
             let p = anchor_point(at, raw);
-            // Perpendicular to the local direction of travel.
+            // The perpendicular to the local direction of travel, turned by `slant` towards it.
             let (dx, dy) = local_direction(at, raw);
-            let (nx, ny) = (-dy, dx);
+            let (sin, cos) = slant.to_radians().sin_cos();
+            let (nx, ny) = (-dy * cos + dx * sin, dx * cos + dy * sin);
             out.push_str(&format!(
                 r#"<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}"{stroke}{attrs}/>
 "#,
@@ -1346,17 +1631,14 @@ fn render_decoration(
     }
 }
 
-/// Unit direction of the polyline at an anchor (defaults to +x for a degenerate path).
-fn local_direction(at: &EdgeAnchor, raw: &[Pt]) -> (f64, f64) {
-    if raw.len() < 2 {
+/// Unit direction of the [`drawn_line`] at an anchor (defaults to +x for a degenerate path).
+fn local_direction(at: &EdgeAnchor, line: &[Pt]) -> (f64, f64) {
+    if line.len() < 2 {
         return (1.0, 0.0);
     }
-    let f = match at {
-        EdgeAnchor::Fraction(f) => f.clamp(0.0, 1.0),
-        EdgeAnchor::At(_) => 0.5,
-    };
-    let a = polyline_point_at(raw, (f - 0.01).max(0.0));
-    let b = polyline_point_at(raw, (f + 0.01).min(1.0));
+    let f = anchor_fraction(at, line).unwrap_or(0.5);
+    let a = polyline_point_at(line, (f - 0.01).max(0.0));
+    let b = polyline_point_at(line, (f + 0.01).min(1.0));
     let len = f64::hypot(b.0 - a.0, b.1 - a.1);
     if len < EPS {
         (1.0, 0.0)
@@ -1379,7 +1661,7 @@ fn render_edge(
     if edge.points.len() < 2 {
         return;
     }
-    let raw = pts_of(&edge.points);
+    let raw = drawn_line(edge);
     let fallback = match &edge.stroke.paint {
         Paint::Color(c) => c.clone(),
         Paint::Gradient(_) => theme.palette.arc_color.clone(),
@@ -1491,7 +1773,7 @@ fn edge_bounds(edge: &SceneEdge, scene: &Scene, measurer: &dyn TextMeasurer, bou
     for p in &edge.points {
         bounds.add(Rect::new(p.x - half, p.y - half, 2.0 * half, 2.0 * half));
     }
-    let raw = pts_of(&edge.points);
+    let raw = drawn_line(edge);
     if let (Some(first), Some(last)) = (edge.points.first(), edge.points.last()) {
         let s = marker_extent(&edge.marker_start, scene, edge.stroke.width);
         bounds.add_circle(*first, s);
@@ -1956,6 +2238,84 @@ mod tests {
         assert!(svg.contains("content:&#39;q&#39;"), "{svg}");
     }
 
+    fn spans() -> Vec<TextSpan> {
+        vec![
+            TextSpan {
+                text: "ALL(".into(),
+                color: Some("#666".into()),
+                weight: None,
+            },
+            TextSpan {
+                text: "a<b".into(),
+                color: Some("#007abe".into()),
+                weight: Some(700.0),
+            },
+            TextSpan {
+                text: ")".into(),
+                color: None,
+                weight: None,
+            },
+        ]
+    }
+
+    #[test]
+    fn spans_are_drawn_as_tspans_in_their_own_colour_and_weight() {
+        let scene = Scene {
+            nodes: vec![SceneNode {
+                content: vec![NodeContent::Text(TextRun {
+                    spans: spans(),
+                    ..TextRun::default()
+                })],
+                ..node_at(0.0, 0.0, 100.0, 40.0)
+            }],
+            ..Scene::default()
+        };
+        let svg = draw(&scene);
+        assert!(
+            svg.contains(
+                r##"><tspan fill="#666">ALL(</tspan><tspan fill="#007abe" font-weight="700">a&lt;b</tspan><tspan>)</tspan></text>"##
+            ),
+            "{svg}"
+        );
+    }
+
+    /// Qt SVG and librsvg drop a space at either end of a `<tspan>` unless told to keep it.
+    #[test]
+    fn spans_keep_the_spaces_between_them() {
+        let run = |spans: Vec<TextSpan>| Scene {
+            nodes: vec![SceneNode {
+                content: vec![NodeContent::Text(TextRun {
+                    spans,
+                    ..TextRun::default()
+                })],
+                ..node_at(0.0, 0.0, 100.0, 40.0)
+            }],
+            ..Scene::default()
+        };
+        assert!(draw(&run(spans())).contains(r#" xml:space="preserve">"#));
+        assert!(!draw(&run(Vec::new())).contains("xml:space"));
+    }
+
+    #[test]
+    fn spans_are_measured_as_their_joined_text() {
+        let edge_with = |text: TextRun| Scene {
+            edges: vec![SceneEdge {
+                points: vec![Point::new(0.0, 0.0), Point::new(10.0, 0.0)],
+                labels: vec![EdgeLabel::new(text, 0.5).chip()],
+                ..SceneEdge::default()
+            }],
+            ..Scene::default()
+        };
+        let plain = edge_with(TextRun::new("ALL(a<b)")).bounds(&measurer());
+        let spanned = edge_with(TextRun {
+            spans: spans(),
+            ..TextRun::default()
+        })
+        .bounds(&measurer());
+        assert!(plain.w > 10.0, "{plain:?}");
+        assert_eq!(plain, spanned);
+    }
+
     /// A run takes the scene font's size and weight unless it names its own, and the scene's
     /// italic flag reaches the drawing.
     #[test]
@@ -1978,14 +2338,33 @@ mod tests {
         };
         let svg = draw(&scene);
         assert!(
-            svg.contains(r#"font-size="20.00" font-weight="700.00""#),
+            svg.contains(r#"font-size="20.00" font-weight="700""#),
             "{svg}"
         );
         assert!(
-            svg.contains(r#"font-size="9.00" font-weight="300.00""#),
+            svg.contains(r#"font-size="9.00" font-weight="300""#),
             "{svg}"
         );
         assert_eq!(svg.matches(r#"font-style="italic""#).count(), 2, "{svg}");
+    }
+
+    #[test]
+    fn central_text_is_drawn_on_its_computed_baseline() {
+        let scene = Scene {
+            nodes: vec![SceneNode {
+                content: vec![NodeContent::Text(TextRun::new("label"))],
+                ..node_at(0.0, 0.0, 100.0, 60.0)
+            }],
+            ..Scene::default()
+        };
+        let m = measurer().measure("label", &scene.font);
+        let baseline = 30.0 + (m.ascent - m.descent) / 2.0;
+        let svg = draw(&scene);
+        assert!(
+            svg.contains(&format!(r#"<text x="50.00" y="{}""#, fmt(baseline))),
+            "{svg}"
+        );
+        assert!(!svg.contains("dominant-baseline"), "{svg}");
     }
 
     /// A ring inside a circle follows the circle, which is `w` across whatever the height.
@@ -2011,6 +2390,75 @@ mod tests {
             svg.contains(r#"r="20.00""#) && svg.contains(r#"r="17.00""#),
             "{svg}"
         );
+    }
+
+    #[test]
+    fn polygon_points_are_relative_to_the_node_centre() {
+        let scene = Scene {
+            nodes: vec![SceneNode {
+                content: vec![NodeContent::Polygon {
+                    points: vec![
+                        Point::new(-5.0, -5.0),
+                        Point::new(-5.0, 5.0),
+                        Point::new(5.0, 0.0),
+                    ],
+                    fill: Some("#fff".into()),
+                    stroke: None,
+                    attrs: Attrs::default(),
+                }],
+                ..node_at(10.0, 20.0, 40.0, 20.0)
+            }],
+            ..Scene::default()
+        };
+        let svg = draw(&scene);
+        assert!(
+            svg.contains(
+                r##"<polygon points="25.00,25.00 25.00,35.00 35.00,30.00" fill="#fff"/>"##
+            ),
+            "{svg}"
+        );
+    }
+
+    #[test]
+    fn a_polygon_without_fill_is_drawn_as_its_stroke() {
+        let scene = Scene {
+            nodes: vec![SceneNode {
+                content: vec![NodeContent::Polygon {
+                    points: vec![Point::new(0.0, 0.0), Point::new(1.0, 1.0)],
+                    fill: None,
+                    stroke: Some(Stroke::new("#000", 2.0)),
+                    attrs: Attrs::default().id("p"),
+                }],
+                ..node_at(0.0, 0.0, 10.0, 10.0)
+            }],
+            ..Scene::default()
+        };
+        let svg = draw(&scene);
+        assert!(
+            svg.contains(
+                r##"<polygon points="5.00,5.00 6.00,6.00" fill="none" stroke="#000" stroke-width="2.00" id="p"/>"##
+            ),
+            "{svg}"
+        );
+    }
+
+    /// A polygon reaching past its node grows the scene, by half its stroke beyond the points.
+    #[test]
+    fn a_polygon_counts_towards_the_scene_bounds() {
+        let scene = Scene {
+            nodes: vec![SceneNode {
+                content: vec![NodeContent::Polygon {
+                    points: vec![Point::new(0.0, -30.0), Point::new(0.0, 0.0)],
+                    fill: None,
+                    stroke: Some(Stroke::new("#000", 2.0)),
+                    attrs: Attrs::default(),
+                }],
+                ..node_at(0.0, 0.0, 10.0, 10.0)
+            }],
+            ..Scene::default()
+        };
+        // Centre (5, 5), so the top point is at y = -25 and its stroke reaches y = -26.
+        assert_eq!(scene.bounds(&measurer()).y, -26.0);
     }
 
     /// A panel's own attributes wrap the panel.
@@ -2279,6 +2727,86 @@ mod tests {
         assert!(l.max_y() > b.max_y(), "and so must its height: {l:?}");
     }
 
+    fn dot_at(points: Vec<Point>, corner_radius: f64, at: EdgeAnchor) -> String {
+        draw(&Scene {
+            edges: vec![SceneEdge {
+                points,
+                corner_radius,
+                decorations: vec![Decoration::Dot {
+                    at,
+                    radius: 1.0,
+                    fill: None,
+                    stroke: None,
+                    attrs: Attrs::default(),
+                }],
+                ..SceneEdge::default()
+            }],
+            ..Scene::default()
+        })
+    }
+
+    /// The line is drawn with a rounded corner, so an anchor there must follow the curve, not the
+    /// corner of the polyline.
+    #[test]
+    fn a_fraction_anchor_lies_on_the_rounded_line() {
+        let corner = vec![
+            Point::new(0.0, 0.0),
+            Point::new(100.0, 0.0),
+            Point::new(100.0, 100.0),
+        ];
+        // The curve runs from (80, 0) to (100, 20) around (100, 0). Its middle is
+        // 0.25 * (80, 0) + 0.5 * (100, 0) + 0.25 * (100, 20).
+        let svg = dot_at(corner, 20.0, EdgeAnchor::Fraction(0.5));
+        assert!(svg.contains(r#"<circle cx="95.00" cy="5.00""#), "{svg}");
+    }
+
+    #[test]
+    fn an_along_anchor_moves_by_its_offset() {
+        let line = || vec![Point::new(0.0, 0.0), Point::new(100.0, 0.0)];
+        for (fraction, offset, cx) in [
+            (0.5, 10.0, "60.00"),
+            (1.0, -27.0, "73.00"),
+            (1.0, 5.0, "100.00"),
+        ] {
+            let svg = dot_at(line(), 0.0, EdgeAnchor::Along { fraction, offset });
+            assert!(
+                svg.contains(&format!(r#"<circle cx="{cx}" cy="0.00""#)),
+                "{svg}"
+            );
+        }
+    }
+
+    #[test]
+    fn a_slanted_tick_leans_from_the_perpendicular() {
+        let tick = |slant: f64| {
+            draw(&Scene {
+                edges: vec![SceneEdge {
+                    points: vec![Point::new(0.0, 0.0), Point::new(100.0, 0.0)],
+                    decorations: vec![Decoration::Tick {
+                        at: EdgeAnchor::Fraction(0.5),
+                        length: 10.0,
+                        slant,
+                        stroke: Stroke::new("#000", 1.0),
+                        attrs: Attrs::default(),
+                    }],
+                    ..SceneEdge::default()
+                }],
+                ..Scene::default()
+            })
+        };
+        let straight = tick(0.0);
+        assert!(
+            straight.contains(r#"<line x1="50.00" y1="-5.00" x2="50.00" y2="5.00""#),
+            "{straight}"
+        );
+        // Rotated 30 degrees: half of 10 is 2.5 along the path and 4.33 across it.
+        let slanted = tick(30.0);
+        assert!(
+            slanted.contains(r#"<line x1="47.50" y1="-4.33" x2="52.50" y2="4.33""#),
+            "{slanted}"
+        );
+    }
+
     #[test]
     fn bounds_inflate_edges_by_half_their_stroke_and_include_markers() {
         let m = measurer();
@@ -2366,14 +2894,186 @@ mod tests {
                     size: 20.0,
                     weight: 600.0,
                     color: None,
+                    counted: false,
                 }),
                 ..FitLayout::default()
             }),
             ..GlyphRow::default()
         };
-        let plan = plan_glyph_row(&row, Point::new(0.0, 0.0));
+        let plan = plan_glyph_row(
+            &row,
+            Point::new(0.0, 0.0),
+            &FontSpec::default(),
+            &measurer(),
+        );
         assert!(plan.glyphs.is_empty());
         assert_eq!(plan.numeral.map(|n| n.total), Some(50));
+    }
+
+    #[test]
+    fn a_numeral_is_drawn_on_its_computed_baseline() {
+        let row = GlyphRow {
+            clusters: vec![GlyphCluster {
+                count: 50,
+                ..GlyphCluster::default()
+            }],
+            layout: GlyphLayout::Fit(FitLayout {
+                max_width: 40.0,
+                numeral: Some(NumeralStyle {
+                    size: 20.0,
+                    weight: 600.0,
+                    color: None,
+                    counted: false,
+                }),
+                ..FitLayout::default()
+            }),
+            ..GlyphRow::default()
+        };
+        let scene = Scene {
+            nodes: vec![SceneNode {
+                content: vec![NodeContent::Glyphs(row)],
+                ..node_at(0.0, 0.0, 40.0, 40.0)
+            }],
+            ..Scene::default()
+        };
+        let font = FontSpec {
+            size: 20.0,
+            weight: 600.0,
+            ..scene.font.clone()
+        };
+        let m = measurer().measure("50", &font);
+        let baseline = 20.0 + (m.ascent - m.descent) / 2.0;
+        let svg = draw(&scene);
+        assert!(
+            svg.contains(&format!(
+                r#"<text x="20.00" y="{}" text-anchor="middle" font-size="20.00" font-weight="600""#,
+                fmt(baseline)
+            )),
+            "{svg}"
+        );
+        assert!(!svg.contains("dominant-baseline"), "{svg}");
+    }
+
+    fn fit_row(clusters: &[(Glyph, u64)], max_width: f64, counted: bool) -> GlyphRow {
+        GlyphRow {
+            clusters: clusters
+                .iter()
+                .map(|(glyph, count)| GlyphCluster {
+                    glyph: glyph.clone(),
+                    count: *count,
+                    ..GlyphCluster::default()
+                })
+                .collect(),
+            layout: GlyphLayout::Fit(FitLayout {
+                max_width,
+                max_glyphs: Some(4),
+                numeral: Some(NumeralStyle {
+                    size: 10.0,
+                    weight: 600.0,
+                    color: None,
+                    counted,
+                }),
+                ..FitLayout::default()
+            }),
+            ..GlyphRow::default()
+        }
+    }
+
+    fn plan_of(row: &GlyphRow) -> GlyphPlan {
+        plan_glyph_row(row, Point::new(0.0, 0.0), &FontSpec::default(), &measurer())
+    }
+
+    #[test]
+    fn a_fit_row_past_max_glyphs_collapses_even_when_the_glyphs_fit() {
+        let four = plan_of(&fit_row(&[(Glyph::Dot, 4)], 100.0, false));
+        assert_eq!(four.glyphs.len(), 4);
+        assert!(four.numeral.is_none());
+
+        let five = plan_of(&fit_row(&[(Glyph::Dot, 5)], 100.0, false));
+        assert!(five.glyphs.is_empty());
+        assert_eq!(five.numeral.map(|n| n.total), Some(5));
+    }
+
+    #[test]
+    fn a_counted_numeral_stacks_one_glyph_and_count_per_cluster() {
+        let square = Glyph::Square {
+            scale: 0.85,
+            corner_radius: 1.5,
+            opacity: 1.0,
+        };
+        let plan = plan_of(&fit_row(&[(Glyph::Dot, 12), (square, 3)], 40.0, true));
+        assert!(plan.numeral.is_none());
+        let texts: Vec<&str> = plan.counts.iter().map(|c| c.text.as_str()).collect();
+        assert_eq!(texts, ["\u{d7}12", "\u{d7}3"]);
+        let clusters: Vec<usize> = plan.glyphs.iter().map(|g| g.cluster).collect();
+        assert_eq!(clusters, [0, 1]);
+        assert_eq!(plan.glyphs[0].center.x, plan.glyphs[1].center.x);
+        assert!(plan.counts[0].y < plan.counts[1].y);
+        assert_eq!(plan.glyphs[0].center.y, plan.counts[0].y);
+    }
+
+    #[test]
+    fn a_counted_numeral_skips_empty_clusters() {
+        let plan = plan_of(&fit_row(&[(Glyph::Dot, 0), (Glyph::Dot, 7)], 40.0, true));
+        assert_eq!(plan.counts.len(), 1);
+        assert_eq!(plan.glyphs.len(), 1);
+        assert_eq!(plan.glyphs[0].cluster, 1);
+    }
+
+    #[test]
+    fn a_counted_numeral_shrinks_to_fit_the_row_width() {
+        let plan = plan_of(&fit_row(&[(Glyph::Dot, 1_234_567)], 30.0, true));
+        let (glyph, count) = (&plan.glyphs[0], &plan.counts[0]);
+        let font = FontSpec {
+            size: count.size,
+            weight: 600.0,
+            ..FontSpec::default()
+        };
+        let right = count.x + measurer().measure(&count.text, &font).width;
+        assert!(count.size < 10.0);
+        assert!(right - (glyph.center.x - glyph.radius) <= 30.0 + 1e-9);
+    }
+
+    #[test]
+    fn a_counted_numeral_is_drawn_as_glyphs_and_text() {
+        let scene = Scene {
+            nodes: vec![SceneNode {
+                content: vec![NodeContent::Glyphs(fit_row(
+                    &[(Glyph::Dot, 12), (Glyph::Dot, 3)],
+                    40.0,
+                    true,
+                ))],
+                ..node_at(0.0, 0.0, 52.0, 52.0)
+            }],
+            ..Scene::default()
+        };
+        let svg = draw(&scene);
+        assert_eq!(svg.matches("<circle").count(), 2, "{svg}");
+        assert!(svg.contains(">\u{d7}12</text>"), "{svg}");
+        assert!(svg.contains(">\u{d7}3</text>"), "{svg}");
+        assert!(svg.contains(r#"text-anchor="start""#), "{svg}");
+    }
+
+    #[test]
+    fn a_counted_numeral_counts_towards_the_scene_bounds() {
+        let row = fit_row(&[(Glyph::Dot, 1_000_000)], f64::INFINITY, true);
+        let plan = plan_of(&row);
+        let count = &plan.counts[0];
+        let font = FontSpec {
+            size: count.size,
+            weight: 600.0,
+            ..FontSpec::default()
+        };
+        let right = count.x + measurer().measure(&count.text, &font).width;
+        let scene = Scene {
+            nodes: vec![SceneNode {
+                content: vec![NodeContent::Glyphs(row)],
+                ..node_at(-5.0, -5.0, 10.0, 10.0)
+            }],
+            ..Scene::default()
+        };
+        let b = scene.bounds(&measurer());
+        assert!(b.x + b.w >= right - 1e-9, "{b:?} vs {right}");
     }
 
     #[test]
@@ -2399,7 +3099,12 @@ mod tests {
             }),
             ..GlyphRow::default()
         };
-        let plan = plan_glyph_row(&row, Point::new(0.0, 0.0));
+        let plan = plan_glyph_row(
+            &row,
+            Point::new(0.0, 0.0),
+            &FontSpec::default(),
+            &measurer(),
+        );
         let y_of = |cluster: usize| {
             plan.glyphs
                 .iter()
@@ -2464,6 +3169,7 @@ mod tests {
                                     size: 24.0,
                                     weight: 600.0,
                                     color: None,
+                                    counted: false,
                                 }),
                                 ..FitLayout::default()
                             }),
@@ -2632,6 +3338,7 @@ mod tests {
                     Decoration::Tick {
                         at: EdgeAnchor::Fraction(0.75),
                         length: 8.0,
+                        slant: 0.0,
                         stroke: Stroke::new("#334", 1.5),
                         attrs: Attrs::default(),
                     },

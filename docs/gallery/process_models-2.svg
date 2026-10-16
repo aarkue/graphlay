@@ -31,29 +31,29 @@
 <circle cx="15.00" cy="-76.00" r="15.00" fill="#d1fae5" stroke="#059669" stroke-width="1.50"/>
 <circle cx="15.00" cy="-76.00" r="5.50" fill="#059669"/>
 <rect x="84.00" y="-19.00" width="102.80" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="135.40" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Place order</text>
+<text x="135.40" y="3.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Place order</text>
 <circle cx="255.80" cy="0.00" r="15.00" fill="#dbeafe" stroke="#2563eb" stroke-width="1.50"/>
 <circle cx="255.80" cy="-76.00" r="15.00" fill="#d1fae5" stroke="#059669" stroke-width="1.50"/>
 <rect x="324.80" y="-19.00" width="116.40" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="383.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Confirm order</text>
+<text x="383.00" y="3.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Confirm order</text>
 <rect x="328.20" y="65.00" width="109.60" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="383.00" y="84.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Cancel order</text>
+<text x="383.00" y="87.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Cancel order</text>
 <circle cx="510.20" cy="0.00" r="15.00" fill="#dbeafe" stroke="#2563eb" stroke-width="1.50"/>
 <rect x="337.00" y="-103.00" width="92.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="383.00" y="-84.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Pick item</text>
+<text x="383.00" y="-80.55" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Pick item</text>
 <circle cx="510.20" cy="-76.00" r="15.00" fill="#d1fae5" stroke="#059669" stroke-width="1.50"/>
 <rect x="579.20" y="-19.00" width="96.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="627.20" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Ship order</text>
+<text x="627.20" y="3.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Ship order</text>
 <circle cx="744.20" cy="0.00" r="15.00" fill="#dbeafe" stroke="#2563eb" stroke-width="1.50"/>
 <circle cx="744.20" cy="0.00" r="10.75" fill="none" stroke="#2563eb" stroke-width="1.50"/>
 <circle cx="744.20" cy="-76.00" r="15.00" fill="#d1fae5" stroke="#059669" stroke-width="1.50"/>
 <circle cx="744.20" cy="-76.00" r="10.75" fill="none" stroke="#059669" stroke-width="1.50"/>
 </g>
 <g id="overlays">
-<text x="783.20" y="-103.00" text-anchor="start" font-size="11.00" font-weight="600.00" fill="#111827">Object types</text>
+<text x="783.20" y="-103.00" text-anchor="start" font-size="11.00" font-weight="600" fill="#111827">Object types</text>
 <rect x="783.20" y="-95.00" width="10.00" height="10.00" rx="2.00" fill="#2563eb"/>
-<text x="803.20" y="-87.00" text-anchor="start" font-size="11.00" font-weight="400.00" fill="#111827">orders</text>
+<text x="803.20" y="-87.00" text-anchor="start" font-size="11.00" font-weight="400" fill="#111827">orders</text>
 <rect x="783.20" y="-79.00" width="10.00" height="10.00" rx="2.00" fill="#059669"/>
-<text x="803.20" y="-71.00" text-anchor="start" font-size="11.00" font-weight="400.00" fill="#111827">items</text>
+<text x="803.20" y="-71.00" text-anchor="start" font-size="11.00" font-weight="400" fill="#111827">items</text>
 </g>
 </svg>

@@ -448,7 +448,8 @@ impl TextAnchor {
 pub enum Baseline {
     /// The anchor is on the text's own baseline (`<text y=..>` as SVG defines it).
     Alphabetic,
-    /// The anchor is the vertical middle of the glyphs (`dominant-baseline="central"`).
+    /// The anchor is the vertical middle of the glyphs. The renderer moves the baseline by the
+    /// measurer's ascent and descent to get there.
     #[default]
     Central,
 }
@@ -475,6 +476,21 @@ pub struct TextWrap {
     pub max_lines: usize,
     /// Baseline-to-baseline distance between wrapped lines.
     pub line_height: f64,
+}
+
+/// Part of a [`TextRun`] with its own colour or weight, drawn as a `<tspan>`.
+#[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
+#[serde(default)]
+pub struct TextSpan {
+    /// The text, escaped on output.
+    pub text: String,
+    /// Fill colour. `None` takes the run's.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub color: Option<Color>,
+    /// CSS numeric font weight. `None` takes the run's.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub weight: Option<f64>,
 }
 
 /// One run of text: a single line, or several when [`TextRun::wrap`] is set.
@@ -508,6 +524,10 @@ pub struct TextRun {
     pub wrap: Option<TextWrap>,
     /// A background-coloured outline under the glyphs. `None` draws the glyphs bare.
     pub halo: Option<Halo>,
+    /// When non-empty, these are drawn one after another in place of [`TextRun::text`], on one
+    /// line. They are measured as their joined text in the run's font, and `wrap` is ignored.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub spans: Vec<TextSpan>,
     /// Attributes on each emitted `<text>` element.
     pub attrs: Attrs,
 }
@@ -526,6 +546,7 @@ impl Default for TextRun {
             baseline: Baseline::Central,
             wrap: None,
             halo: None,
+            spans: Vec::new(),
             attrs: Attrs::default(),
         }
     }
@@ -712,6 +733,10 @@ pub struct NumeralStyle {
     pub weight: f64,
     /// Fill colour. Falls back to the theme's text colour.
     pub color: Option<Color>,
+    /// One line per non-empty cluster, its glyph followed by a multiplication sign (U+00D7) and
+    /// the count, instead of a single total. The lines shrink together to fit `max_width`.
+    #[serde(default)]
+    pub counted: bool,
 }
 
 /// Fixed-size clusters packed left to right, wrapping into further rows.
@@ -760,6 +785,9 @@ pub struct FitLayout {
     pub min_diameter: f64,
     /// Largest glyph diameter, however much room the row has.
     pub max_diameter: f64,
+    /// Most glyphs drawn one by one. A row with more collapses to the numeral even when they
+    /// would fit. Has no effect without a `numeral`.
+    pub max_glyphs: Option<u64>,
     /// `None` draws the glyphs at `min_diameter` and lets the row overflow instead of collapsing.
     pub numeral: Option<NumeralStyle>,
 }
@@ -771,6 +799,7 @@ impl Default for FitLayout {
             gap: 2.0,
             min_diameter: 4.0,
             max_diameter: 11.0,
+            max_glyphs: None,
             numeral: None,
         }
     }
@@ -854,6 +883,20 @@ pub enum NodeContent {
         #[serde(default)]
         color: Option<Color>,
         /// Attributes on the `<use>` element.
+        #[serde(default)]
+        attrs: Attrs,
+    },
+    /// A closed polygon, drawn as a plain `<polygon>`.
+    Polygon {
+        /// The corners, relative to the node centre.
+        points: Vec<Point>,
+        /// Fill colour. `None` leaves the inside unpainted.
+        #[serde(default)]
+        fill: Option<Color>,
+        /// Outline. `None` draws none.
+        #[serde(default)]
+        stroke: Option<Stroke>,
+        /// Attributes on the `<polygon>` element.
         #[serde(default)]
         attrs: Attrs,
     },
@@ -1059,10 +1102,19 @@ impl Default for MarkerDef {
 #[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[serde(untagged)]
 pub enum EdgeAnchor {
-    /// A fraction (0..1) of the polyline's length.
+    /// A fraction (0..1) of the edge's length, along the line as drawn, so on its rounded
+    /// corners too.
     Fraction(f64),
     /// An explicit point in scene coordinates.
     At(Point),
+    /// `fraction` of the edge's length, then `offset` scene units further along the line
+    /// (negative towards its start), stopping at its ends.
+    Along {
+        /// A fraction (0..1) of the edge's length.
+        fraction: f64,
+        /// Distance along the line from there.
+        offset: f64,
+    },
 }
 
 impl Default for EdgeAnchor {
@@ -1176,6 +1228,10 @@ pub enum Decoration {
         at: EdgeAnchor,
         /// Length of the bar, centred on the anchor.
         length: f64,
+        /// Degrees the bar is turned from the perpendicular, towards the direction of travel at
+        /// its right-hand end. `0` crosses the path at a right angle.
+        #[serde(default)]
+        slant: f64,
         /// How the bar is stroked.
         stroke: Stroke,
         /// Attributes on the `<line>`.

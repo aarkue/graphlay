@@ -21,26 +21,26 @@
 </g>
 <g id="nodes">
 <rect x="0.00" y="-18.00" width="100.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="50.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Lead</text>
+<text x="50.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Lead</text>
 <rect x="154.00" y="-18.00" width="100.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="204.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Qualify</text>
+<text x="204.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Qualify</text>
 <rect x="308.00" y="-18.00" width="100.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="358.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Demo</text>
+<text x="358.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Demo</text>
 <rect x="72.00" y="120.00" width="100.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="122.00" y="138.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Offer</text>
+<text x="122.00" y="141.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Offer</text>
 <rect x="226.00" y="120.00" width="100.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="276.00" y="138.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Negotiate</text>
+<text x="276.00" y="141.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Negotiate</text>
 <rect x="380.00" y="120.00" width="100.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="430.00" y="138.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Contract</text>
+<text x="430.00" y="141.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Contract</text>
 <rect x="534.00" y="120.00" width="100.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="584.00" y="138.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Onboard</text>
+<text x="584.00" y="141.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Onboard</text>
 <rect x="63.00" y="219.00" width="100.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="113.00" y="237.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Kick-off</text>
+<text x="113.00" y="240.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Kick-off</text>
 <rect x="217.00" y="219.00" width="100.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="267.00" y="237.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Deliver</text>
+<text x="267.00" y="240.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Deliver</text>
 <rect x="371.00" y="219.00" width="100.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="421.00" y="237.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Invoice</text>
+<text x="421.00" y="240.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Invoice</text>
 <rect x="525.00" y="219.00" width="100.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="575.00" y="237.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Renew</text>
+<text x="575.00" y="240.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Renew</text>
 </g>
 </svg>

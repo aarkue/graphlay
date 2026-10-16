@@ -82,37 +82,37 @@
 <circle cx="403.80" cy="-84.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
 <circle cx="1665.80" cy="0.00" r="15.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
 <rect x="840.80" y="-19.00" width="230.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="955.80" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Notify Result Appeal to Offender</text>
+<text x="955.80" y="3.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Notify Result Appeal to Offender</text>
 <rect x="950.80" y="65.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
 <rect x="324.80" y="-244.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
 <rect x="1734.80" y="-19.00" width="191.20" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="1830.40" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Insert Fine Notification</text>
+<text x="1830.40" y="3.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Insert Fine Notification</text>
 <rect x="582.80" y="-103.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
 <rect x="472.80" y="95.00" width="230.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="587.80" y="114.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Receive Result Appeal from Prefecture</text>
+<text x="587.80" y="117.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Receive Result Appeal from Prefecture</text>
 <rect x="1545.80" y="-103.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
 <rect x="1825.40" y="65.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
 <rect x="2304.80" y="-19.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
 <rect x="2550.20" y="-19.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
 <rect x="1545.80" y="149.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
 <rect x="522.80" y="-187.00" width="130.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="587.80" y="-168.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Appeal to Judge</text>
+<text x="587.80" y="-164.55" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Appeal to Judge</text>
 <rect x="1208.80" y="-19.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
 <rect x="324.80" y="-19.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
 <rect x="2452.80" y="65.00" width="204.80" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="2555.20" y="84.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Send for Credit Collection</text>
+<text x="2555.20" y="87.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Send for Credit Collection</text>
 <rect x="472.80" y="-19.00" width="230.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="587.80" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Insert Date Appeal to Prefecture</text>
+<text x="587.80" y="3.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Insert Date Appeal to Prefecture</text>
 <rect x="488.80" y="179.00" width="198.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="587.80" y="198.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Send Appeal to Prefecture</text>
+<text x="587.80" y="201.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Send Appeal to Prefecture</text>
 <rect x="1356.80" y="-19.00" width="10.00" height="38.00" rx="0.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
 <rect x="2064.00" y="-19.00" width="102.80" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="2115.40" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Add penalty</text>
+<text x="2115.40" y="3.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Add penalty</text>
 <rect x="1504.80" y="-19.00" width="92.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="1550.80" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Send Fine</text>
+<text x="1550.80" y="3.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Send Fine</text>
 <rect x="84.00" y="-19.00" width="102.80" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="135.40" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Create Fine</text>
+<text x="135.40" y="3.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Create Fine</text>
 <rect x="1504.80" y="65.00" width="92.00" height="38.00" rx="2.00" fill="#ffffff" stroke="#1f2937" stroke-width="1.50"/>
-<text x="1550.80" y="84.00" text-anchor="middle" dominant-baseline="central" font-size="11.50" font-weight="500.00" fill="#1f2937">Payment</text>
+<text x="1550.80" y="87.45" text-anchor="middle" font-size="11.50" font-weight="500" fill="#1f2937">Payment</text>
 </g>
 </svg>

@@ -19,18 +19,18 @@
 </g>
 <g id="nodes">
 <rect x="0.00" y="0.00" width="96.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="48.00" y="20.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Order</text>
+<text x="48.00" y="23.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Order</text>
 <rect x="246.00" y="-50.00" width="96.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="294.00" y="-30.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Item</text>
+<text x="294.00" y="-26.40" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Item</text>
 <rect x="492.00" y="-50.00" width="96.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="540.00" y="-30.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Customer</text>
+<text x="540.00" y="-26.40" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Customer</text>
 <rect x="246.00" y="-120.00" width="96.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="294.00" y="-100.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Invoice</text>
+<text x="294.00" y="-96.40" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Invoice</text>
 <rect x="246.00" y="50.00" width="96.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="294.00" y="70.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Package</text>
+<text x="294.00" y="73.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Package</text>
 <rect x="492.00" y="100.00" width="96.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="540.00" y="120.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Payment</text>
+<text x="540.00" y="123.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Payment</text>
 <rect x="246.00" y="150.00" width="96.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="294.00" y="170.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Route</text>
+<text x="294.00" y="173.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Route</text>
 </g>
 </svg>

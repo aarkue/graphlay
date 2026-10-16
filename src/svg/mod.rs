@@ -42,7 +42,7 @@ pub use model::{
     GradientStop, Halo, LegendItem, LineCap, MarkerDef, MarkerRef, NodeContent, NumeralStyle,
     Overlay, OverlayContent, Paint, Panel, PanelSection, PanelStyle, Point, RawSvg, Rect, Ring,
     Scene, SceneEdge, SceneNode, Separator, Shape, Size, Stroke, Swatch, SymbolDef, TextAnchor,
-    TextRun, TextWrap, ZOrder,
+    TextRun, TextSpan, TextWrap, ZOrder,
 };
 pub use render::{
     builtin_symbols, marker_size_for, render, SYMBOL_MAPSTO, SYMBOL_PLAY_TRIANGLE,

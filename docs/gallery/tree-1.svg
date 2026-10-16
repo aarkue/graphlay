@@ -17,24 +17,24 @@
 </g>
 <g id="nodes">
 <rect x="330.00" y="0.00" width="92.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="376.00" y="18.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Company</text>
+<text x="376.00" y="21.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Company</text>
 <rect x="60.00" y="92.00" width="92.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="106.00" y="110.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Sales</text>
+<text x="106.00" y="113.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Sales</text>
 <rect x="360.00" y="92.00" width="92.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="406.00" y="110.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Product</text>
+<text x="406.00" y="113.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Product</text>
 <rect x="600.00" y="92.00" width="92.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="646.00" y="110.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Finance</text>
+<text x="646.00" y="113.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Finance</text>
 <rect x="0.00" y="184.00" width="92.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="46.00" y="202.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Inbound</text>
+<text x="46.00" y="205.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Inbound</text>
 <rect x="120.00" y="184.00" width="92.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="166.00" y="202.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Accounts</text>
+<text x="166.00" y="205.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Accounts</text>
 <rect x="240.00" y="184.00" width="92.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="286.00" y="202.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Design</text>
+<text x="286.00" y="205.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Design</text>
 <rect x="360.00" y="184.00" width="92.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="406.00" y="202.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Platform</text>
+<text x="406.00" y="205.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Platform</text>
 <rect x="480.00" y="184.00" width="92.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="526.00" y="202.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Mobile</text>
+<text x="526.00" y="205.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Mobile</text>
 <rect x="600.00" y="184.00" width="92.00" height="36.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="646.00" y="202.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Payroll</text>
+<text x="646.00" y="205.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Payroll</text>
 </g>
 </svg>

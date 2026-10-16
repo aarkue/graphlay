@@ -18,20 +18,20 @@
 </g>
 <g id="nodes">
 <rect x="0.00" y="-20.00" width="110.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="55.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Receive</text>
+<text x="55.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Receive</text>
 <rect x="164.00" y="-20.00" width="110.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="219.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Check</text>
+<text x="219.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Check</text>
 <rect x="328.00" y="-20.00" width="110.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="383.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Reserve</text>
+<text x="383.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Reserve</text>
 <rect x="492.00" y="30.00" width="110.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="547.00" y="50.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Pick</text>
+<text x="547.00" y="53.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Pick</text>
 <rect x="656.00" y="30.00" width="110.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="711.00" y="50.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Ship</text>
+<text x="711.00" y="53.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Ship</text>
 <rect x="820.00" y="-20.00" width="110.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="875.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Invoice</text>
+<text x="875.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Invoice</text>
 <rect x="984.00" y="-20.00" width="110.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="1039.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Close</text>
+<text x="1039.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Close</text>
 <rect x="328.00" y="-106.00" width="110.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="383.00" y="-86.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Reject</text>
+<text x="383.00" y="-82.40" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Reject</text>
 </g>
 </svg>

@@ -380,6 +380,11 @@ export type Decoration =
        */
       length: number;
       /**
+       * Degrees the bar is turned from the perpendicular, towards the direction of travel at
+       * its right-hand end. `0` crosses the path at a right angle.
+       */
+      slant?: number;
+      /**
        * How the bar is stroked.
        */
       stroke: Stroke;
@@ -432,7 +437,19 @@ export type Decoration =
  * This interface was referenced by `GraphlayTypes`'s JSON-Schema
  * via the `definition` "EdgeAnchor".
  */
-export type EdgeAnchor = number | Point;
+export type EdgeAnchor =
+  | number
+  | Point
+  | {
+      /**
+       * A fraction (0..1) of the edge's length.
+       */
+      fraction: number;
+      /**
+       * Distance along the line from there.
+       */
+      offset: number;
+    };
 /**
  * How a stroked line ends.
  *
@@ -543,6 +560,25 @@ export type NodeContent =
        * The symbol's [`SymbolDef::id`].
        */
       symbol: string;
+    }
+  | {
+      /**
+       * Attributes on the `<polygon>` element.
+       */
+      attrs?: Attrs;
+      /**
+       * Fill colour. `None` leaves the inside unpainted.
+       */
+      fill?: string | null;
+      kind: "polygon";
+      /**
+       * The corners, relative to the node centre.
+       */
+      points: Point[];
+      /**
+       * Outline. `None` draws none.
+       */
+      stroke?: Stroke | null;
     }
   | RawSvg;
 /**
@@ -2641,6 +2677,11 @@ export interface TextRun {
    */
   size?: number | null;
   /**
+   * When non-empty, these are drawn one after another in place of [`TextRun::text`], on one
+   * line. They are measured as their joined text in the run's font, and `wrap` is ignored.
+   */
+  spans?: TextSpan[];
+  /**
    * The text, escaped on output.
    */
   text?: string;
@@ -2670,6 +2711,26 @@ export interface Halo {
    * Stroke width of the halo. It reaches half of this beyond each glyph's outline.
    */
   width: number;
+}
+/**
+ * Part of a [`TextRun`] with its own colour or weight, drawn as a `<tspan>`.
+ *
+ * This interface was referenced by `GraphlayTypes`'s JSON-Schema
+ * via the `definition` "TextSpan".
+ */
+export interface TextSpan {
+  /**
+   * Fill colour. `None` takes the run's.
+   */
+  color?: string | null;
+  /**
+   * The text, escaped on output.
+   */
+  text?: string;
+  /**
+   * CSS numeric font weight. `None` takes the run's.
+   */
+  weight?: number | null;
 }
 /**
  * Opt-in word wrapping. The renderer asks the [`crate::svg::TextMeasurer`] where to split.
@@ -2941,6 +3002,11 @@ export interface FitLayout {
    */
   max_diameter?: number;
   /**
+   * Most glyphs drawn one by one. A row with more collapses to the numeral even when they
+   * would fit. Has no effect without a `numeral`.
+   */
+  max_glyphs?: number | null;
+  /**
    * Width the row is scaled to fit. Unbounded by default, `null` in JSON.
    */
   max_width?: number | null;
@@ -2964,6 +3030,11 @@ export interface NumeralStyle {
    * Fill colour. Falls back to the theme's text colour.
    */
   color?: string | null;
+  /**
+   * One line per non-empty cluster, its glyph followed by a multiplication sign (U+00D7) and
+   * the count, instead of a single total. The lines shrink together to fit `max_width`.
+   */
+  counted?: boolean;
   /**
    * Font size of the numeral.
    */

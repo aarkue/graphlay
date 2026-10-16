@@ -1,6 +1,6 @@
 {
   "name": "graphlay",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Deterministic layered graph layout, tidy trees and SVG rendering. Rust compiled to WebAssembly, for the browser and Node.",
   "license": "MIT OR Apache-2.0",
   "repository": {

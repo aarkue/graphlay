@@ -13,14 +13,14 @@
 </g>
 <g id="nodes">
 <rect x="0.00" y="-20.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="60.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Register</text>
+<text x="60.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Register</text>
 <rect x="174.00" y="-20.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="234.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Check</text>
+<text x="234.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Check</text>
 <rect x="348.00" y="-20.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="408.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Approve</text>
+<text x="408.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Approve</text>
 <rect x="348.00" y="66.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="408.00" y="86.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Reject</text>
+<text x="408.00" y="89.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Reject</text>
 <rect x="522.00" y="-20.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="582.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Notify</text>
+<text x="582.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Notify</text>
 </g>
 </svg>

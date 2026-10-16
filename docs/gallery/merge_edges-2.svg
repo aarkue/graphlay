@@ -20,23 +20,23 @@
 </g>
 <g id="nodes">
 <rect x="0.00" y="-20.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="60.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Order received</text>
+<text x="60.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Order received</text>
 <rect x="174.00" y="152.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="234.00" y="172.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Check stock</text>
+<text x="234.00" y="175.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Check stock</text>
 <rect x="174.00" y="66.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="234.00" y="86.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Check credit</text>
+<text x="234.00" y="89.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Check credit</text>
 <rect x="174.00" y="-20.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="234.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Check address</text>
+<text x="234.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Check address</text>
 <rect x="348.00" y="-20.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="408.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Approve order</text>
+<text x="408.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Approve order</text>
 <rect x="522.00" y="66.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="582.00" y="86.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Pick items</text>
+<text x="582.00" y="89.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Pick items</text>
 <rect x="522.00" y="152.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="582.00" y="172.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Send invoice</text>
+<text x="582.00" y="175.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Send invoice</text>
 <rect x="522.00" y="-20.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="582.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Notify customer</text>
+<text x="582.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Notify customer</text>
 <rect x="696.00" y="-20.00" width="120.00" height="40.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
-<text x="756.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#1d2533">Close order</text>
+<text x="756.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Close order</text>
 </g>
 <g id="overlays">
 <circle cx="486.00" cy="-15.00" r="3" fill="#3b4658"/><circle cx="486.00" cy="86.00" r="3" fill="#3b4658"/><circle cx="330.00" cy="-15.00" r="3" fill="#3b4658"/><circle cx="330.00" cy="86.00" r="3" fill="#3b4658"/><circle cx="678.00" cy="-15.00" r="3" fill="#3b4658"/><circle cx="678.00" cy="86.00" r="3" fill="#3b4658"/><circle cx="138.00" cy="-15.00" r="3" fill="#3b4658"/><circle cx="138.00" cy="86.00" r="3" fill="#3b4658"/>

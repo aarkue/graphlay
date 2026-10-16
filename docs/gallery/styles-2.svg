@@ -15,29 +15,29 @@
 <path d="M 36.00,0.00 L 90.00,0.00" fill="none" stroke="#bfdbfe" stroke-width="14.00" stroke-linecap="round" stroke-opacity="0.45"/>
 <path d="M 36.00,0.00 L 81.50,0.00" fill="none" stroke="#2563eb" stroke-width="3.00" marker-end="url(#gl-mk-0)"/>
 <rect x="52.50" y="-7.00" width="21.00" height="14.00" rx="3.00" fill="#ffffff"/>
-<text x="63.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1e3a8a">412</text>
+<text x="63.00" y="3.00" text-anchor="middle" font-size="10.00" font-weight="600" fill="#1e3a8a">412</text>
 <path d="M 194.00,0.00 L 248.00,0.00" fill="none" stroke="#bfdbfe" stroke-width="14.00" stroke-linecap="round" stroke-opacity="0.45"/>
 <path d="M 194.00,0.00 L 239.50,0.00" fill="none" stroke="#2563eb" stroke-width="3.00" marker-end="url(#gl-mk-0)"/>
 <rect x="210.50" y="-7.00" width="21.00" height="14.00" rx="3.00" fill="#ffffff"/>
-<text x="221.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1e3a8a">412</text>
+<text x="221.00" y="3.00" text-anchor="middle" font-size="10.00" font-weight="600" fill="#1e3a8a">412</text>
 <path d="M 352.00,0.00 L 406.00,0.00" fill="none" stroke="#bfdbfe" stroke-width="14.00" stroke-linecap="round" stroke-opacity="0.45"/>
 <path d="M 352.00,0.00 L 397.50,0.00" fill="none" stroke="#2563eb" stroke-width="3.00" marker-end="url(#gl-mk-0)"/>
 <rect x="368.50" y="-7.00" width="21.00" height="14.00" rx="3.00" fill="#ffffff"/>
-<text x="379.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1e3a8a">380</text>
+<text x="379.00" y="3.00" text-anchor="middle" font-size="10.00" font-weight="600" fill="#1e3a8a">380</text>
 <path d="M 352.00,18.00 L 374.00,18.00 Q 379.00,18.00 379.00,23.00 L 379.00,81.00 Q 379.00,86.00 384.00,86.00 L 396.80,86.00" fill="none" stroke="#cbd5e1" stroke-width="1.60" marker-end="url(#gl-mk-1)"/>
 <rect x="371.33" y="45.00" width="15.33" height="14.00" rx="3.00" fill="#ffffff"/>
-<text x="379.00" y="52.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#64748b">32</text>
+<text x="379.00" y="55.00" text-anchor="middle" font-size="10.00" font-weight="600" fill="#64748b">32</text>
 <path d="M 510.00,0.00 L 564.00,0.00" fill="none" stroke="#bfdbfe" stroke-width="14.00" stroke-linecap="round" stroke-opacity="0.45"/>
 <path d="M 510.00,0.00 L 555.50,0.00" fill="none" stroke="#2563eb" stroke-width="3.00" marker-end="url(#gl-mk-0)"/>
 <rect x="526.50" y="-7.00" width="21.00" height="14.00" rx="3.00" fill="#ffffff"/>
-<text x="537.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1e3a8a">380</text>
+<text x="537.00" y="3.00" text-anchor="middle" font-size="10.00" font-weight="600" fill="#1e3a8a">380</text>
 <path d="M 510.00,86.00 L 532.00,86.00 Q 537.00,86.00 537.00,81.00 L 537.00,23.00 Q 537.00,18.00 542.00,18.00 L 554.80,18.00" fill="none" stroke="#cbd5e1" stroke-width="1.60" marker-end="url(#gl-mk-1)"/>
 <rect x="529.34" y="45.00" width="15.33" height="14.00" rx="3.00" fill="#ffffff"/>
-<text x="537.00" y="52.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#64748b">32</text>
+<text x="537.00" y="55.00" text-anchor="middle" font-size="10.00" font-weight="600" fill="#64748b">32</text>
 <path d="M 668.00,0.00 L 722.00,0.00" fill="none" stroke="#bfdbfe" stroke-width="14.00" stroke-linecap="round" stroke-opacity="0.45"/>
 <path d="M 668.00,0.00 L 713.50,0.00" fill="none" stroke="#2563eb" stroke-width="3.00" marker-end="url(#gl-mk-0)"/>
 <rect x="684.50" y="-7.00" width="21.00" height="14.00" rx="3.00" fill="#ffffff"/>
-<text x="695.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="10.00" font-weight="600.00" fill="#1e3a8a">412</text>
+<text x="695.00" y="3.00" text-anchor="middle" font-size="10.00" font-weight="600" fill="#1e3a8a">412</text>
 </g>
 <g id="nodes">
 <circle cx="18.00" cy="0.00" r="18.00" fill="#2563eb" stroke="#2563eb" stroke-width="1.60"/>
@@ -45,14 +45,14 @@
 <circle cx="740.00" cy="0.00" r="18.00" fill="#1f2937" stroke="#1f2937" stroke-width="1.60"/>
 <use href="#gl-stop-square" x="733.70" y="-6.30" width="12.60" height="12.60" color="#ffffff"/>
 <rect x="90.00" y="-20.00" width="104.00" height="40.00" rx="5.00" fill="#dbeafe" stroke="#2563eb" stroke-width="1.75"/>
-<text x="142.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="600.00" fill="#1e3a8a">Register</text>
+<text x="142.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="600" fill="#1e3a8a">Register</text>
 <rect x="248.00" y="-20.00" width="104.00" height="40.00" rx="5.00" fill="#dbeafe" stroke="#2563eb" stroke-width="1.75"/>
-<text x="300.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="600.00" fill="#1e3a8a">Check</text>
+<text x="300.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="600" fill="#1e3a8a">Check</text>
 <rect x="406.00" y="-20.00" width="104.00" height="40.00" rx="5.00" fill="#dbeafe" stroke="#2563eb" stroke-width="1.75"/>
-<text x="458.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="600.00" fill="#1e3a8a">Approve</text>
+<text x="458.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="600" fill="#1e3a8a">Approve</text>
 <rect x="406.00" y="66.00" width="104.00" height="40.00" rx="5.00" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.60"/>
-<text x="458.00" y="86.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="500.00" fill="#64748b">Reject</text>
+<text x="458.00" y="89.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#64748b">Reject</text>
 <rect x="564.00" y="-20.00" width="104.00" height="40.00" rx="5.00" fill="#dbeafe" stroke="#2563eb" stroke-width="1.75"/>
-<text x="616.00" y="0.00" text-anchor="middle" dominant-baseline="central" font-size="12.00" font-weight="600.00" fill="#1e3a8a">Notify</text>
+<text x="616.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="600" fill="#1e3a8a">Notify</text>
 </g>
 </svg>

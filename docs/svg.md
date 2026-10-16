@@ -25,22 +25,29 @@ Nodes are a `Rect` plus a `Shape` (`Rect { corner_radius }`, `Ellipse` or `Circl
 stroke, and `content` painted inside them in list order:
 
 * `NodeContent::Text(TextRun)` is one line, or several when `wrap` is set. Offsets are relative to
-  the node's centre, and `halo` puts a background-coloured stroke under the glyphs.
+  the node's centre, and `halo` puts a background-coloured stroke under the glyphs. Non-empty
+  `spans` replace `text` with one line of parts in their own colour or weight.
 * `NodeContent::Glyphs(GlyphRow)` is a row of counted glyphs, e.g., tokens or multiplicities. Each
   `GlyphCluster` is `count` copies of a `Glyph` (`Dot`, `Square` or a `Symbol`). The row's
   `GlyphLayout` is `Fit`, which scales the glyphs to a width and shows a numeral when even the
-  smallest do not fit, or `Exact`, which draws at the declared radius and wraps into rows. A
-  cluster's `separator` is drawn in the gap before it and keeps a row break from falling there.
+  smallest do not fit (or there are more than `max_glyphs`), or `Exact`, which draws at the
+  declared radius and wraps into rows. A `counted` numeral shows each cluster as its glyph and
+  count, one line per cluster. A cluster's `separator` is drawn in the gap before it and keeps a
+  row break from falling there.
 * `NodeContent::Rings(Vec<Ring>)` are concentric insets that follow the node's shape.
 * `NodeContent::Use { symbol, .. }` draws a `SymbolDef` by id, tinted through `currentColor`.
+* `NodeContent::Polygon { points, fill, stroke, .. }` is a plain `<polygon>` with its points
+  relative to the node's centre. For a mark drawn once, it is smaller than a `Use` and renders the
+  same in every viewer.
 * `NodeContent::Raw(RawSvg)` is raw markup, see below.
 
 Edges are a polyline plus a `Stroke` (a colour or a gradient, dash, linecap), a `corner_radius`, a
 `MarkerRef` at each end, `labels` and `decorations`. A `hop_radius` above zero draws a small arc
-where a horizontal run crosses another edge, so a crossing does not look like a junction. Labels anchor at a fraction along the path or
-at a point, and can carry a background `Chip` or a `Halo`. Decorations are `Dot`, `Tick` and
-`Glyph` at an anchor, and `Band`, a lane painted under the edge. The path end is pulled back so a
-marker's tip lands on the endpoint. Label and decoration anchors use the points as given.
+where a horizontal run crosses another edge, so a crossing does not look like a junction. Labels anchor at a fraction along the path, a
+distance from a fraction (`Along`) or a point, and can carry a background `Chip` or a `Halo`.
+Decorations are `Dot`, `Tick` and `Glyph` at an anchor, and `Band`, a lane painted under the
+edge. The path end is pulled back so a marker's tip lands on the endpoint. Fractions are measured
+along the line as drawn, rounded corners included, from the untrimmed endpoints.
 
 Overlays are raw fragments or `Panel`s, drawn under or over the graph. A legend is a `Panel` of
 `PanelSection`s of `LegendItem { swatch, text }`, where a swatch is a colour, a symbol or raw
