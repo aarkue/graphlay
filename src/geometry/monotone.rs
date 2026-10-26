@@ -71,12 +71,24 @@ fn project(d: &[f64], gap: &[f64], w: &[f64]) -> Vec<f64> {
 /// [`project_gaps`] with nodes fixed where `fixed` is `Some`. Each free run is projected on its
 /// own, then shifted to clear its fixed neighbours.
 pub fn project_gaps_pinned(d: &[f64], gap: &[f64], fixed: &[Option<f64>]) -> Vec<f64> {
+    project_gaps_weighted_pinned(d, gap, &[], fixed)
+}
+
+/// [`project_gaps_pinned`] with each free run fitted by [`project_gaps_weighted`]. A pinned value is
+/// kept even where it is closer to its neighbour than their gap. A run with too little room between
+/// two pins is spread evenly between them, so the order holds.
+pub fn project_gaps_weighted_pinned(
+    d: &[f64],
+    gap: &[f64],
+    w: &[f64],
+    fixed: &[Option<f64>],
+) -> Vec<f64> {
     let m = d.len();
     if m == 0 {
         return vec![];
     }
     if fixed.iter().all(Option::is_none) {
-        return project_gaps(d, gap);
+        return project(d, gap, w);
     }
     let mut out = vec![0.0; m];
     let mut i = 0;
@@ -90,7 +102,8 @@ pub fn project_gaps_pinned(d: &[f64], gap: &[f64], fixed: &[Option<f64>]) -> Vec
         while j < m && fixed[j].is_none() {
             j += 1;
         }
-        let mut p = project_gaps(&d[i..j], &gap[i..j.saturating_sub(1)]);
+        let run_w = &w[i.min(w.len())..j.min(w.len())];
+        let mut p = project(&d[i..j], &gap[i..j.saturating_sub(1)], run_w);
         if i > 0 {
             let lo = out[i - 1] + gap[i - 1];
             if p[0] < lo {
@@ -98,6 +111,18 @@ pub fn project_gaps_pinned(d: &[f64], gap: &[f64], fixed: &[Option<f64>]) -> Vec
                 for x in p.iter_mut() {
                     *x += s;
                 }
+            }
+        }
+        if let (true, Some(Some(hi_pin))) = (i > 0, fixed.get(j).copied()) {
+            let lo_pin = out[i - 1];
+            let need = gap[i - 1..j].iter().sum::<f64>();
+            if hi_pin - lo_pin < need {
+                let step = (hi_pin - lo_pin) / (j - i + 1) as f64;
+                for (k, slot) in out[i..j].iter_mut().enumerate() {
+                    *slot = lo_pin + step * (k + 1) as f64;
+                }
+                i = j;
+                continue;
             }
         }
         if let Some(Some(f)) = fixed.get(j).copied() {
@@ -184,6 +209,37 @@ mod tests {
     fn project_gaps_pinned_holds_the_pin_and_shifts_the_run() {
         let out = project_gaps_pinned(&[100.0, 0.0], &[10.0], &[Some(0.0), None]);
         assert_eq!(out, vec![0.0, 10.0]);
+    }
+
+    #[test]
+    fn project_gaps_weighted_pinned_holds_pins_closer_than_their_gap() {
+        let out = project_gaps_weighted_pinned(
+            &[0.0, 5.0, 20.0],
+            &[10.0, 10.0],
+            &[1.0, 8.0, 1.0],
+            &[Some(0.0), None, Some(20.0)],
+        );
+        assert_eq!(out, vec![0.0, 10.0, 20.0]);
+        let tight = project_gaps_weighted_pinned(
+            &[0.0, 5.0],
+            &[10.0],
+            &[1.0, 1.0],
+            &[Some(0.0), Some(5.0)],
+        );
+        assert_eq!(tight, vec![0.0, 5.0]);
+    }
+
+    #[test]
+    fn project_gaps_weighted_pinned_keeps_a_squeezed_run_between_its_pins() {
+        let out = project_gaps_weighted_pinned(
+            &[0.0, 15.0, 30.0],
+            &[86.0, 86.0],
+            &[1.0, 1.0, 1.0],
+            &[Some(0.0), None, Some(30.0)],
+        );
+        assert_eq!(out[0], 0.0);
+        assert_eq!(out[2], 30.0);
+        assert!(out[1] > 0.0 && out[1] < 30.0, "{out:?}");
     }
 
     #[test]

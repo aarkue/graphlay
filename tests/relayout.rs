@@ -3,7 +3,7 @@
 
 use graphlay::{
     layout, reroute, Direction, Edge, Graph, GraphBuilder, GroupId, Layout, LayoutOptions, Node,
-    NodeId, Point, RoutingStyle, Shape, Size,
+    NodeId, Point, PortSides, RoutingStyle, SeedMode, Shape, Size,
 };
 
 // ---------------------------------------------------------------------------------------------
@@ -727,4 +727,189 @@ fn reroute_antiparallel_same_row_no_cross() {
             assert!(!proper, "anti-parallel edges cross at segment {i}/{j}");
         }
     }
+}
+
+/// A target dropped above or below its source's column is entered from outside: no route crosses
+/// a box, its own source and target included.
+#[test]
+fn reroute_target_dropped_by_source_column_clears_own_ends() {
+    let chain = graph(
+        (0..4).map(|_| activity()).collect(),
+        &[(0, 1), (1, 2), (2, 3)],
+        &[],
+        &[],
+    );
+    let mut map_lr = LayoutOptions::process_map();
+    map_lr.direction = Direction::LeftRight;
+    for options in [layered_lr(), map_lr] {
+        let first = layout(&chain, &options).unwrap();
+        let source = center(&first, 1);
+        for (dx, dy) in [
+            (0.0, -120.0),
+            (60.0, -120.0),
+            (-100.0, -120.0),
+            (0.0, 120.0),
+        ] {
+            let mut g = chain.clone();
+            seed_all(&mut g, &first);
+            g.nodes[2].position = Some(Point::new(source[0] + dx, source[1] + dy));
+            let out = reroute(&g, &options).unwrap();
+            for ei in 0..3 {
+                let r = route(&out, ei);
+                for w in r.windows(2) {
+                    for ni in 0..4 {
+                        assert!(
+                            !seg_hits_box(w[0], w[1], center(&out, ni), 75.0, 29.0),
+                            "drop ({dx}, {dy}): edge {ei} rakes node {ni}: {r:?}"
+                        );
+                    }
+                }
+            }
+        }
+    }
+}
+
+/// Nodes dropped closer than the node gap stay exactly where they were dropped, so the routes fit
+/// the positions the caller shows.
+#[test]
+fn reroute_keeps_nodes_dropped_inside_the_node_gap() {
+    let g0 = graph(
+        (0..4).map(|_| activity()).collect(),
+        &[(0, 1), (1, 2), (2, 3), (1, 3)],
+        &[],
+        &[],
+    );
+    let mut options = LayoutOptions::process_map();
+    options.direction = Direction::LeftRight;
+    let first = layout(&g0, &options).unwrap();
+    let source = center(&first, 1);
+    for dy in [-89.0, 89.0] {
+        let mut g = g0.clone();
+        seed_all(&mut g, &first);
+        g.nodes[2].position = Some(Point::new(source[0], source[1] + dy));
+        let out = reroute(&g, &options).unwrap();
+        for (i, nd) in g.nodes.iter().enumerate() {
+            let want = xy(nd.position.unwrap());
+            let got = center(&out, i);
+            assert!(
+                (got[0] - want[0]).abs() < 1e-6 && (got[1] - want[1]).abs() < 1e-6,
+                "drop {dy}: node {i} moved from {want:?} to {got:?}"
+            );
+        }
+    }
+}
+
+/// An edge between nodes stacked across the flow, their boxes overlapping along it, runs straight
+/// between the borders that face each other.
+#[test]
+fn reroute_joins_stacked_nodes_by_their_facing_borders() {
+    let chain = graph(
+        (0..4).map(|_| activity()).collect(),
+        &[(0, 1), (1, 2), (2, 3)],
+        &[],
+        &[],
+    );
+    let mut map_lr = LayoutOptions::process_map();
+    map_lr.direction = Direction::LeftRight;
+    for options in [layered_lr(), map_lr] {
+        let first = layout(&chain, &options).unwrap();
+        let source = center(&first, 1);
+        for (dx, dy) in [(0.0, -120.0), (60.0, -120.0), (0.0, 120.0), (-40.0, 150.0)] {
+            let mut g = chain.clone();
+            seed_all(&mut g, &first);
+            g.nodes[2].position = Some(Point::new(source[0] + dx, source[1] + dy));
+            let out = reroute(&g, &options).unwrap();
+            let r = route(&out, 1);
+            let up = dy < 0.0;
+            assert_eq!(r.len(), 2, "drop ({dx}, {dy}): {r:?}");
+            assert!(
+                (r[0][0] - r[1][0]).abs() < 1e-6,
+                "drop ({dx}, {dy}): not vertical {r:?}"
+            );
+            let (from, to) = (center(&out, 1), center(&out, 2));
+            assert!(
+                (r[0][1] - (from[1] + if up { -29.0 } else { 29.0 })).abs() < 1e-6,
+                "{r:?}"
+            );
+            assert!(
+                (r[1][1] - (to[1] + if up { 29.0 } else { -29.0 })).abs() < 1e-6,
+                "{r:?}"
+            );
+        }
+    }
+}
+
+/// Two pinned nodes closer than the node gap keep their places in a fresh layout, and a node
+/// between them in the layer stays between them.
+#[test]
+fn pinned_nodes_closer_than_the_gap_keep_the_layer_order() {
+    let at = |x: f64, y: f64, pinned: bool| Node {
+        position: Some(Point::new(x, y)),
+        pinned,
+        ..node(100.0, 40.0, Shape::Box)
+    };
+    let g = graph(
+        vec![
+            at(0.0, 0.0, false),
+            at(200.0, 0.0, true),
+            at(200.0, 15.0, false),
+            at(200.0, 30.0, true),
+        ],
+        &[(0, 1), (0, 2), (0, 3)],
+        &[],
+        &[],
+    );
+    let mut options = layered_lr();
+    options.seed_mode = SeedMode::Structure;
+    let out = layout(&g, &options).unwrap();
+    let (a, b, c) = (center(&out, 1), center(&out, 2), center(&out, 3));
+    // Pins hold across the layer; the layer axis is the layout's under `SeedMode::Structure`.
+    assert_eq!((a[1], c[1]), (0.0, 30.0));
+    assert!(a[1] < b[1] && b[1] < c[1], "{a:?} {b:?} {c:?}");
+    assert!(out.nodes[1].order < out.nodes[2].order && out.nodes[2].order < out.nodes[3].order);
+}
+
+/// A straight join between stacked nodes ends on a place's circle, not on its bounding box.
+#[test]
+fn reroute_joins_a_place_on_its_circle() {
+    let g = graph(
+        vec![
+            pinned_at(place(), 0.0, 0.0),
+            pinned_at(transition(), 50.0, 120.0),
+        ],
+        &[(0, 1), (1, 0)],
+        &[],
+        &[],
+    );
+    let out = reroute(&g, &layered_lr()).unwrap();
+    for ei in 0..2 {
+        let r = route(&out, ei);
+        let end = if ei == 0 { r[0] } else { r[r.len() - 1] };
+        let d = (end[0].powi(2) + end[1].powi(2)).sqrt();
+        assert!(
+            (d - 26.0).abs() < 0.5,
+            "edge {ei} ends {d:.1} from the place's centre: {r:?}"
+        );
+    }
+}
+
+/// A node whose edges may only use the facing borders keeps them after a reroute.
+#[test]
+fn reroute_keeps_facing_only_ports() {
+    let a = Node {
+        port_sides: Some(PortSides::FacingOnly),
+        ..pinned_at(activity(), 0.0, 0.0)
+    };
+    let g = graph(
+        vec![a, pinned_at(activity(), 0.0, 120.0)],
+        &[(0, 1)],
+        &[],
+        &[],
+    );
+    let out = reroute(&g, &layered_lr()).unwrap();
+    let r = route(&out, 0);
+    assert!(
+        (r[0][0] - 75.0).abs() < 1e-6,
+        "leaves by its east border: {r:?}"
+    );
 }

@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.3.1 (2026-10-26)
+
+- `reroute` keeps every node where the caller put it. Nodes dropped closer together than the node
+  gap were pushed apart, so a host that kept its own positions drew routes made for other ones.
+- `reroute` joins two nodes stacked across the flow by one straight edge between the borders that
+  face each other, where the router left by the flow-facing border and looped round to the other.
+- `reroute` moves an edge's end to another border when the edge would run through its own source
+  or target, for either end, and tries all three other borders. It checks a place against its
+  circle, not its bounding box, and leaves the ends of a `PortSides::FacingOnly` node alone.
+- `layout` with pinned nodes closer together than the node gap kept the pins but could push a free
+  node between them out of the layer order. Such a node is now spread evenly between its pins.
+  `Node::pinned` without a position now has no effect, as documented.
+
 ## 0.3.0 (2026-10-16)
 
 - `svg::NodeContent::Polygon`: a filled or stroked polygon with its points relative to the node

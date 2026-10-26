@@ -118,7 +118,7 @@ checksum = "d0881ea181b1df73ff77ffaaf9c7544ecc11e82fba9b5f27b262a3c73a332555"
 
 [[package]]
 name = "graphlay"
-version = "0.3.0"
+version = "0.3.1"
 dependencies = [
  "libm",
  "schemars",
@@ -129,7 +129,7 @@ dependencies = [
 
 [[package]]
 name = "graphlay-cli"
-version = "0.3.0"
+version = "0.3.1"
 dependencies = [
  "clap",
  "graphlay",
@@ -138,7 +138,7 @@ dependencies = [
 
 [[package]]
 name = "graphlay-py"
-version = "0.3.0"
+version = "0.3.1"
 dependencies = [
  "graphlay",
  "pyo3",
@@ -146,7 +146,7 @@ dependencies = [
 
 [[package]]
 name = "graphlay-wasm"
-version = "0.3.0"
+version = "0.3.1"
 dependencies = [
  "graphlay",
  "wasm-bindgen",

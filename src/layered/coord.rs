@@ -8,7 +8,9 @@
 use super::simplex;
 use super::state::LayeredState;
 use crate::error::LayoutError;
-use crate::geometry::monotone::{project_gaps, project_gaps_pinned, project_gaps_weighted};
+use crate::geometry::monotone::{
+    project_gaps, project_gaps_pinned, project_gaps_weighted, project_gaps_weighted_pinned,
+};
 use crate::geometry::stats::weighted_median;
 use crate::geometry::{EPS, SLACK};
 use crate::options::{LayoutOptions, Placement};
@@ -50,7 +52,15 @@ pub(super) fn legalize(st: &LayeredState, o: &LayoutOptions, cross: &mut [f64]) 
         if gaps_hold(&d, &gap) {
             continue;
         }
-        let placed = project_gaps_weighted(&d, &gap, &chain_prices(st, layer));
+        // A pinned node keeps its place, even closer to a neighbour than their separation.
+        let fixed: Vec<Option<f64>> = layer
+            .iter()
+            .map(|&v| {
+                (v < st.n_real && st.nodes[v].pinned && st.nodes[v].seed.is_some())
+                    .then_some(cross[v])
+            })
+            .collect();
+        let placed = project_gaps_weighted_pinned(&d, &gap, &chain_prices(st, layer), &fixed);
         for (i, &v) in layer.iter().enumerate() {
             cross[v] = placed[i];
         }

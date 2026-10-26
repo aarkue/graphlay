@@ -5,7 +5,10 @@
 
 use crate::error::LayoutError;
 use crate::geometry::hit::nearest_clear_lane;
-use crate::options::{LayoutOptions, RoutingStyle};
+use crate::geometry::shape::NodeShape;
+use crate::graph::PortSides;
+use crate::options::{Direction, LayoutOptions, RoutingStyle};
+use std::collections::BTreeMap;
 
 use super::finish::LayeredOutput;
 use super::pipeline::Pipeline;
@@ -35,17 +38,21 @@ pub(crate) fn reroute_from_positions(
     Pipeline::reroute().run(&mut st, &options)?;
     let mut out = super::output(&mut st, n, input.edges.len());
     if options.routing.style != RoutingStyle::Diagonal {
-        // The relief moves the end at the arc's `to`, which is the caller's source when the edge
-        // is ranked backwards. A hinted end stays where the caller put it.
-        let tail_hinted: Vec<bool> = (0..input.edges.len())
+        // Which of each route's ends, its first and its last point, the caller hinted. The last is
+        // at the arc's `to`, which is the caller's source when the edge is ranked backwards. A
+        // hinted end stays where the caller put it.
+        let hinted: Vec<[bool; 2]> = (0..input.edges.len())
             .map(|e| {
                 let backwards = input.ranked_backwards.get(e).copied().unwrap_or(false);
-                hints
-                    .get(e)
-                    .is_some_and(|h| h[usize::from(!backwards)].is_some())
+                let hinted = |end: usize| hints.get(e).is_some_and(|h| h[end].is_some());
+                [
+                    hinted(usize::from(backwards)),
+                    hinted(usize::from(!backwards)),
+                ]
             })
             .collect();
-        relieve_end_approaches(&mut out.routes, &out.centers, input, &tail_hinted);
+        join_stacked_nodes(&mut out.routes, &out.centers, input, &hinted);
+        relieve_end_approaches(&mut out.routes, &out.centers, input, &hinted);
     }
     Ok(out)
 }
@@ -228,17 +235,134 @@ pub(super) fn place_over_positions(
     Ok(())
 }
 
-/// Re-attaches an orthogonal route's target end to a perpendicular border when its approach rakes
-/// a node and the new end does not, as happens once dragging breaks the columns. Works in output
-/// space and skips edges in `tail_hinted`.
+/// A node's box as `(centre x, centre y, half width, half height)`.
+type BoxHalf = (f64, f64, f64, f64);
+
+/// Whether the segment `p`-`q` runs through the inside of `c`, 1.5px in from its border: of its
+/// box, or of the ellipse inscribed in it.
+fn seg_inside(p: (f64, f64), q: (f64, f64), c: BoxHalf, ellipse: bool) -> bool {
+    let (hw, hh) = (c.2 - 1.5, c.3 - 1.5);
+    if hw <= 0.0 || hh <= 0.0 {
+        return false;
+    }
+    // In units of the half extents, so the inside is the unit square or the unit disc.
+    let (px, py) = ((p.0 - c.0) / hw, (p.1 - c.1) / hh);
+    let (dx, dy) = ((q.0 - p.0) / hw, (q.1 - p.1) / hh);
+    if ellipse {
+        // |p + t d|^2 < 1 for some t in [0, 1]: the closest point of the segment to the centre.
+        let len2 = dx * dx + dy * dy;
+        let t = if len2 > 0.0 {
+            (-(px * dx + py * dy) / len2).clamp(0.0, 1.0)
+        } else {
+            0.0
+        };
+        return (px + t * dx).powi(2) + (py + t * dy).powi(2) < 1.0;
+    }
+    // Clip the segment against the open square, axis by axis.
+    let (mut lo, mut hi) = (0.0_f64, 1.0_f64);
+    for (start, delta) in [(px, dx), (py, dy)] {
+        if delta.abs() < 1e-12 {
+            if start.abs() >= 1.0 {
+                return false;
+            }
+            continue;
+        }
+        let (a, b) = ((-1.0 - start) / delta, (1.0 - start) / delta);
+        lo = lo.max(a.min(b));
+        hi = hi.min(a.max(b));
+    }
+    lo < hi
+}
+
+/// Whether node `i` may only use the borders facing the flow.
+fn facing_only(input: &LayeredInput, i: usize) -> bool {
+    input.nodes[i]
+        .port_sides
+        .unwrap_or(input.options.routing.port_sides)
+        == PortSides::FacingOnly
+}
+
+/// Joins two nodes stacked across the flow, their boxes overlapping along it, by one straight
+/// segment between the borders that face each other, where it runs clear of every other box. The
+/// router only knows the borders facing the flow, so it would leave one node and loop round into
+/// the other. Several edges between one pair spread over the overlap. Skips edges with a hinted
+/// end and works in output space.
+fn join_stacked_nodes(
+    routes: &mut [Vec<(f64, f64)>],
+    centers: &[(f64, f64)],
+    input: &LayeredInput,
+    hinted: &[[bool; 2]],
+) {
+    let n = input.nodes.len();
+    // Coordinates as `(along the flow, across it)`. The swap is its own inverse.
+    let flow_x = input.options.direction == Direction::LeftRight;
+    let to_flow = |p: (f64, f64)| if flow_x { p } else { (p.1, p.0) };
+    let box_of = |i: usize| -> BoxHalf {
+        let (a, c) = to_flow(centers[i]);
+        let (wa, wc) = to_flow((input.nodes[i].width / 2.0, input.nodes[i].height / 2.0));
+        (a, c, wa, wc)
+    };
+    let mut pairs: BTreeMap<(usize, usize), Vec<usize>> = BTreeMap::new();
+    for (arc, &(s, t)) in input.edges.iter().enumerate() {
+        if s != t && hinted.get(arc).is_none_or(|h| !h[0] && !h[1]) {
+            pairs.entry((s.min(t), s.max(t))).or_default().push(arc);
+        }
+    }
+    let margin = input.options.spacing.port_gap;
+    for ((a, b), arcs) in pairs {
+        if facing_only(input, a) || facing_only(input, b) {
+            continue;
+        }
+        let (ba, bb) = (box_of(a), box_of(b));
+        let (lo, hi) = (
+            (ba.0 - ba.2).max(bb.0 - bb.2),
+            (ba.0 + ba.2).min(bb.0 + bb.2),
+        );
+        // `a` above `b` across the flow, or the other way round.
+        let (upper, lower) = if ba.1 < bb.1 { (a, b) } else { (b, a) };
+        let (bu, bl) = (box_of(upper), box_of(lower));
+        if hi - lo < 2.0 * margin || bl.1 - bl.3 <= bu.1 + bu.3 {
+            continue;
+        }
+        // The border across the flow at `along`: the box's, or the ellipse's outline.
+        let reach = |i: usize, c: BoxHalf, along: f64| -> f64 {
+            if input.nodes[i].shape == NodeShape::Ellipse {
+                c.3 * (1.0 - ((along - c.0) / c.2).powi(2)).max(0.0).sqrt()
+            } else {
+                c.3
+            }
+        };
+        let step = (hi - lo) / (arcs.len() + 1) as f64;
+        for (k, &arc) in arcs.iter().enumerate() {
+            let along = lo + step * (k + 1) as f64;
+            let (from, to) = (
+                bu.1 + reach(upper, bu, along),
+                bl.1 - reach(lower, bl, along),
+            );
+            let (p, q) = ((along, from), (along, to));
+            if (0..n).any(|i| i != a && i != b && seg_inside(p, q, box_of(i), false)) {
+                continue;
+            }
+            let s_upper = input.edges[arc].0 == upper;
+            let (start, end) = if s_upper { (p, q) } else { (q, p) };
+            routes[arc] = vec![to_flow(start), to_flow(end)];
+        }
+    }
+}
+
+/// Re-attaches an orthogonal route's end to another border of its node when the route rakes a box,
+/// its own source and target included, and the new end does not, as happens once dragging breaks
+/// the columns. The last point goes first, then the first. Works in output space and skips the
+/// ends in `hinted`.
 fn relieve_end_approaches(
     routes: &mut [Vec<(f64, f64)>],
     centers: &[(f64, f64)],
     input: &LayeredInput,
-    tail_hinted: &[bool],
+    hinted: &[[bool; 2]],
 ) {
     let n = input.nodes.len();
-    let box_of = |i: usize| {
+    let stub = input.options.spacing.stub;
+    let box_of = |i: usize| -> BoxHalf {
         (
             centers[i].0,
             centers[i].1,
@@ -246,46 +370,165 @@ fn relieve_end_approaches(
             input.nodes[i].height / 2.0,
         )
     };
-    let seg_hits = |p: (f64, f64), q: (f64, f64), c: (f64, f64, f64, f64)| -> bool {
-        let inset = 1.5;
-        let (l, r, t, b) = (
-            c.0 - c.2 + inset,
-            c.0 + c.2 - inset,
-            c.1 - c.3 + inset,
-            c.1 + c.3 - inset,
-        );
-        (0..=48).any(|k| {
-            let f = k as f64 / 48.0;
-            let (x, y) = (p.0 + (q.0 - p.0) * f, p.1 + (q.1 - p.1) * f);
-            x > l && x < r && y > t && y < b
-        })
-    };
-    let route_rakes = |pts: &[(f64, f64)], s: usize, t: usize| -> bool {
-        pts.windows(2)
-            .any(|w| (0..n).any(|i| i != s && i != t && seg_hits(w[0], w[1], box_of(i))))
+    // Other nodes count by their box. A route meets its own end nodes on their borders, so those
+    // count by their shape: an end on a circle lies inside the circle's box.
+    let seg_hits = |p: (f64, f64), q: (f64, f64), i: usize, by_shape: bool| -> bool {
+        seg_inside(
+            p,
+            q,
+            box_of(i),
+            by_shape && input.nodes[i].shape == NodeShape::Ellipse,
+        )
     };
     for (arc, &(s, t)) in input.edges.iter().enumerate() {
-        let rlen = routes[arc].len();
-        if tail_hinted.get(arc).copied().unwrap_or(false) {
+        let rakes = |pts: &[(f64, f64)]| -> bool {
+            pts.windows(2)
+                .any(|w| (0..n).any(|i| seg_hits(w[0], w[1], i, i == s || i == t)))
+        };
+        // A self-loop leaves and re-enters its own node by design.
+        if s == t || routes[arc].len() < 2 || !rakes(&routes[arc]) {
             continue;
         }
-        if rlen < 2 || !route_rakes(&routes[arc], s, t) {
-            continue;
-        }
-        let (tcx, tcy, _, thh) = box_of(t);
-        let lo = rlen.saturating_sub(4).max(1);
-        for j in (lo..=rlen - 2).rev() {
-            let a = routes[arc][j];
-            let e = (tcx, if a.1 < tcy { tcy - thh } else { tcy + thh });
-            let mut cand = routes[arc][..=j].to_vec();
-            if (tcx - a.0).abs() > 1e-6 {
-                cand.push((tcx, a.1));
-            }
-            cand.push(e);
-            if !route_rakes(&cand, s, t) {
-                routes[arc] = cand;
-                break;
+        let [first_hinted, last_hinted] = hinted.get(arc).copied().unwrap_or([false, false]);
+        let (last_hinted, first_hinted) = (
+            last_hinted || facing_only(input, t),
+            first_hinted || facing_only(input, s),
+        );
+        if !last_hinted {
+            if let Some(r) = reattach_end(&routes[arc], box_of(t), stub, first_hinted, rakes) {
+                routes[arc] = r;
             }
         }
+        if !first_hinted && rakes(&routes[arc]) {
+            let reversed: Vec<(f64, f64)> = routes[arc].iter().rev().copied().collect();
+            if let Some(mut r) = reattach_end(&reversed, box_of(s), stub, last_hinted, rakes) {
+                r.reverse();
+                routes[arc] = r;
+            }
+        }
+    }
+}
+
+/// `route` with its last point moved onto a border of `node`: from one of its last waypoints, by
+/// at most two bends to a point `stub` out from that border, then straight in. Tries the border the route
+/// comes from first and keeps the first end that leaves the route clear of every box without
+/// doubling back on itself. `keep_first` keeps the route's first segment, so a hinted first end
+/// still leaves its border as hinted.
+fn reattach_end(
+    route: &[(f64, f64)],
+    node: BoxHalf,
+    stub: f64,
+    keep_first: bool,
+    rakes: impl Fn(&[(f64, f64)]) -> bool,
+) -> Option<Vec<(f64, f64)>> {
+    let (cx, cy, hw, hh) = node;
+    let rlen = route.len();
+    let first = usize::from(keep_first);
+    for j in (rlen.saturating_sub(4).max(first)..=rlen - 2).rev() {
+        let a = route[j];
+        // Each border as (where the end goes, outward direction).
+        let horizontal = |top: bool| {
+            let s = if top { -1.0 } else { 1.0 };
+            ((cx, cy + s * hh), (0.0, s))
+        };
+        let vertical = |east: bool| {
+            let s = if east { 1.0 } else { -1.0 };
+            ((cx + s * hw, cy), (s, 0.0))
+        };
+        let above = a.1 < cy;
+        let east = a.0 > cx;
+        for (end, out) in [
+            horizontal(above),
+            vertical(east),
+            horizontal(!above),
+            vertical(!east),
+        ] {
+            let outside = (end.0 + out.0 * stub, end.1 + out.1 * stub);
+            for corner in [(outside.0, a.1), (a.0, outside.1)] {
+                let mut cand = route[..=j].to_vec();
+                for p in [corner, outside, end] {
+                    push_orthogonal(&mut cand, p);
+                }
+                if !doubles_back(&cand) && !rakes(&cand) {
+                    return Some(cand);
+                }
+            }
+        }
+    }
+    None
+}
+
+/// Appends `p`, dropping a repeated point and merging a straight continuation into one segment.
+fn push_orthogonal(pts: &mut Vec<(f64, f64)>, p: (f64, f64)) {
+    let same = |a: f64, b: f64| (a - b).abs() < 1e-6;
+    if let Some(&last) = pts.last() {
+        if same(last.0, p.0) && same(last.1, p.1) {
+            return;
+        }
+        if pts.len() >= 2 {
+            let prev = pts[pts.len() - 2];
+            let on_line = (same(prev.0, last.0) && same(last.0, p.0))
+                || (same(prev.1, last.1) && same(last.1, p.1));
+            let onward =
+                (last.0 - prev.0) * (p.0 - last.0) + (last.1 - prev.1) * (p.1 - last.1) > 0.0;
+            if on_line && onward {
+                pts.pop();
+            }
+        }
+    }
+    pts.push(p);
+}
+
+/// Whether a segment of `pts` runs straight back along the one before it.
+fn doubles_back(pts: &[(f64, f64)]) -> bool {
+    pts.windows(3).any(|w| {
+        let (u, v) = (
+            (w[1].0 - w[0].0, w[1].1 - w[0].1),
+            (w[2].0 - w[1].0, w[2].1 - w[1].1),
+        );
+        let cross = u.0 * v.1 - u.1 * v.0;
+        cross.abs() < 1e-6 && u.0 * v.0 + u.1 * v.1 < 0.0
+    })
+}
+
+#[cfg(test)]
+#[allow(clippy::unwrap_used, clippy::expect_used)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn a_long_segment_does_not_step_over_a_thin_node() {
+        assert!(seg_inside(
+            (0.0, 0.0),
+            (600.0, 0.0),
+            (256.25, 0.0, 7.0, 26.0),
+            false
+        ));
+        assert!(seg_inside(
+            (0.0, 0.0),
+            (600.0, 0.0),
+            (256.25, 0.0, 7.0, 26.0),
+            true
+        ));
+        assert!(!seg_inside(
+            (0.0, 30.0),
+            (600.0, 30.0),
+            (256.25, 0.0, 7.0, 26.0),
+            false
+        ));
+    }
+
+    #[test]
+    fn an_end_may_move_to_the_far_side_border() {
+        // The route arrives from the west. Only an end on the east border is acceptable here.
+        let route = [
+            (-100.0, 0.0),
+            (-50.0, 0.0),
+            (-50.0, 0.0001),
+            (-20.0, 0.0001),
+        ];
+        let only_east = |pts: &[(f64, f64)]| pts.last().is_some_and(|p| (p.0 - 20.0).abs() > 1e-6);
+        let r = reattach_end(&route, (0.0, 0.0, 20.0, 10.0), 15.0, false, only_east).unwrap();
+        assert_eq!(*r.last().unwrap(), (20.0, 0.0));
     }
 }
