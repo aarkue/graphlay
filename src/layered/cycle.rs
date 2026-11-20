@@ -40,7 +40,7 @@ pub const DEFAULT_BREAKER: CycleBreaker = CycleBreaker::Best;
 
 #[cfg(test)]
 pub fn break_cycles(st: &mut LayeredState) -> Result<(), LayoutError> {
-    break_cycles_with(st, DEFAULT_BREAKER)
+    break_cycles_with(st, DEFAULT_BREAKER, false)
 }
 
 pub fn breaker_for(strategy: crate::options::CycleStrategy) -> CycleBreaker {
@@ -51,7 +51,12 @@ pub fn breaker_for(strategy: crate::options::CycleStrategy) -> CycleBreaker {
 }
 
 /// Self-loops are left alone. They are extracted before routing and cannot be part of a cycle.
-pub fn break_cycles_with(st: &mut LayeredState, how: CycleBreaker) -> Result<(), LayoutError> {
+/// With `whole_returns`, see [`return_paths`].
+pub fn break_cycles_with(
+    st: &mut LayeredState,
+    how: CycleBreaker,
+    whole_returns: bool,
+) -> Result<(), LayoutError> {
     if st.is_empty() {
         return Ok(());
     }
@@ -61,13 +66,93 @@ pub fn break_cycles_with(st: &mut LayeredState, how: CycleBreaker) -> Result<(),
     for (i, &v) in seq.iter().enumerate() {
         rank[v] = i;
     }
-    for arc in st.arcs.iter_mut() {
-        if arc.from != arc.to && rank[arc.from] > rank[arc.to] {
-            std::mem::swap(&mut arc.from, &mut arc.to);
-            arc.reversed = !arc.reversed;
-        }
+    let backwards: Vec<usize> = (0..st.arcs.len())
+        .filter(|&i| {
+            let a = &st.arcs[i];
+            a.from != a.to && rank[a.from] > rank[a.to]
+        })
+        .collect();
+    let flip: BTreeSet<usize> = if whole_returns {
+        return_paths(st, &backwards)
+    } else {
+        backwards.into_iter().collect()
+    };
+    for &i in &flip {
+        let arc = &mut st.arcs[i];
+        std::mem::swap(&mut arc.from, &mut arc.to);
+        arc.reversed = !arc.reversed;
     }
     Ok(())
+}
+
+/// `backwards` plus the rest of each one's return path: the arcs through nodes with one arc in
+/// and one out on either side of it. A path whose reversal would close a cycle stays at its one
+/// backward arc.
+fn return_paths(st: &LayeredState, backwards: &[usize]) -> BTreeSet<usize> {
+    let n = st.len();
+    let mut ins: Vec<Vec<usize>> = vec![Vec::new(); n];
+    let mut outs: Vec<Vec<usize>> = vec![Vec::new(); n];
+    for (i, a) in st.arcs.iter().enumerate().filter(|(_, a)| a.from != a.to) {
+        outs[a.from].push(i);
+        ins[a.to].push(i);
+    }
+    let through = |v: usize| ins[v].len() == 1 && outs[v].len() == 1;
+    let mut flip: BTreeSet<usize> = backwards.iter().copied().collect();
+    for &start in backwards {
+        let mut path = vec![start];
+        let mut u = st.arcs[start].from;
+        while through(u) && path.len() < MAX_RETURN_ARCS && !path.contains(&ins[u][0]) {
+            path.push(ins[u][0]);
+            u = st.arcs[ins[u][0]].from;
+        }
+        let mut v = st.arcs[start].to;
+        while through(v) && path.len() < MAX_RETURN_ARCS && !path.contains(&outs[v][0]) {
+            path.push(outs[v][0]);
+            v = st.arcs[outs[v][0]].to;
+        }
+        let added: Vec<usize> = path.into_iter().filter(|i| !flip.contains(i)).collect();
+        if added.is_empty() {
+            continue;
+        }
+        let mut trial = flip.clone();
+        trial.extend(added.iter().copied());
+        if acyclic_with(st, &trial) {
+            flip = trial;
+        }
+    }
+    flip
+}
+
+/// A redo path in a block-structured model has two or three arcs. Longer runs are usually main
+/// flow, and reversing them pulls it apart.
+const MAX_RETURN_ARCS: usize = 3;
+
+/// Whether the arcs form a DAG once every arc in `flip` is turned round.
+fn acyclic_with(st: &LayeredState, flip: &BTreeSet<usize>) -> bool {
+    let n = st.len();
+    let mut out: Vec<Vec<usize>> = vec![Vec::new(); n];
+    let mut indegree = vec![0usize; n];
+    for (i, a) in st.arcs.iter().enumerate().filter(|(_, a)| a.from != a.to) {
+        let (from, to) = if flip.contains(&i) {
+            (a.to, a.from)
+        } else {
+            (a.from, a.to)
+        };
+        out[from].push(to);
+        indegree[to] += 1;
+    }
+    let mut ready: Vec<usize> = (0..n).filter(|&v| indegree[v] == 0).collect();
+    let mut seen = 0;
+    while let Some(v) = ready.pop() {
+        seen += 1;
+        for &w in &out[v] {
+            indegree[w] -= 1;
+            if indegree[w] == 0 {
+                ready.push(w);
+            }
+        }
+    }
+    seen == n
 }
 
 fn node_order(g: &Adjacency, how: CycleBreaker) -> Vec<usize> {
@@ -707,7 +792,7 @@ mod tests {
             CycleBreaker::FollowFlow,
         ] {
             let mut st = state(4, &[(0, 1), (1, 2), (2, 3), (0, 3), (0, 2)], &[]);
-            break_cycles_with(&mut st, how).unwrap();
+            break_cycles_with(&mut st, how, false).unwrap();
             assert_eq!(reversed(&st).0, 0, "{how:?}");
             assert!(is_acyclic(&st), "{how:?}");
         }
@@ -720,7 +805,7 @@ mod tests {
             let mut weights = vec![10.0, 10.0, 10.0];
             weights[light] = 1.0;
             let mut st = state(3, &[(0, 1), (1, 2), (2, 0)], &weights);
-            break_cycles_with(&mut st, DEFAULT_BREAKER).unwrap();
+            break_cycles_with(&mut st, DEFAULT_BREAKER, false).unwrap();
             assert!(is_acyclic(&st));
             let flipped: Vec<usize> = st
                 .arcs
@@ -738,7 +823,7 @@ mod tests {
         // 3 -> 4 -> entry 5 -> body 0 -> 1 -> 2 -> back to 5, and 1 -> 6 leaves.
         let edges = [(3, 4), (4, 5), (5, 0), (0, 1), (1, 2), (2, 5), (1, 6)];
         let mut st = state(7, &edges, &[]);
-        break_cycles_with(&mut st, DEFAULT_BREAKER).unwrap();
+        break_cycles_with(&mut st, DEFAULT_BREAKER, false).unwrap();
         let cut: Vec<usize> = st
             .arcs
             .iter()
@@ -751,7 +836,7 @@ mod tests {
     #[test]
     fn self_loops_are_left_alone() {
         let mut st = state(2, &[(0, 0), (0, 1), (1, 1)], &[]);
-        break_cycles_with(&mut st, DEFAULT_BREAKER).unwrap();
+        break_cycles_with(&mut st, DEFAULT_BREAKER, false).unwrap();
         assert_eq!(reversed(&st).0, 0);
         assert_eq!((st.arcs[0].from, st.arcs[0].to), (0, 0));
         assert_eq!((st.arcs[2].from, st.arcs[2].to), (1, 1));
@@ -771,7 +856,7 @@ mod tests {
                 CycleBreaker::Best,
             ] {
                 let mut st = state(n, &edges, &weights);
-                break_cycles_with(&mut st, how).unwrap();
+                break_cycles_with(&mut st, how, false).unwrap();
                 assert!(is_acyclic(&st), "case {case}, {how:?}, n={n}, m={m}");
             }
         }
@@ -790,7 +875,7 @@ mod tests {
             let weights: Vec<f64> = (0..m).map(|_| 1.0 + rng.below(20) as f64).collect();
 
             let mut a = state(n, &edges, &weights);
-            break_cycles_with(&mut a, DEFAULT_BREAKER).unwrap();
+            break_cycles_with(&mut a, DEFAULT_BREAKER, false).unwrap();
             let (_, gw) = reversed(&a);
 
             let mut b = state(n, &edges, &weights);
@@ -819,7 +904,7 @@ mod tests {
         let weights = [1.0, 1.0, 10.0, 1.0];
         let backwards = |how| {
             let mut st = state(4, &edges, &weights);
-            break_cycles_with(&mut st, how).unwrap();
+            break_cycles_with(&mut st, how, false).unwrap();
             assert!(is_acyclic(&st), "{how:?}");
             st.arcs
                 .iter()
@@ -849,7 +934,7 @@ mod tests {
             let mut st = state(n, &edges, &[]);
             let g = Adjacency::of(&st);
             let (comp, _) = sccs(&g);
-            break_cycles_with(&mut st, CycleBreaker::FollowFlow).unwrap();
+            break_cycles_with(&mut st, CycleBreaker::FollowFlow, false).unwrap();
             assert!(is_acyclic(&st));
             for a in st.arcs.iter().filter(|a| a.reversed) {
                 assert_eq!(comp[a.from], comp[a.to], "{edges:?}");

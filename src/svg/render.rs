@@ -410,6 +410,111 @@ fn hopping_path(pts: &[Pt], r: f64, hops: &[(usize, f64)], h: f64) -> String {
     d
 }
 
+/// Cubic Bezier segments of the uniform B-spline through `pts`, clamped at both ends (d3's
+/// `curveBasis`). Fewer than three points stay straight.
+fn basis_segments(pts: &[Pt]) -> Vec<[Pt; 4]> {
+    let n = pts.len();
+    if n < 3 {
+        return pts.windows(2).map(|w| [w[0], w[0], w[1], w[1]]).collect();
+    }
+    let lerp = |a: Pt, b: Pt, wa: f64, wb: f64, d: f64| {
+        ((wa * a.0 + wb * b.0) / d, (wa * a.1 + wb * b.1) / d)
+    };
+    let mut segs = Vec::with_capacity(n + 1);
+    let mut pen = pts[0];
+    let first = lerp(pts[0], pts[1], 5.0, 1.0, 6.0);
+    segs.push([pen, pen, first, first]);
+    pen = first;
+    let (mut a, mut b) = (pts[0], pts[1]);
+    let mut point = |c: Pt, a: Pt, b: Pt, pen: &mut Pt| {
+        let c1 = lerp(a, b, 2.0, 1.0, 3.0);
+        let c2 = lerp(a, b, 1.0, 2.0, 3.0);
+        let end = ((a.0 + 4.0 * b.0 + c.0) / 6.0, (a.1 + 4.0 * b.1 + c.1) / 6.0);
+        segs.push([*pen, c1, c2, end]);
+        *pen = end;
+    };
+    for &c in &pts[2..] {
+        point(c, a, b, &mut pen);
+        (a, b) = (b, c);
+    }
+    point(b, a, b, &mut pen);
+    segs.push([pen, pen, b, b]);
+    segs
+}
+
+/// Shortest straight run a smooth edge keeps at each end, for the arrowhead.
+const SMOOTH_END: f64 = 12.0;
+
+/// `pts` with an extra point on the first and last segment, which keeps the B-spline straight
+/// there for [`SMOOTH_END`] or half the segment, whichever is more.
+fn with_straight_ends(pts: &[Pt]) -> Vec<Pt> {
+    let n = pts.len();
+    if n < 3 {
+        return pts.to_vec();
+    }
+    let split = |from: Pt, to: Pt| -> Option<Pt> {
+        let len = f64::hypot(to.0 - from.0, to.1 - from.1);
+        let d = (len / 2.0).max(len.min(SMOOTH_END));
+        (d < len - 0.5).then(|| {
+            let t = d / len;
+            (from.0 + (to.0 - from.0) * t, from.1 + (to.1 - from.1) * t)
+        })
+    };
+    let mut out = Vec::with_capacity(n + 2);
+    out.push(pts[0]);
+    out.extend(split(pts[0], pts[1]));
+    out.extend_from_slice(&pts[1..n - 1]);
+    out.extend(split(pts[n - 1], pts[n - 2]));
+    out.push(pts[n - 1]);
+    out
+}
+
+/// Whether a smooth edge's curve enters a node box its polyline stays out of.
+fn curve_cuts_a_node(edge: &SceneEdge, scene: &Scene) -> bool {
+    let curve = drawn_line(edge);
+    let line = pts_of(&edge.points);
+    let inside = |p: Pt, r: &Rect| {
+        p.0 > r.x + 1.0 && p.0 < r.x + r.w - 1.0 && p.1 > r.y + 1.0 && p.1 < r.y + r.h - 1.0
+    };
+    let mut dense = Vec::new();
+    for w in line.windows(2) {
+        let steps = (f64::hypot(w[1].0 - w[0].0, w[1].1 - w[0].1) / 4.0)
+            .ceil()
+            .max(1.0) as usize;
+        for k in 0..=steps {
+            let t = k as f64 / steps as f64;
+            dense.push((
+                w[0].0 + (w[1].0 - w[0].0) * t,
+                w[0].1 + (w[1].1 - w[0].1) * t,
+            ));
+        }
+    }
+    scene.nodes.iter().any(|n| {
+        curve.iter().any(|&p| inside(p, &n.rect)) && !dense.iter().any(|&p| inside(p, &n.rect))
+    })
+}
+
+/// [`basis_segments`] as path data.
+fn smooth_path(pts: &[Pt]) -> String {
+    let segs = basis_segments(&with_straight_ends(pts));
+    let Some(first) = segs.first() else {
+        return String::new();
+    };
+    let mut d = format!("M {},{}", fmt(first[0].0), fmt(first[0].1));
+    for [_, c1, c2, end] in segs {
+        d.push_str(&format!(
+            " C {},{} {},{} {},{}",
+            fmt(c1.0),
+            fmt(c1.1),
+            fmt(c2.0),
+            fmt(c2.1),
+            fmt(end.0),
+            fmt(end.1)
+        ));
+    }
+    d
+}
+
 fn path_d(pts: &[Pt], corner_radius: f64) -> String {
     if corner_radius > 0.0 {
         rounded_path(pts, corner_radius)
@@ -1472,6 +1577,21 @@ fn drawn_line(edge: &SceneEdge) -> Vec<Pt> {
     if edge.simplify > 0.0 {
         pts = clean_path(&pts, edge.simplify);
     }
+    if edge.smooth && pts.len() >= 3 {
+        let mut line = vec![pts[0]];
+        for [p0, c1, c2, p3] in basis_segments(&with_straight_ends(&pts)) {
+            for k in 1..=CORNER_STEPS {
+                let t = k as f64 / CORNER_STEPS as f64;
+                let u = 1.0 - t;
+                let (a, b, c, d) = (u * u * u, 3.0 * u * u * t, 3.0 * u * t * t, t * t * t);
+                line.push((
+                    a * p0.0 + b * c1.0 + c * c2.0 + d * p3.0,
+                    a * p0.1 + b * c1.1 + c * c2.1 + d * p3.1,
+                ));
+            }
+        }
+        return line;
+    }
     if edge.corner_radius <= 0.0 || pts.len() < 3 {
         return pts;
     }
@@ -1661,6 +1781,16 @@ fn render_edge(
     if edge.points.len() < 2 {
         return;
     }
+    let rounded;
+    let edge = if edge.smooth && curve_cuts_a_node(edge, scene) {
+        rounded = SceneEdge {
+            smooth: false,
+            ..edge.clone()
+        };
+        &rounded
+    } else {
+        edge
+    };
     let raw = drawn_line(edge);
     let fallback = match &edge.stroke.paint {
         Paint::Color(c) => c.clone(),
@@ -1688,7 +1818,9 @@ fn render_edge(
 
     out.push_str(&format!(
         r#"<path d="{d}" fill="none"{stroke}"#,
-        d = xml_escape(&if edge.hop_radius > 0.0 {
+        d = xml_escape(&if edge.smooth {
+            smooth_path(&pts)
+        } else if edge.hop_radius > 0.0 {
             hopping_path(
                 &pts,
                 edge.corner_radius,
@@ -2760,6 +2892,65 @@ mod tests {
         assert!(svg.contains(r#"<circle cx="95.00" cy="5.00""#), "{svg}");
     }
 
+    /// A smooth edge is one curve from the first point to the last, tangent to the end segments.
+    #[test]
+    fn a_smooth_edge_is_a_basis_curve_through_its_corners() {
+        let pts = [(0.0, 0.0), (100.0, 0.0), (100.0, 100.0)];
+        let segs = basis_segments(&pts);
+        let (first, last) = (segs[0], segs[segs.len() - 1]);
+        assert_eq!(first[0], (0.0, 0.0));
+        assert_eq!(last[3], (100.0, 100.0));
+        // Tangent along the first segment (horizontal) and into the last one (vertical).
+        assert!((first[2].1 - first[0].1).abs() < 1e-9, "{segs:?}");
+        assert!((last[3].0 - last[1].0).abs() < 1e-9, "{segs:?}");
+        let d = smooth_path(&pts);
+        assert!(d.starts_with("M 0.00,0.00") && d.contains(" C "), "{d}");
+        // The last stretch before the arrowhead is straight down the final segment.
+        let ends = basis_segments(&with_straight_ends(&pts));
+        let tail = ends[ends.len() - 2];
+        assert!(tail.iter().all(|p| (p.0 - 100.0).abs() < 1e-9), "{ends:?}");
+        assert!(100.0 - tail[0].1 >= SMOOTH_END - 1e-9, "{ends:?}");
+        // The curve cuts inside the corner, so its middle is off the polyline's corner.
+        let edge = SceneEdge {
+            points: pts.iter().map(|&(x, y)| Point::new(x, y)).collect(),
+            smooth: true,
+            ..SceneEdge::default()
+        };
+        let mid = polyline_point_at(&drawn_line(&edge), 0.5);
+        assert!(mid.0 < 99.0 && mid.1 > 1.0, "{mid:?}");
+    }
+
+    #[test]
+    fn a_smooth_edge_falls_back_to_corners_where_its_curve_cuts_a_node() {
+        let scene = |with_node: bool| Scene {
+            nodes: if with_node {
+                vec![SceneNode {
+                    rect: Rect::new(70.0, 4.0, 26.0, 26.0),
+                    ..SceneNode::default()
+                }]
+            } else {
+                vec![]
+            },
+            edges: vec![SceneEdge {
+                points: vec![
+                    Point::new(0.0, 0.0),
+                    Point::new(100.0, 0.0),
+                    Point::new(100.0, 100.0),
+                ],
+                corner_radius: 8.0,
+                smooth: true,
+                ..SceneEdge::default()
+            }],
+            ..Scene::default()
+        };
+        assert!(draw(&scene(false)).contains(" C "));
+        let clipped = draw(&scene(true));
+        assert!(
+            !clipped.contains(" C ") && clipped.contains(" Q "),
+            "{clipped}"
+        );
+    }
+
     #[test]
     fn an_along_anchor_moves_by_its_offset() {
         let line = || vec![Point::new(0.0, 0.0), Point::new(100.0, 0.0)];
@@ -3291,6 +3482,7 @@ mod tests {
                     opacity: Some(0.9),
                 },
                 corner_radius: 4.0,
+                smooth: false,
                 hop_radius: 0.0,
                 simplify: 3.0,
                 marker_start: MarkerRef::builtin(BuiltinMarker::Ball),

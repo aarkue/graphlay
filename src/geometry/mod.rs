@@ -15,6 +15,14 @@ use serde::{Deserialize, Serialize};
 /// Tolerance below which two coordinates, lengths or costs count as equal.
 pub(crate) const EPS: f64 = 1e-9;
 
+/// Whether `a` beats `b` on the first key where they differ by more than [`EPS`].
+pub(crate) fn lex_greater<const N: usize>(a: [f64; N], b: [f64; N]) -> bool {
+    a.into_iter()
+        .zip(b)
+        .find(|(x, y)| (x - y).abs() > EPS)
+        .is_some_and(|(x, y)| x > y)
+}
+
 /// Slack for comparisons of values built from several float operations (e.g., sums of gaps).
 pub(crate) const SLACK: f64 = 1e-6;
 

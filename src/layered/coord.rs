@@ -157,7 +157,40 @@ pub fn centre_terminals(st: &mut LayeredState, o: &LayoutOptions) -> Result<(), 
     Ok(())
 }
 
-/// Widens each layer gap to hold its risers `Routing::lane_gap` apart, then re-spaces the layers.
+/// The gap after each layer before labels or lanes widen it: [`crate::Spacing::narrow_layer_gap`]
+/// next to a thin layer, else [`crate::Spacing::layer_gap`].
+pub(super) fn base_layer_gaps(st: &LayeredState, o: &LayoutOptions) -> Vec<f64> {
+    let full = o.spacing.layer_gap;
+    let thin: Vec<bool> = st
+        .layers
+        .iter()
+        .map(|layer| {
+            let mut real = layer.iter().filter(|&&v| v < st.n_real).peekable();
+            real.peek().is_some() && real.all(|&v| st.nodes[v].w_along <= full / 2.0)
+        })
+        .collect();
+    (0..thin.len())
+        .map(|l| {
+            if thin[l] || thin.get(l + 1) == Some(&true) {
+                o.spacing.narrow_layer_gap.min(full)
+            } else {
+                full
+            }
+        })
+        .collect()
+}
+
+/// Room a gap needs for `k` risers: `Routing::lane_gap` apart, and the outer ones at least a
+/// [`crate::Spacing::stub`] from the nodes.
+pub(super) fn riser_room(k: usize, o: &LayoutOptions) -> f64 {
+    if k == 0 {
+        return 0.0;
+    }
+    let lane = o.routing.lane_gap;
+    (k as f64 - 1.0) * lane + 2.0 * o.spacing.stub.max(lane)
+}
+
+/// Widens each layer gap to hold its risers ([`riser_room`]), then re-spaces the layers.
 /// Runs once the cross axis is final, so only passages that change height count.
 pub fn reserve_lane_room(st: &mut LayeredState, o: &LayoutOptions) -> Result<(), LayoutError> {
     let n_layers = st.layers.len();
@@ -179,7 +212,7 @@ pub fn reserve_lane_room(st: &mut LayeredState, o: &LayoutOptions) -> Result<(),
     }
     let mut widened = false;
     for (l, &k) in risers.iter().enumerate() {
-        let need = (k as f64 + 1.0) * o.routing.lane_gap;
+        let need = riser_room(k, o);
         if need > gap[l] {
             gap[l] = need;
             widened = true;

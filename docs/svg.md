@@ -43,7 +43,8 @@ stroke, and `content` painted inside them in list order:
 
 Edges are a polyline plus a `Stroke` (a colour or a gradient, dash, linecap), a `corner_radius`, a
 `MarkerRef` at each end, `labels` and `decorations`. A `hop_radius` above zero draws a small arc
-where a horizontal run crosses another edge, so a crossing does not look like a junction. Labels anchor at a fraction along the path, a
+where a horizontal run crosses another edge, so a crossing does not look like a junction.
+`smooth` draws the polyline as one B-spline through its corners. Labels anchor at a fraction along the path, a
 distance from a fraction (`Along`) or a point, and can carry a background `Chip` or a `Halo`.
 Decorations are `Dot`, `Tick` and `Glyph` at an anchor, and `Band`, a lane painted under the
 edge. The path end is pulled back so a marker's tip lands on the endpoint. Fractions are measured

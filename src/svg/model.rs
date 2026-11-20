@@ -1292,6 +1292,10 @@ pub struct SceneEdge {
     pub stroke: Stroke,
     /// Radius the interior joins are rounded with. 0 draws straight segments.
     pub corner_radius: f64,
+    /// Draw the polyline as one B-spline through its corners (d3's `curveBasis`), straight for
+    /// the last few pixels at each end so markers point along the route. Where the curve would
+    /// cut a node the polyline clears, `corner_radius` applies instead. Ignores `hop_radius`.
+    pub smooth: bool,
     /// Radius of the semicircle a horizontal run of this edge draws where it crosses another
     /// edge's vertical run. 0 draws crossings flat. Only crossings well inside both runs hop, so
     /// a T junction or a crossing near a corner stays flat.
@@ -1318,6 +1322,7 @@ impl Default for SceneEdge {
             points: Vec::new(),
             stroke: Stroke::default(),
             corner_radius: 0.0,
+            smooth: false,
             hop_radius: 0.0,
             simplify: 0.0,
             marker_start: MarkerRef::None,

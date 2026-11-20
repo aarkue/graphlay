@@ -297,7 +297,12 @@ pub(super) fn fill_main_path(problem: &Problem, boxes: &[NodeBox], m: &mut Layou
         return;
     }
     let oriented = orient(problem, n);
-    let path = heaviest_path(&oriented, problem, n);
+    let extent: Vec<f64> = boxes
+        .iter()
+        .take(n)
+        .map(|b| 2.0 * if problem.left_right { b.hw } else { b.hh })
+        .collect();
+    let path = heaviest_path(&oriented, problem, n, &extent);
     m.main_path_len = path.len();
     if path.len() < 2 {
         return;
@@ -351,12 +356,13 @@ fn orient(problem: &Problem, n: usize) -> Vec<Arc> {
         .collect()
 }
 
-/// Nodes of the maximum-weight source-to-sink path, in path order.
+/// Nodes of the maximum-weight source-to-sink path, in path order. Ties go to the most node extent
+/// along the flow, as in the engine's main path.
 ///
 /// Dynamic programming over a topological order. A layout from another engine can keep a cycle.
 /// Its nodes are appended in index order and backward relaxations are dropped, so the walk
 /// terminates.
-fn heaviest_path(arcs: &[Arc], problem: &Problem, n: usize) -> Vec<usize> {
+fn heaviest_path(arcs: &[Arc], problem: &Problem, n: usize, extent: &[f64]) -> Vec<usize> {
     let mut out: Vec<Vec<usize>> = vec![Vec::new(); n];
     let mut indegree = vec![0usize; n];
     for (k, &(a, b, _)) in arcs.iter().enumerate() {
@@ -391,14 +397,15 @@ fn heaviest_path(arcs: &[Arc], problem: &Problem, n: usize) -> Vec<usize> {
         }
     }
 
-    // `(bottleneck, total)`. A plain heaviest-sum path would prefer a detour of two light arcs
-    // over the heavy arc that skips it.
+    // `(bottleneck, total, extent)`. A plain heaviest-sum path would prefer a detour of two light
+    // arcs over the heavy arc that skips it.
+    let ext = |i: usize| extent.get(i).copied().unwrap_or(0.0);
     let mut pred: Vec<Option<(usize, f64)>> = vec![None; n];
-    let unreached = (f64::NEG_INFINITY, f64::NEG_INFINITY);
-    let mut best: Vec<(f64, f64)> = (0..n)
+    let unreached = (f64::NEG_INFINITY, f64::NEG_INFINITY, f64::NEG_INFINITY);
+    let mut best: Vec<(f64, f64, f64)> = (0..n)
         .map(|i| {
             if is_source(i) {
-                (f64::INFINITY, 0.0)
+                (f64::INFINITY, 0.0, ext(i))
             } else {
                 unreached
             }
@@ -413,10 +420,9 @@ fn heaviest_path(arcs: &[Arc], problem: &Problem, n: usize) -> Vec<usize> {
             if rank_in_order[to] <= rank_in_order[v] {
                 continue; // surviving cycle
             }
-            let candidate = (best[v].0.min(w), best[v].1 + w);
-            let wins = candidate.0 > best[to].0 + EPS
-                || ((candidate.0 - best[to].0).abs() <= EPS && candidate.1 > best[to].1 + EPS);
-            if wins {
+            let candidate = (best[v].0.min(w), best[v].1 + w, best[v].2 + ext(to));
+            let (c, b) = (candidate, best[to]);
+            if crate::geometry::lex_greater([c.0, c.1, c.2], [b.0, b.1, b.2]) {
                 best[to] = candidate;
                 pred[to] = Some((v, w));
             }
@@ -462,15 +468,14 @@ fn pop_lowest(ready: &mut Vec<usize>) -> Option<usize> {
 }
 
 /// The reached node with the largest `best` among those `allowed`, ties to the lower index.
-fn pick_end(best: &[(f64, f64)], allowed: impl Fn(usize) -> bool) -> Option<usize> {
-    let mut chosen: Option<((f64, f64), usize)> = None;
+fn pick_end(best: &[(f64, f64, f64)], allowed: impl Fn(usize) -> bool) -> Option<usize> {
+    let mut chosen: Option<((f64, f64, f64), usize)> = None;
     for (i, &b) in best.iter().enumerate() {
         // A source's own `(inf, 0)` is not a path.
         if b.0 == f64::NEG_INFINITY || b.0 == f64::INFINITY || !allowed(i) {
             continue;
         }
-        let beats = |w: (f64, f64)| b.0 > w.0 || (b.0 == w.0 && b.1 > w.1);
-        if chosen.is_none_or(|(w, _)| beats(w)) {
+        if chosen.is_none_or(|(w, _)| b > w) {
             chosen = Some((b, i));
         }
     }

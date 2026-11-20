@@ -4,7 +4,7 @@
 //! choice is priced against gutter traffic ([`Pricer`]) and the node's port-side preference. A
 //! port hint overrides both.
 
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet};
 
 use super::gutter::{lanes_cross, GutterSeg};
 use super::{diagonal, ArcEnds, RouteCtx, PORT_SPAN};
@@ -266,6 +266,7 @@ fn choose_sides(pricer: &Pricer, side_port_used: &mut [bool]) -> ArcEnds {
     let ctx = pricer.ctx;
     let (cx, cy, lw, ow) = (&ctx.b.cx, &ctx.b.cy, &ctx.b.layer_w, &ctx.b.order_w);
     let flow_edges = ctx.flow_edges;
+    let returns = Returns::of(ctx);
     let mut arc_ends: ArcEnds = BTreeMap::new();
     for (arc, chain) in ctx.ordered() {
         if chain.len() < 2 {
@@ -305,7 +306,9 @@ fn choose_sides(pricer: &Pricer, side_port_used: &mut [bool]) -> ArcEnds {
                 if facing_only(hi) { Side::Left } else { t },
             )
         } else if direct {
-            pricer.direct_sides(arc, lo, hi)
+            returns
+                .sides(ctx, arc, lo, hi)
+                .unwrap_or_else(|| pricer.direct_sides(arc, lo, hi))
         } else {
             (
                 pricer.guarded_perp(arc, lo, s_aim, true),
@@ -332,6 +335,77 @@ fn choose_sides(pricer: &Pricer, side_port_used: &mut [bool]) -> ArcEnds {
         );
     }
     arc_ends
+}
+
+/// The reversed arcs, and the real nodes with one arc in and one out.
+struct Returns {
+    reversed: BTreeSet<usize>,
+    through: Vec<bool>,
+}
+
+impl Returns {
+    fn of(ctx: &RouteCtx) -> Self {
+        let reversed = ctx
+            .st
+            .arcs
+            .iter()
+            .filter(|a| a.reversed)
+            .map(|a| a.edge)
+            .collect();
+        let mut ends = vec![0usize; ctx.n_in];
+        for (_, chain) in ctx.ordered() {
+            if let (Some(&first), Some(&last)) = (chain.first(), chain.last()) {
+                if first != last && first < ctx.n_in && last < ctx.n_in {
+                    ends[first] += 1;
+                    ends[last] += 1;
+                }
+            }
+        }
+        Returns {
+            reversed,
+            through: ends.iter().map(|&e| e == 2).collect(),
+        }
+    }
+
+    /// A direct return between a loop's place and its redo node leaves or enters the place through
+    /// the border facing the redo node, so the loop reads as a U beside its body.
+    fn sides(&self, ctx: &RouteCtx, arc: usize, lo: usize, hi: usize) -> Option<(Side, Side)> {
+        if !self.reversed.contains(&arc) || lo >= ctx.n_in || hi >= ctx.n_in {
+            return None;
+        }
+        let (cx, cy, ow) = (&ctx.b.cx, &ctx.b.cy, &ctx.b.order_w);
+        let apart = (cy[hi] - cy[lo]).abs() > (ow[lo] + ow[hi]) / 2.0;
+        if !apart {
+            return None;
+        }
+        let towards = |from: usize, to: usize| {
+            if cy[to] > cy[from] {
+                Side::Bottom
+            } else {
+                Side::Top
+            }
+        };
+        let free = |node: usize| ctx.sides_of(node) != PortSides::FacingOnly;
+        match (self.through[lo], self.through[hi]) {
+            // The place comes first in the layering: down or up out of it, then across.
+            (false, true)
+                if free(lo)
+                    && !ctx.seg_hits((cx[lo], cy[lo]), (cx[lo], cy[hi]), lo, hi)
+                    && !ctx.seg_hits((cx[lo], cy[hi]), (cx[hi], cy[hi]), lo, hi) =>
+            {
+                Some((towards(lo, hi), Side::Left))
+            }
+            // The place comes last: across, then down or up into it.
+            (true, false)
+                if free(hi)
+                    && !ctx.seg_hits((cx[lo], cy[lo]), (cx[hi], cy[lo]), lo, hi)
+                    && !ctx.seg_hits((cx[hi], cy[lo]), (cx[hi], cy[hi]), lo, hi) =>
+            {
+                Some((Side::Right, towards(hi, lo)))
+            }
+            _ => None,
+        }
+    }
 }
 
 /// Lay `arc`'s port hints over the chosen borders. When a hint makes one end of a direct edge

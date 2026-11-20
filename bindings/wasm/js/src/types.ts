@@ -1381,6 +1381,12 @@ export interface CycleOptions {
    * Which edges of a cycle are drawn backwards.
    */
   strategy?: CycleStrategy & string;
+  /**
+   * Reverse a backward edge together with its return path (up to three edges through nodes
+   * with one edge in and one out), so a loop's redo path lies between the loop's entry and exit
+   * with its arrows pointing back. Default `true`.
+   */
+  whole_returns?: boolean;
 }
 /**
  * The iteration counts one [`Effort`] resolves to.
@@ -1636,6 +1642,11 @@ export interface Spacing {
    * this to narrow it.
    */
   layer_gap?: number;
+  /**
+   * Gap on either side of a layer whose nodes are all at most half [`Spacing::layer_gap`] deep
+   * along the flow, e.g., silent transitions. Default 38, capped at `layer_gap`.
+   */
+  narrow_layer_gap?: number;
   /**
    * Between two real nodes in one layer, on the order axis. Default 46.
    */
@@ -2498,6 +2509,12 @@ export interface SceneEdge {
    * Labels and decorations still anchor on the points as passed in.
    */
   simplify?: number;
+  /**
+   * Draw the polyline as one B-spline through its corners (d3's `curveBasis`), straight for
+   * the last few pixels at each end so markers point along the route. Where the curve would
+   * cut a node the polyline clears, `corner_radius` applies instead. Ignores `hop_radius`.
+   */
+  smooth?: boolean;
   /**
    * How the path is stroked. A builtin marker without a colour of its own takes the stroke's
    * colour, or the theme's arc colour when the stroke is a gradient.

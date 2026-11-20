@@ -58,6 +58,18 @@ pub fn align_main_path(st: &mut LayeredState, o: &LayoutOptions) -> Result<(), L
             chains_of[v].push(arc);
         }
     }
+    // A node whose neighbours are all on the path (e.g., a loop's redo node) moves with them.
+    let mut neighbours: Vec<Vec<usize>> = vec![Vec::new(); st.len()];
+    for a in st.arcs.iter().filter(|a| a.from != a.to) {
+        neighbours[a.from].push(a.to);
+        neighbours[a.to].push(a.from);
+    }
+    let satellite = |u: usize| {
+        u < st.n_real
+            && !on_spine.contains(&u)
+            && !neighbours[u].is_empty()
+            && neighbours[u].iter().all(|w| on_spine.contains(w))
+    };
     // A layer that cannot hold its pin keeps its node where it was.
     let pin = |from: &[f64], nodes: &[usize], line: f64| -> Vec<f64> {
         let mut out = from.to_vec();
@@ -69,7 +81,11 @@ pub fn align_main_path(st: &mut LayeredState, o: &LayoutOptions) -> Result<(), L
                 out[v] = line;
                 continue;
             }
-            let desired: Vec<f64> = layer.iter().map(|&u| out[u]).collect();
+            let shift = line - out[v];
+            let desired: Vec<f64> = layer
+                .iter()
+                .map(|&u| if satellite(u) { out[u] + shift } else { out[u] })
+                .collect();
             let gap: Vec<f64> = (0..layer.len() - 1)
                 .map(|i| st.sep(layer[i], layer[i + 1], o))
                 .collect();
@@ -141,22 +157,89 @@ pub fn align_main_path(st: &mut LayeredState, o: &LayoutOptions) -> Result<(), L
     Ok(())
 }
 
-/// Consecutive node pairs of the main path, for the placement to weigh. Empty when the main path
-/// should not be favoured.
+/// Whether the placement should favour the main path.
+fn favours_main_path(st: &LayeredState, o: &LayoutOptions) -> bool {
+    o.tuning.coords.main_path_room > 0
+        && !st.has_seeds()
+        && o.coords.branch_style != crate::options::BranchStyle::Symmetric
+        && has_a_flow(st)
+        && !several_flows(st)
+        && !weighted(st)
+}
+
+/// Consecutive node pairs of the main path, for the placement to weigh.
 pub(super) fn spine_hops(
     st: &LayeredState,
     o: &LayoutOptions,
 ) -> std::collections::BTreeSet<(usize, usize)> {
-    if o.tuning.coords.main_path_room == 0
-        || st.has_seeds()
-        || o.coords.branch_style == crate::options::BranchStyle::Symmetric
-        || !has_a_flow(st)
-        || several_flows(st)
-        || weighted(st)
-    {
+    if !favours_main_path(st, o) {
         return Default::default();
     }
     spine(st).windows(2).map(|w| (w[0], w[1])).collect()
+}
+
+/// Hops of the path with the most node extent through each fork/join block off the main path, so a
+/// branch's places line up with its labelled transition instead of a silent one that skips it.
+pub(super) fn branch_hops(
+    st: &LayeredState,
+    o: &LayoutOptions,
+) -> std::collections::BTreeSet<(usize, usize)> {
+    let mut hops = std::collections::BTreeSet::new();
+    if !favours_main_path(st, o) {
+        return hops;
+    }
+    let n = st.n_real;
+    // (target, arc) per real source, following the layering.
+    let mut out: Vec<Vec<(usize, usize)>> = vec![Vec::new(); n];
+    for (&arc, chain) in &st.chains {
+        let (Some(&first), Some(&last)) = (chain.first(), chain.last()) else {
+            continue;
+        };
+        let (a, b) = if st.nodes[last].rank >= st.nodes[first].rank {
+            (first, last)
+        } else {
+            (last, first)
+        };
+        if a < n && b < n && st.nodes[b].rank > st.nodes[a].rank {
+            out[a].push((b, arc));
+        }
+    }
+    let mut order: Vec<usize> = (0..n).collect();
+    order.sort_by_key_dyn(|&v| (st.nodes[v].rank, v));
+    let on_spine: std::collections::BTreeSet<usize> = spine(st).into_iter().collect();
+    for (fork, join) in super::splits::block_pairs(st) {
+        if fork >= n || join >= n || on_spine.contains(&fork) || on_spine.contains(&join) {
+            continue;
+        }
+        let mut best = vec![f64::NEG_INFINITY; n];
+        let mut pred: Vec<Option<(usize, usize)>> = vec![None; n];
+        best[fork] = st.nodes[fork].w_along;
+        for &v in &order {
+            if best[v] == f64::NEG_INFINITY || st.nodes[v].rank >= st.nodes[join].rank {
+                continue;
+            }
+            for &(b, arc) in &out[v] {
+                let candidate = best[v] + st.nodes[b].w_along;
+                if st.nodes[b].rank <= st.nodes[join].rank && candidate > best[b] + EPS {
+                    best[b] = candidate;
+                    pred[b] = Some((v, arc));
+                }
+            }
+        }
+        let mut v = join;
+        while let Some((u, arc)) = pred[v] {
+            if let Some(chain) = st.chains.get(&arc) {
+                for w in chain.windows(2) {
+                    hops.insert((w[0], w[1]));
+                }
+            }
+            if u == fork {
+                break;
+            }
+            v = u;
+        }
+    }
+    hops
 }
 
 /// Pixels of other edges' length that one pixel of bend removed from the spine is worth. Matches
@@ -277,14 +360,15 @@ fn intruders(st: &LayeredState, cross: &[f64]) -> usize {
         .count()
 }
 
-/// Lexicographic `(bottleneck, total)` order.
-fn order_of(a: (f64, f64), b: (f64, f64)) -> std::cmp::Ordering {
-    a.0.total_cmp(&b.0).then(a.1.total_cmp(&b.1))
+/// Lexicographic `(bottleneck, total, extent)` order.
+fn order_of(a: (f64, f64, f64), b: (f64, f64, f64)) -> std::cmp::Ordering {
+    a.0.total_cmp(&b.0)
+        .then(a.1.total_cmp(&b.1))
+        .then(a.2.total_cmp(&b.2))
 }
 
-/// Whether `a` beats `b` by more than rounding.
-fn better(a: (f64, f64), b: (f64, f64)) -> bool {
-    a.0 > b.0 + EPS || ((a.0 - b.0).abs() <= EPS && a.1 > b.1 + EPS)
+fn better(a: (f64, f64, f64), b: (f64, f64, f64)) -> bool {
+    crate::geometry::lex_greater([a.0, a.1, a.2], [b.0, b.1, b.2])
 }
 
 /// The cross-axis extent of a placement.
@@ -303,8 +387,9 @@ fn extent(cross: &[f64]) -> f64 {
 
 /// Every node on the main path in rank order, including its waypoints. The path is the widest
 /// source-to-sink path (heaviest lightest arc), then the heaviest in total, since a max-sum path
-/// prefers a detour of two light arcs over the heavy arc that skips it. Ties go to the lower node
-/// index.
+/// prefers a detour of two light arcs over the heavy arc that skips it. Then the most node extent
+/// along the layers, so on an unweighted Petri net the path runs through the labelled transitions.
+/// Remaining ties go to the lower node index.
 pub(super) fn spine(st: &LayeredState) -> Vec<usize> {
     let n = st.n_real;
     // (target, weight, arc) per real source.
@@ -334,11 +419,11 @@ pub(super) fn spine(st: &LayeredState) -> Vec<usize> {
         }
     }
     // Only sources start a path, so a lone heavy arc mid-model is not one.
-    let unreached = (f64::NEG_INFINITY, f64::NEG_INFINITY);
-    let mut best: Vec<(f64, f64)> = (0..n)
+    let unreached = (f64::NEG_INFINITY, f64::NEG_INFINITY, f64::NEG_INFINITY);
+    let mut best: Vec<(f64, f64, f64)> = (0..n)
         .map(|v| {
             if indegree[v] == 0 {
-                (f64::INFINITY, 0.0)
+                (f64::INFINITY, 0.0, st.nodes[v].w_along)
             } else {
                 unreached
             }
@@ -350,7 +435,11 @@ pub(super) fn spine(st: &LayeredState) -> Vec<usize> {
             continue;
         }
         for &(b, w, arc) in &out[v] {
-            let candidate = (best[v].0.min(w), best[v].1 + w);
+            let candidate = (
+                best[v].0.min(w),
+                best[v].1 + w,
+                best[v].2 + st.nodes[b].w_along,
+            );
             if better(candidate, best[b]) {
                 best[b] = candidate;
                 pred[b] = Some((v, arc));
@@ -419,6 +508,29 @@ mod tests {
     use crate::geometry::Size;
     use crate::graph::{Edge, Graph, Node, NodeId};
     use crate::options::{Direction, LayoutOptions};
+
+    /// On equal weights the path runs through the wide node, although the narrow one has the
+    /// lower index.
+    #[test]
+    fn ties_go_to_the_path_through_the_wider_nodes() {
+        let node = |w: f64| Node {
+            size: Size::new(w, 52.0),
+            ..Node::default()
+        };
+        let edge = |a: u32, b: u32| Edge::new(NodeId(a), NodeId(b));
+        let g = Graph {
+            nodes: vec![node(52.0), node(14.0), node(120.0), node(52.0)],
+            edges: vec![edge(0, 1), edge(1, 3), edge(0, 2), edge(2, 3)],
+        };
+        let l = crate::layout(&g, &LayoutOptions::layered_default()).unwrap();
+        let y = |i: usize| l.nodes[i].center.y;
+        assert!(
+            (y(0) - y(2)).abs() < 0.5 && (y(2) - y(3)).abs() < 0.5,
+            "{:?}",
+            l.nodes
+        );
+        assert!((y(1) - y(0)).abs() > 0.5, "{:?}", l.nodes);
+    }
 
     /// The heavy side of a diamond is the main path, and its nodes share one cross coordinate.
     #[test]

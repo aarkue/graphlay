@@ -107,10 +107,12 @@ pub(super) fn centre_ports(
         members.sort_by_dyn(|&x, &y| ends[x].off.total_cmp(&ends[y].off));
         let targets: Vec<f64> = if members.len() == 1 {
             let e = &ends[members[0]];
-            if e.off.abs() <= half / 4.0 {
-                continue;
+            match return_offset(&routes[e.arc], e, half, &reversed) {
+                Some(at) if (e.off - at).abs() >= 0.5 => vec![at],
+                Some(_) => continue,
+                None if e.off.abs() <= half / 4.0 => continue,
+                None => vec![0.0],
             }
-            vec![0.0]
         } else {
             let mut pos = vec![0.0];
             for w in members.windows(2) {
@@ -194,6 +196,32 @@ pub(super) fn centre_ports(
         }
     }
     straighten_kinks(routes, chains, b, o, &movable);
+}
+
+/// Share of a border's half width a loop return's end sits off the middle.
+const RETURN_PORT_SHIFT: f64 = 0.5;
+
+/// Where a reversed arc's lone end on a top or bottom border goes: off the middle towards where
+/// its route turns, so two returns at stacked nodes do not meet on one centre line.
+fn return_offset(
+    route: &[(f64, f64)],
+    e: &BorderEnd,
+    half: f64,
+    reversed: &impl Fn(usize) -> bool,
+) -> Option<f64> {
+    if e.along != 0 || !reversed(e.arc) {
+        return None;
+    }
+    let walk: Vec<(f64, f64)> = if e.head {
+        route.to_vec()
+    } else {
+        route.iter().rev().copied().collect()
+    };
+    let turn = walk
+        .windows(2)
+        .find(|w| (w[1].0 - w[0].0).abs() >= 0.5)
+        .map(|w| (w[1].0 - w[0].0).signum())?;
+    Some(turn * half * RETURN_PORT_SHIFT)
 }
 
 /// A node border, as `(node, along, out)` (see [`BorderEnd`]).

@@ -67,7 +67,8 @@
       "terminal_centering": false
     },
     "cycles": {
-      "strategy": "minimum_reversal"
+      "strategy": "minimum_reversal",
+      "whole_returns": true
     },
     "direction": "leftright",
     "effort": "balanced",
@@ -113,6 +114,7 @@
       "isolated_gap": 46.0,
       "isolated_max_columns": 24,
       "layer_gap": 54.0,
+      "narrow_layer_gap": 38.0,
       "node_gap": 46.0,
       "port_gap": 18.0,
       "port_stroke_clear": 14.0,

@@ -36,6 +36,8 @@ everything outside a cycle pointing forward, which reads better when the graph h
 If you know which edges are loops (a rework edge, a retry), set `Edge::reverse_for_ranking = true`
 on them and the layering treats them as backward edges without guessing. This matters most when
 every node sits on a cycle, because then no strategy can tell where the flow starts.
+`cycles.whole_returns` (default) also reverses the rest of a backward edge's return path, so a
+loop's redo path lies between the loop's entry and exit with its arrows pointing back.
 
 `Node::rank = RankConstraint::First` or `Last` pins a node to the first or last layer, and
 `Fixed(k)` puts nodes that share a `k` in one layer.
@@ -73,7 +75,7 @@ bundle of lanes.
 use on large graphs.
 
 In SVG, `SceneEdge::hop_radius` draws a small arc where two edges cross, so a crossing does not
-look like a junction.
+look like a junction. `SceneEdge::smooth` draws each route as one curve through its corners.
 
 ## Groups
 
@@ -101,7 +103,8 @@ room at the top for a title. `reroute` and the tree layout take flat graphs only
 shape. It is off by default, and strict lanes turn it off.
 
 `spacing.layer_gap` is the gap between layers and `spacing.node_gap` the gap between neighbours in
-a layer. Labels, self-loops and edge bundles reserve their own room on top.
+a layer. `spacing.narrow_layer_gap` replaces the layer gap next to a layer of thin nodes, e.g.,
+silent transitions. Labels, self-loops and edge bundles reserve their own room on top.
 
 `Node::margin` keeps room free around a node for content you draw yourself, e.g., a badge or a
 counter. `cross_*` keeps neighbours in the layer away and `along_*` the layers before and after.

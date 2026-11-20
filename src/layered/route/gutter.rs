@@ -71,11 +71,13 @@ pub(super) fn waypoints(ctx: &RouteCtx, port: &PortMap) -> BTreeMap<usize, Vec<(
 
 /// Give each arc with a riser in a gutter its own vertical lane, ordered by
 /// [`order_gutter_lanes`]. One map per layer index from arc to lane x, so a last-layer waypoint
-/// cannot over-index.
+/// cannot over-index. Also returns how much each gutter falls short of [`riser_room`].
+///
+/// [`riser_room`]: super::super::coord::riser_room
 pub(super) fn assign_lanes(
     ctx: &RouteCtx,
     waypoints: &BTreeMap<usize, Vec<(f64, f64)>>,
-) -> Vec<BTreeMap<usize, f64>> {
+) -> (Vec<BTreeMap<usize, f64>>, Vec<f64>) {
     let (cx, lw) = (&ctx.b.cx, &ctx.b.layer_w);
     let layers = &ctx.st.layers;
     let n_layers = layers.len();
@@ -104,6 +106,7 @@ pub(super) fn assign_lanes(
         }
     }
     let mut lane: Vec<BTreeMap<usize, f64>> = (0..n_gutters).map(|_| BTreeMap::new()).collect();
+    let mut short = vec![0.0; n_gutters];
     for (l, segs) in gutter_segs.iter_mut().enumerate() {
         let gl = layer_x[l] + layer_half[l];
         let gr = if l + 1 < n_layers {
@@ -120,12 +123,28 @@ pub(super) fn assign_lanes(
         let mut risers = risers;
         order_gutter_lanes(&mut risers);
         let k = risers.len();
+        // Evenly spread, but the outer lanes keep a stub from the nodes where the gutter allows.
+        let width = gr - gl;
+        let lane_gap = ctx.o.routing.lane_gap;
+        short[l] = (super::super::coord::riser_room(k, ctx.o) - width).max(0.0);
+        let even = width / (k as f64 + 1.0);
+        let margin = if k < 2 {
+            even
+        } else {
+            let stub = ctx.o.spacing.stub;
+            stub.min((width - (k as f64 - 1.0) * lane_gap) / 2.0)
+                .max(even)
+        };
+        let step = if k < 2 {
+            0.0
+        } else {
+            (width - 2.0 * margin) / (k as f64 - 1.0)
+        };
         for (i, seg) in risers.iter().enumerate() {
-            let f = (i as f64 + 1.0) / (k as f64 + 1.0);
-            lane[l].insert(seg.arc, gl + (gr - gl) * f);
+            lane[l].insert(seg.arc, gl + margin + step * i as f64);
         }
     }
-    lane
+    (lane, short)
 }
 
 /// Whether putting `a` on the earlier lane and `b` on the later one makes them cross. A run at

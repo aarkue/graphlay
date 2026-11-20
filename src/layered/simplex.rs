@@ -23,6 +23,9 @@ const BLOCK_PULL: f64 = 0.5;
 
 /// Weight multiplier for a hop of the main path.
 const SPINE_FACTOR: f64 = 8.0;
+/// Weight multiplier for a hop of [`super::mainpath::branch_hops`]. Above a long edge's end hop
+/// (2), well below the main path.
+const BRANCH_FACTOR: f64 = 2.5;
 
 /// One constraint: `x[head] - x[tail] >= min_len`, costing `weight` per unit of
 /// `x[head] - x[tail]`.
@@ -552,6 +555,7 @@ pub fn place_cross_simplex(st: &mut LayeredState, o: &LayoutOptions) -> Result<b
     // Weighting the main path here packs everything else around it. Straightening it in a later
     // pass would leave a gap on the side it moved away from.
     let spine_hops = super::mainpath::spine_hops(st, o);
+    let branch_hops = super::mainpath::branch_hops(st, o);
     // An end hinted to attach off its border's middle pulls its neighbour level with that point,
     // not with the node's centre.
     let hints = super::route::hints::Hints::of(st, &st.boxes());
@@ -563,12 +567,16 @@ pub fn place_cross_simplex(st: &mut LayeredState, o: &LayoutOptions) -> Result<b
         .map(|a| {
             let w = st.weight.get(a.edge).copied().unwrap_or(1.0);
             let omega = omega(st.nodes[a.from].is_dummy(), st.nodes[a.to].is_dummy());
-            let spine =
-                if spine_hops.contains(&(a.from, a.to)) || spine_hops.contains(&(a.to, a.from)) {
-                    SPINE_FACTOR
-                } else {
-                    1.0
-                };
+            let on = |hops: &std::collections::BTreeSet<(usize, usize)>| {
+                hops.contains(&(a.from, a.to)) || hops.contains(&(a.to, a.from))
+            };
+            let spine = if on(&spine_hops) {
+                SPINE_FACTOR
+            } else if on(&branch_hops) {
+                BRANCH_FACTOR
+            } else {
+                1.0
+            };
             let offset = hints.order_offset(a.edge, a.to) - hints.order_offset(a.edge, a.from);
             (a.from, a.to, w * omega * spine, offset.round() as i64)
         })

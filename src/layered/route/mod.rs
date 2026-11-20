@@ -149,6 +149,8 @@ impl<'a> RouteCtx<'a> {
 struct Routed {
     routes: Vec<Vec<(f64, f64)>>,
     lanes: Vec<Vec<Vec<(f64, f64)>>>,
+    /// Per gutter, the width it lacks for its risers.
+    short: Vec<f64>,
 }
 
 /// Route every arc in flow space (layers left->right), one layer-ascending polyline per arc.
@@ -173,7 +175,7 @@ fn route_edges(
     align::pair_direct(&ctx, &arc_ends, &mut port);
 
     let waypoints = gutter::waypoints(&ctx, &port);
-    let lane = gutter::assign_lanes(&ctx, &waypoints);
+    let (lane, short) = gutter::assign_lanes(&ctx, &waypoints);
     let mut routes = orthogonal::emit_routes(&ctx, &port, &waypoints, &lane, side_port_used);
     hints::leave_own_boxes(&ctx, &port, &mut routes);
 
@@ -212,11 +214,29 @@ fn route_edges(
             |arc| reversed[arc],
             |arc| ctx.thickness(arc),
         );
+        // Separating and centring can leave a jog of a few pixels next to a port.
+        let level = |p: (f64, f64), q: (f64, f64)| (p.1 - q.1).abs() < 0.5;
+        for (arc, _) in ctx.ordered() {
+            if ctx.hints.hinted(arc) || !ctx.lane_strokes(arc).is_empty() {
+                continue;
+            }
+            let Some(r) = routes.get_mut(arc).filter(|r| r.len() >= 3) else {
+                continue;
+            };
+            let n = r.len();
+            let ends = (Some(level(r[0], r[1])), Some(level(r[n - 1], r[n - 2])));
+            repair::snap_endpoint_jogs(r, ends.0, ends.1, &o.tuning.routing);
+        }
+        repair::settle_endpoints_on_outline(&mut routes, ctx.chains, b);
     }
 
     // Lanes come last because the repairs above move whole runs and would leave them behind.
     let lanes = lanes::draw_lanes(&ctx, &port, &lane_offsets, &routes);
-    Routed { routes, lanes }
+    Routed {
+        routes,
+        lanes,
+        short,
+    }
 }
 
 /// Route every edge for the current style into [`LayeredState::routes`]. Diagonal style routes
@@ -229,7 +249,21 @@ pub fn route(st: &mut LayeredState, o: &LayoutOptions) -> Result<(), LayoutError
         repair::repair_side_ports(st, &boxes, o, &used, &mut routed.routes);
         routed
     } else {
-        route_edges(st, &boxes, o, false, false, &mut [])
+        let routed = route_edges(st, &boxes, o, false, false, &mut []);
+        // Spread ports can add risers `ReserveLanes` did not count. Widen such gutters and route
+        // once more, unless seeds fix the layers.
+        if !st.has_seeds() && !st.gap_after.is_empty() && routed.short.iter().any(|&s| s > 0.5) {
+            let mut gap = std::mem::take(&mut st.gap_after);
+            for (g, s) in gap.iter_mut().zip(&routed.short) {
+                *g += s;
+            }
+            let placed = super::coord::assign_layer_positions(st, &gap);
+            st.gap_after = gap;
+            placed?;
+            route_edges(st, &st.boxes(), o, false, false, &mut [])
+        } else {
+            routed
+        }
     };
     st.routes = routed.routes;
     st.lane_routes = routed.lanes;

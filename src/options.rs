@@ -101,6 +101,9 @@ pub struct Spacing {
     /// Extra room along a compound's top border, on top of [`Spacing::compound_padding`], for a
     /// title. Default 0.
     pub compound_header: f64,
+    /// Gap on either side of a layer whose nodes are all at most half [`Spacing::layer_gap`] deep
+    /// along the flow, e.g., silent transitions. Default 38, capped at `layer_gap`.
+    pub narrow_layer_gap: f64,
 }
 
 impl Spacing {
@@ -123,6 +126,7 @@ impl Spacing {
             isolated_max_columns: 24,
             compound_padding: 20.0,
             compound_header: 0.0,
+            narrow_layer_gap: 38.0,
         }
     }
 }
@@ -898,12 +902,25 @@ pub enum CycleStrategy {
 }
 
 /// Cycle-breaking options. See [`CycleStrategy`].
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Default, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[serde(default, deny_unknown_fields)]
 pub struct CycleOptions {
     /// Which edges of a cycle are drawn backwards.
     pub strategy: CycleStrategy,
+    /// Reverse a backward edge together with its return path (up to three edges through nodes
+    /// with one edge in and one out), so a loop's redo path lies between the loop's entry and exit
+    /// with its arrows pointing back. Default `true`.
+    pub whole_returns: bool,
+}
+
+impl Default for CycleOptions {
+    fn default() -> Self {
+        CycleOptions {
+            strategy: CycleStrategy::default(),
+            whole_returns: true,
+        }
+    }
 }
 
 /// Wrapping a long drawing into rows to fit a viewport shape. When a wrap pays is in
@@ -1115,7 +1132,7 @@ impl LayoutOptions {
     ///
     /// [`LayoutError::InvalidOption`] naming the first offending field.
     pub fn validate(&self) -> Result<(), crate::LayoutError> {
-        let numbers: [(&'static str, f64); 30] = [
+        let numbers: [(&'static str, f64); 31] = [
             ("spacing.layer_gap", self.spacing.layer_gap),
             ("spacing.node_gap", self.spacing.node_gap),
             ("spacing.dummy_gap", self.spacing.dummy_gap),
@@ -1133,6 +1150,7 @@ impl LayoutOptions {
             ("spacing.isolated_gap", self.spacing.isolated_gap),
             ("spacing.compound_padding", self.spacing.compound_padding),
             ("spacing.compound_header", self.spacing.compound_header),
+            ("spacing.narrow_layer_gap", self.spacing.narrow_layer_gap),
             (
                 "tuning.routing.diagonal_clear",
                 self.tuning.routing.diagonal_clear,
@@ -1307,6 +1325,7 @@ impl LayoutOptions {
         let mut o = LayoutOptions::layered_default();
         o.spacing.layer_gap = 150.0;
         o.spacing.node_gap = 30.0;
+        o.spacing.narrow_layer_gap = o.spacing.layer_gap;
         o.compaction.mode = Compaction::Priority;
         // No fork/join blocks here, and compaction runs later and would undo the alignment.
         o.coords.branch_style = BranchStyle::Free;

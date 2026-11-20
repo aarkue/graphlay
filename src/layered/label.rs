@@ -42,7 +42,7 @@ fn label_extents(st: &LayeredState, sizes: &[(f64, f64)], arc: usize) -> Option<
 /// Under [`LabelReservation::WhenNeeded`], a label whose cross extent fits in `node_gap` with
 /// clearance needs no room, because [`place_edge_labels`] can put it between two rows.
 pub fn reserve_label_gaps(st: &LayeredState, sizes: &[(f64, f64)], o: &LayoutOptions) -> Vec<f64> {
-    let mut gap = vec![o.spacing.layer_gap; st.layers.len()];
+    let mut gap = super::coord::base_layer_gaps(st, o);
     if sizes.is_empty() || o.labels.reservation == LabelReservation::Never {
         return gap;
     }

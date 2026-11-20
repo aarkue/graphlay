@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.4.0 (2026-11-20)
+
+- On equal weights, the main path runs through the nodes with the most extent along the flow. On
+  an unweighted Petri net, it thus runs through the labelled transitions, and silent transitions
+  that skip them go aside. The quality metrics use the same main path.
+- `CycleOptions::whole_returns` (default `true`) reverses a backward edge together with its return
+  path of up to three edges. A loop's redo path then lies between the loop's entry and exit with
+  its arrows pointing back, as in Inductive visual Miner.
+- `Spacing::narrow_layer_gap` (default 38) is the gap next to a layer whose nodes are all at most
+  half the layer gap deep, e.g., silent transitions. The hub-and-spoke presets keep the full gap.
+- In a fork/join block off the main path, a branch's places line up with its widest node, e.g.,
+  its labelled transition.
+- A node whose neighbours are all on the main path (e.g., a loop's redo transition) moves with
+  the path when it is straightened.
+- A direct return between a loop's place and its redo node attaches to the place through the
+  border facing the redo node.
+- Edges in a layer gap keep `Spacing::stub` from the nodes on either side. Where ports add more
+  edges to a gap than it holds, the gap is widened and the edges are routed again. Jogs of a few
+  pixels next to ports are removed.
+- `svg::SceneEdge::smooth` draws an edge as one B-spline through its corners (d3's `curveBasis`),
+  straight at both ends for the markers. Where the curve would cut a node, the edge falls back to
+  `corner_radius`.
+- `SceneEdge`, `Spacing` and `CycleOptions` have new public fields, so struct literals need
+  `..Default::default()` and the next release is 0.4.0.
+
 ## 0.3.1 (2026-10-26)
 
 - `reroute` keeps every node where the caller put it. Nodes dropped closer together than the node

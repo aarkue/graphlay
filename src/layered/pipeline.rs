@@ -247,7 +247,11 @@ fn phase_break_cycles(st: &mut LayeredState, o: &LayoutOptions) -> Result<(), La
         st.mode = super::state::RunMode::KeepStructure;
         return Ok(());
     }
-    super::cycle::break_cycles_with(st, super::cycle::breaker_for(o.cycles.strategy))
+    super::cycle::break_cycles_with(
+        st,
+        super::cycle::breaker_for(o.cycles.strategy),
+        o.cycles.whole_returns,
+    )
 }
 
 fn phase_assign_ranks(st: &mut LayeredState, _o: &LayoutOptions) -> Result<(), LayoutError> {
