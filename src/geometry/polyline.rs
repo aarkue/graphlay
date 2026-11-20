@@ -140,7 +140,7 @@ pub fn shorten_end(pts: &[Pt], by: f64) -> Vec<Pt> {
     let n = out.len();
     let (ax, ay) = out[n - 2];
     let (bx, by_) = out[n - 1];
-    let len = f64::hypot(bx - ax, by_ - ay);
+    let len = crate::geometry::fp::hypot(bx - ax, by_ - ay);
     let trim = by.min(len - 0.5).max(0.0);
     if trim > 0.0 {
         out[n - 1] = (bx - (bx - ax) / len * trim, by_ - (by_ - ay) / len * trim);
@@ -195,7 +195,7 @@ pub fn rdp(pts: &[Pt], tol: f64) -> Vec<Pt> {
         }
         let (a, b) = (pts[lo], pts[hi]);
         let (dx, dy) = (b.0 - a.0, b.1 - a.1);
-        let len = f64::hypot(dx, dy).max(EPS);
+        let len = crate::geometry::fp::hypot(dx, dy).max(EPS);
         let mut far = lo;
         let mut fmax = 0.0;
         for (i, &p) in pts.iter().enumerate().take(hi).skip(lo + 1) {
@@ -226,7 +226,7 @@ pub fn polyline_point_at(pts: &[Pt], frac: f64) -> Pt {
         return pts.first().copied().unwrap_or((0.0, 0.0));
     }
     let segs: Vec<f64> = (1..pts.len())
-        .map(|i| f64::hypot(pts[i].0 - pts[i - 1].0, pts[i].1 - pts[i - 1].1))
+        .map(|i| crate::geometry::fp::hypot(pts[i].0 - pts[i - 1].0, pts[i].1 - pts[i - 1].1))
         .collect();
     let target: f64 = segs.iter().sum::<f64>() * frac.clamp(0.0, 1.0);
     let mut acc = 0.0;
@@ -407,7 +407,7 @@ mod tests {
             }
             let (a, b) = (pts[0], pts[pts.len() - 1]);
             let (dx, dy) = (b.0 - a.0, b.1 - a.1);
-            let len = f64::hypot(dx, dy).max(1e-9);
+            let len = crate::geometry::fp::hypot(dx, dy).max(1e-9);
             let mut far = 0usize;
             let mut fmax = 0.0;
             for (i, &p) in pts.iter().enumerate().take(pts.len() - 1).skip(1) {

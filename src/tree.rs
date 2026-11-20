@@ -587,9 +587,7 @@ impl Tidy {
         while let Some((v, m)) = stack.pop() {
             pos[v] = self.prelim[v] + m;
             let below = m + self.modifier[v];
-            for k in 0..self.children[v].len() {
-                stack.push((self.children[v][k], below));
-            }
+            stack.extend(self.children[v].iter().map(|&c| (c, below)));
         }
         pos
     }

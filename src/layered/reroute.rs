@@ -65,10 +65,8 @@ pub(super) fn rank_from_positions(
 ) -> Result<(), LayoutError> {
     // Seeds are already in flow space.
     let n = st.n_real;
-    for i in 0..n {
-        let (along, cross) = st.nodes[i].seed.unwrap_or((0.0, 0.0));
-        st.nodes[i].along = along;
-        st.nodes[i].cross = cross;
+    for node in &mut st.nodes[..n] {
+        (node.along, node.cross) = node.seed.unwrap_or((0.0, 0.0));
     }
 
     // A new layer opens wherever consecutive boxes stop overlapping on the layer axis.

@@ -401,7 +401,7 @@ struct Candidate {
 fn sample(route: &[Pt], frac: f64) -> (Pt, Pt) {
     let lens: Vec<f64> = route
         .windows(2)
-        .map(|w| f64::hypot(w[1].0 - w[0].0, w[1].1 - w[0].1))
+        .map(|w| crate::geometry::fp::hypot(w[1].0 - w[0].0, w[1].1 - w[0].1))
         .collect();
     let total: f64 = lens.iter().sum();
     let target = total * frac.clamp(0.0, 1.0);
@@ -425,7 +425,7 @@ fn sample(route: &[Pt], frac: f64) -> (Pt, Pt) {
 /// Unit normal of `a -> b`, or the cross axis for a degenerate segment.
 fn unit_normal(a: Pt, b: Pt) -> Pt {
     let (dx, dy) = (b.0 - a.0, b.1 - a.1);
-    let len = f64::hypot(dx, dy);
+    let len = crate::geometry::fp::hypot(dx, dy);
     if len <= f64::EPSILON {
         (0.0, 1.0)
     } else {
@@ -478,7 +478,12 @@ fn candidates(
         if let Some((i, _)) = route
             .windows(2)
             .enumerate()
-            .map(|(i, w)| (i, f64::hypot(w[1].0 - w[0].0, w[1].1 - w[0].1)))
+            .map(|(i, w)| {
+                (
+                    i,
+                    crate::geometry::fp::hypot(w[1].0 - w[0].0, w[1].1 - w[0].1),
+                )
+            })
             .max_by(|a, b| a.1.total_cmp(&b.1).then(b.0.cmp(&a.0)))
         {
             let (a, b) = (route[i], route[i + 1]);
@@ -860,6 +865,9 @@ mod tests {
         assert_eq!(seg_box_distance((30.0, 0.0), (50.0, 0.0), &rect), 20.0);
         // Diagonally off a corner, the distance is to the corner.
         let d = seg_box_distance((13.0, 9.0), (40.0, 40.0), &rect);
-        assert!((d - f64::hypot(3.0, 4.0)).abs() < 1e-9, "{d}");
+        assert!(
+            (d - crate::geometry::fp::hypot(3.0, 4.0)).abs() < 1e-9,
+            "{d}"
+        );
     }
 }

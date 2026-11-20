@@ -841,8 +841,8 @@ mod tests {
         let mut st = far_off_approach(Company::CrowdedBorder);
         route(&mut st, &o).unwrap();
         assert_eq!(target_border(&st), Side::Bottom);
-        for arc in 1..4 {
-            let end = st.routes[arc].last().copied().unwrap();
+        for (arc, route) in st.routes.iter().enumerate().take(4).skip(1) {
+            let end = route.last().copied().unwrap();
             assert!((end.0 - 600.0).abs() < 1e-6, "arc {arc} ends at {end:?}");
         }
     }

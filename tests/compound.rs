@@ -64,11 +64,10 @@ fn check_routes(g: &Graph, l: &Layout) {
             );
         }
         // A route may cross a compound's border but never run along it.
-        for k in 0..g.nodes.len() {
+        for (k, b) in l.nodes.iter().enumerate().take(g.nodes.len()) {
             if !g.nodes.iter().any(|c| c.parent == Some(NodeId(k as u32))) {
                 continue;
             }
-            let b = &l.nodes[k];
             let (x0, x1) = (
                 b.center.x - b.size.width / 2.0,
                 b.center.x + b.size.width / 2.0,
