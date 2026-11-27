@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24.80 -344.80 2633.60 851.60" width="2633.60" height="851.60" font-family="Inter, system-ui, -apple-system, sans-serif">
+<defs>
+<marker id="gl-mk-0" markerWidth="12.00" markerHeight="12.00" viewBox="0 0 12.00 12" orient="auto" refX="1.00" refY="6" markerUnits="userSpaceOnUse"><path d="M 1,1 L 11,6 L 1,11 Z" fill="#3b4658" stroke="#3b4658" stroke-linejoin="round"/></marker>
+</defs>
+<rect x="-24.80" y="-344.80" width="2633.60" height="851.60" fill="#ffffff"/>
+<g id="edges">
+<path d="M 52.00,0.00 C 52.00,0.00 97.00,0.00 97.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 332.00,0.00 C 332.00,0.00 361.00,0.00 361.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 896.00,0.00 C 896.00,0.00 925.00,0.00 925.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 474.00,0.00 C 474.00,0.00 519.00,0.00 519.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 754.00,0.00 C 754.00,0.00 783.00,0.00 783.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 715.00,22.52 C 715.00,22.52 715.00,28.81 715.00,28.81 C 715.00,35.10 715.00,47.68 715.00,60.26 C 715.00,72.84 715.00,85.42 705.75,91.71 C 696.50,98.00 678.00,98.00 659.50,98.00 C 641.00,98.00 622.50,98.00 613.25,98.00 C 613.25,98.00 604.00,98.00 604.00,98.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 2278.00,-26.00 C 2278.00,-26.00 2278.00,-32.00 2278.00,-32.00 C 2278.00,-38.00 2278.00,-50.00 2278.00,-62.00 C 2278.00,-74.00 2278.00,-86.00 2288.33,-92.00 C 2298.67,-98.00 2319.33,-98.00 2340.00,-98.00 C 2360.67,-98.00 2381.33,-98.00 2391.67,-98.00 C 2391.67,-98.00 2402.00,-98.00 2402.00,-98.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 2304.00,0.00 C 2304.00,0.00 2349.00,0.00 2349.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1012.00,384.00 C 1012.00,384.00 1012.00,390.00 1012.00,390.00 C 1012.00,396.00 1012.00,408.00 1012.00,420.00 C 1012.00,432.00 1012.00,444.00 1022.33,450.00 C 1032.67,456.00 1053.33,456.00 1074.00,456.00 C 1094.67,456.00 1115.33,456.00 1125.67,456.00 C 1125.67,456.00 1136.00,456.00 1136.00,456.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1038.00,358.00 C 1038.00,358.00 1083.00,358.00 1083.00,358.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1318.00,358.00 C 1318.00,358.00 1390.25,358.00 1390.25,358.00 C 1462.50,358.00 1607.00,358.00 1751.50,358.00 C 1896.00,358.00 2040.50,358.00 2112.75,301.60 C 2185.00,245.21 2185.00,132.41 2186.00,76.02 C 2187.00,19.62 2189.00,19.62 2190.00,19.62 C 2190.00,19.62 2191.00,19.62 2191.00,19.62" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1012.00,-222.00 C 1012.00,-222.00 1012.00,-228.00 1012.00,-228.00 C 1012.00,-234.00 1012.00,-246.00 1012.00,-258.00 C 1012.00,-270.00 1012.00,-282.00 1022.33,-288.00 C 1032.67,-294.00 1053.33,-294.00 1074.00,-294.00 C 1094.67,-294.00 1115.33,-294.00 1125.67,-294.00 C 1125.67,-294.00 1136.00,-294.00 1136.00,-294.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1038.00,-196.00 C 1038.00,-196.00 1136.00,-196.00 1136.00,-196.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1878.00,-196.00 C 1878.00,-196.00 1902.92,-196.00 1902.92,-196.00 C 1927.83,-196.00 1977.67,-196.00 2027.50,-196.00 C 2077.33,-196.00 2127.17,-196.00 2152.08,-166.33 C 2177.00,-136.67 2177.00,-77.33 2177.33,-47.67 C 2177.67,-18.00 2178.33,-18.00 2180.67,-18.00 C 2183.00,-18.00 2187.00,-18.00 2189.00,-18.00 C 2189.00,-18.00 2191.00,-18.00 2191.00,-18.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1318.00,-196.00 C 1318.00,-196.00 1363.00,-196.00 1363.00,-196.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1598.00,-196.00 C 1598.00,-196.00 1696.00,-196.00 1696.00,-196.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1559.00,-173.48 C 1559.00,-173.48 1559.00,-167.19 1559.00,-167.19 C 1559.00,-160.90 1559.00,-148.32 1559.00,-135.74 C 1559.00,-123.16 1559.00,-110.58 1549.75,-104.29 C 1540.50,-98.00 1522.00,-98.00 1503.50,-98.00 C 1485.00,-98.00 1466.50,-98.00 1457.25,-98.00 C 1457.25,-98.00 1448.00,-98.00 1448.00,-98.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1038.00,0.00 C 1038.00,0.00 1136.00,0.00 1136.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 2162.00,0.00 C 2162.00,0.00 2191.00,0.00 2191.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1318.00,0.00 C 1318.00,0.00 1416.00,0.00 1416.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1316.39,9.00 C 1316.39,9.00 1319.78,9.00 1319.78,9.00 C 1323.16,9.00 1329.93,9.00 1336.70,9.00 C 1343.46,9.00 1350.23,9.00 1353.62,23.83 C 1357.00,38.67 1357.00,68.33 1361.92,83.17 C 1366.83,98.00 1376.67,98.00 1386.50,98.00 C 1396.33,98.00 1406.17,98.00 1411.08,98.00 C 1411.08,98.00 1416.00,98.00 1416.00,98.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 2020.00,0.00 C 2020.00,0.00 2049.00,0.00 2049.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1994.00,26.00 C 1994.00,26.00 1994.00,48.33 1994.00,48.33 C 1994.00,70.67 1994.00,115.33 1994.00,160.00 C 1994.00,204.67 1994.00,249.33 1952.92,271.67 C 1911.83,294.00 1829.67,294.00 1747.50,294.00 C 1665.33,294.00 1583.17,294.00 1542.08,294.00 C 1542.08,294.00 1501.00,294.00 1501.00,294.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1598.00,0.00 C 1598.00,0.00 1643.00,0.00 1643.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1878.00,0.00 C 1878.00,0.00 1907.00,0.00 1907.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1839.00,-22.52 C 1839.00,-22.52 1839.00,-28.81 1839.00,-28.81 C 1839.00,-35.10 1839.00,-47.68 1839.00,-60.26 C 1839.00,-72.84 1839.00,-85.42 1829.75,-91.71 C 1820.50,-98.00 1802.00,-98.00 1783.50,-98.00 C 1765.00,-98.00 1746.50,-98.00 1737.25,-98.00 C 1737.25,-98.00 1728.00,-98.00 1728.00,-98.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1598.00,98.00 C 1598.00,98.00 1643.00,98.00 1643.00,98.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1878.00,98.00 C 1878.00,98.00 1907.00,98.00 1907.00,98.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1839.00,120.52 C 1839.00,120.52 1839.00,126.81 1839.00,126.81 C 1839.00,133.10 1839.00,145.68 1839.00,158.26 C 1839.00,170.84 1839.00,183.42 1829.75,189.71 C 1820.50,196.00 1802.00,196.00 1783.50,196.00 C 1765.00,196.00 1746.50,196.00 1737.25,196.00 C 1737.25,196.00 1728.00,196.00 1728.00,196.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 226.00,0.00 C 226.00,0.00 271.00,0.00 271.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 384.00,0.00 C 384.00,0.00 413.00,0.00 413.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 806.00,0.00 C 806.00,0.00 835.00,0.00 835.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 648.00,0.00 C 648.00,0.00 693.00,0.00 693.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 581.00,98.00 C 581.00,98.00 571.00,98.00 571.00,98.00 C 561.00,98.00 541.00,98.00 521.00,98.00 C 501.00,98.00 481.00,98.00 471.00,92.46 C 461.00,86.92 461.00,75.84 461.00,64.76 C 461.00,53.68 461.00,42.60 461.00,37.06 C 461.00,37.06 461.00,31.52 461.00,31.52" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 948.00,19.62 C 948.00,19.62 950.00,19.62 950.00,19.62 C 952.00,19.62 956.00,19.62 959.83,19.62 C 963.67,19.62 967.33,19.62 969.17,76.02 C 971.00,132.41 971.00,245.21 972.00,301.60 C 973.00,358.00 975.00,358.00 976.00,358.00 C 976.00,358.00 977.00,358.00 977.00,358.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 948.00,-18.00 C 948.00,-18.00 950.00,-18.00 950.00,-18.00 C 952.00,-18.00 956.00,-18.00 958.50,-18.00 C 961.00,-18.00 962.00,-18.00 962.50,-47.67 C 963.00,-77.33 963.00,-136.67 963.33,-166.33 C 963.67,-196.00 964.33,-196.00 966.67,-196.00 C 969.00,-196.00 973.00,-196.00 975.00,-196.00 C 975.00,-196.00 977.00,-196.00 977.00,-196.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 948.00,0.00 C 948.00,0.00 977.00,0.00 977.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 2214.00,0.00 C 2214.00,0.00 2243.00,0.00 2243.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1159.00,456.00 C 1159.00,456.00 1170.08,456.00 1170.08,456.00 C 1181.17,456.00 1203.33,456.00 1225.50,456.00 C 1247.67,456.00 1269.83,456.00 1280.92,450.75 C 1292.00,445.50 1292.00,435.00 1292.00,424.50 C 1292.00,414.00 1292.00,403.50 1292.00,398.25 C 1292.00,398.25 1292.00,393.00 1292.00,393.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1212.00,358.00 C 1212.00,358.00 1257.00,358.00 1257.00,358.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1159.00,-294.00 C 1159.00,-294.00 1216.75,-294.00 1216.75,-294.00 C 1274.50,-294.00 1390.00,-294.00 1505.50,-294.00 C 1621.00,-294.00 1736.50,-294.00 1794.25,-288.75 C 1852.00,-283.50 1852.00,-273.00 1852.00,-262.50 C 1852.00,-252.00 1852.00,-241.50 1852.00,-236.25 C 1852.00,-236.25 1852.00,-231.00 1852.00,-231.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1159.00,-196.00 C 1159.00,-196.00 1257.00,-196.00 1257.00,-196.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1719.00,-196.00 C 1719.00,-196.00 1817.00,-196.00 1817.00,-196.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1492.00,-196.00 C 1492.00,-196.00 1537.00,-196.00 1537.00,-196.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1425.00,-98.00 C 1425.00,-98.00 1415.00,-98.00 1415.00,-98.00 C 1405.00,-98.00 1385.00,-98.00 1365.00,-98.00 C 1345.00,-98.00 1325.00,-98.00 1315.00,-103.54 C 1305.00,-109.08 1305.00,-120.16 1305.00,-131.24 C 1305.00,-142.32 1305.00,-153.40 1305.00,-158.94 C 1305.00,-158.94 1305.00,-164.48 1305.00,-164.48" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1159.00,0.00 C 1159.00,0.00 1257.00,0.00 1257.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 2072.00,0.00 C 2072.00,0.00 2101.00,0.00 2101.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1439.00,0.00 C 1439.00,0.00 1537.00,0.00 1537.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1930.00,0.00 C 1930.00,0.00 1959.00,0.00 1959.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1772.00,0.00 C 1772.00,0.00 1817.00,0.00 1817.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1705.00,-98.00 C 1705.00,-98.00 1695.00,-98.00 1695.00,-98.00 C 1685.00,-98.00 1665.00,-98.00 1645.00,-98.00 C 1625.00,-98.00 1605.00,-98.00 1595.00,-92.46 C 1585.00,-86.92 1585.00,-75.84 1585.00,-64.76 C 1585.00,-53.68 1585.00,-42.60 1585.00,-37.06 C 1585.00,-37.06 1585.00,-31.52 1585.00,-31.52" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1439.00,98.00 C 1439.00,98.00 1537.00,98.00 1537.00,98.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1930.00,98.00 C 1930.00,98.00 1932.00,98.00 1932.00,98.00 C 1934.00,98.00 1938.00,98.00 1940.50,98.00 C 1943.00,98.00 1944.00,98.00 1944.50,83.17 C 1945.00,68.33 1945.00,38.67 1945.60,23.83 C 1946.20,9.00 1947.40,9.00 1950.01,9.00 C 1952.61,9.00 1956.61,9.00 1958.61,9.00 C 1958.61,9.00 1960.61,9.00 1960.61,9.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1772.00,98.00 C 1772.00,98.00 1817.00,98.00 1817.00,98.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1705.00,196.00 C 1705.00,196.00 1695.00,196.00 1695.00,196.00 C 1685.00,196.00 1665.00,196.00 1645.00,196.00 C 1625.00,196.00 1605.00,196.00 1595.00,190.46 C 1585.00,184.92 1585.00,173.84 1585.00,162.76 C 1585.00,151.68 1585.00,140.60 1585.00,135.06 C 1585.00,135.06 1585.00,129.52 1585.00,129.52" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 1372.00,294.00 C 1372.00,294.00 1366.42,294.00 1366.42,294.00 C 1360.83,294.00 1349.67,294.00 1338.50,294.00 C 1327.33,294.00 1316.17,294.00 1310.58,272.13 C 1305.00,250.25 1305.00,206.51 1305.00,162.76 C 1305.00,119.01 1305.00,75.26 1305.00,53.39 C 1305.00,53.39 1305.00,31.52 1305.00,31.52" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 2425.00,-98.00 C 2425.00,-98.00 2436.08,-98.00 2436.08,-98.00 C 2447.17,-98.00 2469.33,-98.00 2491.50,-98.00 C 2513.67,-98.00 2535.83,-98.00 2546.92,-92.75 C 2558.00,-87.50 2558.00,-77.00 2558.00,-66.50 C 2558.00,-56.00 2558.00,-45.50 2558.00,-40.25 C 2558.00,-40.25 2558.00,-35.00 2558.00,-35.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+<path d="M 2478.00,0.00 C 2478.00,0.00 2523.00,0.00 2523.00,0.00" fill="none" stroke="#3b4658" stroke-width="2.00" marker-end="url(#gl-mk-0)"/>
+</g>
+<g id="nodes">
+<ellipse cx="26.00" cy="0.00" rx="26.00" ry="26.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<ellipse cx="2558.00" cy="0.00" rx="26.00" ry="26.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<ellipse cx="306.00" cy="0.00" rx="26.00" ry="26.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<ellipse cx="870.00" cy="0.00" rx="26.00" ry="26.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<ellipse cx="448.00" cy="0.00" rx="26.00" ry="26.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<ellipse cx="728.00" cy="0.00" rx="26.00" ry="26.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<ellipse cx="2278.00" cy="0.00" rx="26.00" ry="26.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<ellipse cx="1012.00" cy="358.00" rx="26.00" ry="26.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<ellipse cx="1292.00" cy="358.00" rx="26.00" ry="26.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<ellipse cx="1012.00" cy="-196.00" rx="26.00" ry="26.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<ellipse cx="1852.00" cy="-196.00" rx="26.00" ry="26.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<ellipse cx="1292.00" cy="-196.00" rx="26.00" ry="26.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<ellipse cx="1572.00" cy="-196.00" rx="26.00" ry="26.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<ellipse cx="1012.00" cy="0.00" rx="26.00" ry="26.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<ellipse cx="2136.00" cy="0.00" rx="26.00" ry="26.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<ellipse cx="1292.00" cy="0.00" rx="26.00" ry="26.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<ellipse cx="1994.00" cy="0.00" rx="26.00" ry="26.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<ellipse cx="1572.00" cy="0.00" rx="26.00" ry="26.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<ellipse cx="1852.00" cy="0.00" rx="26.00" ry="26.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<ellipse cx="1572.00" cy="98.00" rx="26.00" ry="26.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<ellipse cx="1852.00" cy="98.00" rx="26.00" ry="26.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<rect x="106.00" y="-26.00" width="120.00" height="52.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="166.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Register</text>
+<rect x="370.00" y="-26.00" width="14.00" height="52.00" rx="5.00" fill="#1f2937" stroke="#2f3a4d" stroke-width="1.60"/>
+<rect x="792.00" y="-26.00" width="14.00" height="52.00" rx="5.00" fill="#1f2937" stroke="#2f3a4d" stroke-width="1.60"/>
+<rect x="528.00" y="-26.00" width="120.00" height="52.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="588.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Analyze Defect</text>
+<rect x="581.00" y="72.00" width="14.00" height="52.00" rx="5.00" fill="#1f2937" stroke="#2f3a4d" stroke-width="1.60"/>
+<rect x="934.00" y="-26.00" width="14.00" height="52.00" rx="5.00" fill="#1f2937" stroke="#2f3a4d" stroke-width="1.60"/>
+<rect x="2200.00" y="-26.00" width="14.00" height="52.00" rx="5.00" fill="#1f2937" stroke="#2f3a4d" stroke-width="1.60"/>
+<rect x="1145.00" y="430.00" width="14.00" height="52.00" rx="5.00" fill="#1f2937" stroke="#2f3a4d" stroke-width="1.60"/>
+<rect x="1092.00" y="332.00" width="120.00" height="52.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="1152.00" y="361.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Inform User</text>
+<rect x="1145.00" y="-320.00" width="14.00" height="52.00" rx="5.00" fill="#1f2937" stroke="#2f3a4d" stroke-width="1.60"/>
+<rect x="1145.00" y="-222.00" width="14.00" height="52.00" rx="5.00" fill="#1f2937" stroke="#2f3a4d" stroke-width="1.60"/>
+<rect x="1705.00" y="-222.00" width="14.00" height="52.00" rx="5.00" fill="#1f2937" stroke="#2f3a4d" stroke-width="1.60"/>
+<rect x="1372.00" y="-222.00" width="120.00" height="52.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="1432.00" y="-192.40" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Test Repair</text>
+<rect x="1425.00" y="-124.00" width="14.00" height="52.00" rx="5.00" fill="#1f2937" stroke="#2f3a4d" stroke-width="1.60"/>
+<rect x="1145.00" y="-26.00" width="14.00" height="52.00" rx="5.00" fill="#1f2937" stroke="#2f3a4d" stroke-width="1.60"/>
+<rect x="2058.00" y="-26.00" width="14.00" height="52.00" rx="5.00" fill="#1f2937" stroke="#2f3a4d" stroke-width="1.60"/>
+<rect x="1425.00" y="-26.00" width="14.00" height="52.00" rx="5.00" fill="#1f2937" stroke="#2f3a4d" stroke-width="1.60"/>
+<rect x="1916.00" y="-26.00" width="14.00" height="52.00" rx="5.00" fill="#1f2937" stroke="#2f3a4d" stroke-width="1.60"/>
+<rect x="1652.00" y="-26.00" width="120.00" height="52.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="1712.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Repair (Complex)</text>
+<rect x="1705.00" y="-124.00" width="14.00" height="52.00" rx="5.00" fill="#1f2937" stroke="#2f3a4d" stroke-width="1.60"/>
+<rect x="1425.00" y="72.00" width="14.00" height="52.00" rx="5.00" fill="#1f2937" stroke="#2f3a4d" stroke-width="1.60"/>
+<rect x="1916.00" y="72.00" width="14.00" height="52.00" rx="5.00" fill="#1f2937" stroke="#2f3a4d" stroke-width="1.60"/>
+<rect x="1652.00" y="72.00" width="120.00" height="52.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="1712.00" y="101.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Repair (Simple)</text>
+<rect x="1705.00" y="170.00" width="14.00" height="52.00" rx="5.00" fill="#1f2937" stroke="#2f3a4d" stroke-width="1.60"/>
+<rect x="1372.00" y="268.00" width="120.00" height="52.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="1432.00" y="297.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Restart Repair</text>
+<rect x="2411.00" y="-124.00" width="14.00" height="52.00" rx="5.00" fill="#1f2937" stroke="#2f3a4d" stroke-width="1.60"/>
+<rect x="2358.00" y="-26.00" width="120.00" height="52.00" rx="5.00" fill="#ffffff" stroke="#2f3a4d" stroke-width="1.60"/>
+<text x="2418.00" y="3.60" text-anchor="middle" font-size="12.00" font-weight="500" fill="#1d2533">Archive Repair</text>
+</g>
+</svg>

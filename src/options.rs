@@ -195,7 +195,7 @@ pub struct Routing {
     /// [`PortCentring::Round`].
     pub centre_ports: PortCentring,
     /// Draw a node's forks (edges leaving it) or joins (edges reaching it) on one shared trunk
-    /// that branches at a common riser. Default [`MergeEdges::None`]. Orthogonal routing only.
+    /// that branches at a common riser. Default [`MergeEdges::Auto`]. Orthogonal routing only.
     /// It moves no node, and edges with a port hint are never merged.
     ///
     /// ```
@@ -226,9 +226,13 @@ pub struct Routing {
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Default, Serialize, Deserialize)]
 #[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[serde(rename_all = "snake_case")]
+#[non_exhaustive]
 pub enum MergeEdges {
-    /// Every edge keeps its own port and line.
+    /// Like [`MergeEdges::None`], but edges arriving at a border too small to keep their ends half
+    /// [`Spacing::port_gap`] apart join on a trunk.
     #[default]
+    Auto,
+    /// Every edge keeps its own port and line.
     None,
     /// Edges leaving one node share a trunk.
     Forks,
@@ -246,7 +250,7 @@ impl Default for Routing {
             lane_gap: 8.0,
             port_sides: PortSides::Any,
             centre_ports: PortCentring::Round,
-            merge_edges: MergeEdges::None,
+            merge_edges: MergeEdges::Auto,
         }
     }
 }

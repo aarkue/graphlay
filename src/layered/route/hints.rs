@@ -248,8 +248,8 @@ pub(super) fn cuts_own_box(
     (1..n - 1).any(|k| seg_hits_one_box(at(k), at(k + 1), b, node, OWN_CLEAR))
 }
 
-/// Route every hinted end that cuts its own node round it. Tries [`escape`] per end, then
-/// [`rebuild`] for the whole route when that fails.
+/// Reroute hinted ends whose route crosses their own node or another node. Tries [`escape`] per
+/// end, then [`rebuild`] for the whole route if it still crosses its own node.
 pub(super) fn leave_own_boxes(ctx: &RouteCtx, port: &PortMap, routes: &mut [Vec<(f64, f64)>]) {
     if ctx.hints.is_empty() {
         return;
@@ -261,7 +261,13 @@ pub(super) fn leave_own_boxes(ctx: &RouteCtx, port: &PortMap, routes: &mut [Vec<
         }
         let (lo, hi) = (chain[0], chain[chain.len() - 1]);
         let broken = |r: &[(f64, f64)]| ctx.hints.cuts_own_boxes(arc, r, b);
-        if !broken(&routes[arc]) {
+        // Nodes other than the edge's own that a route crosses.
+        let others = |r: &[(f64, f64)]| {
+            r.windows(2)
+                .filter(|v| seg_hits_box(v[0], v[1], b, lo, hi))
+                .count()
+        };
+        if !broken(&routes[arc]) && others(&routes[arc]) == 0 {
             continue;
         }
         let mut r = routes[arc].clone();
@@ -269,11 +275,14 @@ pub(super) fn leave_own_boxes(ctx: &RouteCtx, port: &PortMap, routes: &mut [Vec<
             let Some(h) = ctx.hints.get(arc, is_source) else {
                 continue;
             };
-            if !cuts_own_box(&r, is_source, h.node, h.side, b) {
+            let own = cuts_own_box(&r, is_source, h.node, h.side, b);
+            if !own && others(&r) == 0 {
                 continue;
             }
             if let Some(e) = escape(&r, is_source, h, other, ctx.stub_len, b) {
-                r = e;
+                if own || others(&e) < others(&r) {
+                    r = e;
+                }
             }
         }
         if broken(&r) {

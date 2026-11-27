@@ -296,7 +296,7 @@ pub(super) fn check_dummy_limit(st: &LayeredState, o: &LayoutOptions) -> Result<
 fn phase_merge_edges(st: &mut LayeredState, o: &LayoutOptions) -> Result<(), LayoutError> {
     use crate::options::{MergeEdges, RoutingStyle};
     let (forks, joins) = match o.routing.merge_edges {
-        MergeEdges::None => return Ok(()),
+        MergeEdges::Auto | MergeEdges::None => (false, false),
         MergeEdges::Forks => (true, false),
         MergeEdges::Joins => (false, true),
         MergeEdges::Both => (true, true),
@@ -330,8 +330,56 @@ fn phase_merge_edges(st: &mut LayeredState, o: &LayoutOptions) -> Result<(), Lay
     }
     let b = st.boxes();
     let mut routes = std::mem::take(&mut st.routes);
-    let junctions =
-        super::merge::merge_routes(&mut routes, &ends, &b, o.spacing.stub, forks, joins);
+    let mut junctions = Vec::new();
+    if forks || joins {
+        junctions = super::merge::merge_routes(
+            &mut routes,
+            &ends,
+            &b,
+            o.spacing.stub,
+            forks,
+            joins,
+            |_| true,
+        );
+    }
+    if o.routing.merge_edges == MergeEdges::Auto {
+        // Edge ends arriving at each node, on its border before and after it in the flow.
+        let mut arriving = vec![[0usize; 2]; st.n_real];
+        for (i, &(a, z, first_is_source)) in ends.iter().enumerate() {
+            let target = if first_is_source { z } else { a };
+            let Some(route) = routes.get(i).filter(|r| r.len() >= 2 && target < st.n_real) else {
+                continue;
+            };
+            let at = if first_is_source {
+                route[route.len() - 1]
+            } else {
+                route[0]
+            };
+            for (k, face) in [-1.0, 1.0].into_iter().enumerate() {
+                if (at.0 - (b.cx[target] + face * b.layer_w[target] / 2.0)).abs() < 0.5 {
+                    arriving[target][k] += 1;
+                }
+            }
+        }
+        // Ends that fit on a border at half the port gap. With more, the arrowheads overlap.
+        let fits = |v: usize| {
+            1 + (4.0 * b.order_w[v] * super::route::PORT_SPAN / o.spacing.port_gap) as usize
+        };
+        let crowded: Vec<bool> = (0..st.n_real)
+            .map(|v| arriving[v].iter().any(|&k| k > fits(v)))
+            .collect();
+        if crowded.iter().any(|&c| c) {
+            junctions.extend(super::merge::merge_routes(
+                &mut routes,
+                &ends,
+                &b,
+                o.spacing.stub,
+                false,
+                true,
+                |v| crowded[v],
+            ));
+        }
+    }
     st.routes = routes;
     st.junctions.extend(junctions);
     Ok(())

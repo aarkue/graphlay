@@ -11,7 +11,7 @@
 use std::collections::BTreeSet;
 
 use crate::geometry::polyline::{clean_path, polyline_point_at, shorten_end};
-use crate::geometry::EPS;
+use crate::geometry::{fp, EPS};
 use crate::sort::SortDyn;
 use crate::svg::model::*;
 use crate::svg::text::{TextMeasurer, TextMetrics};
@@ -271,15 +271,15 @@ fn collinear(p0: Pt, p1: Pt, p2: Pt) -> bool {
     let cross = (p1.0 - p0.0) * (p2.1 - p1.1) - (p1.1 - p0.1) * (p2.0 - p1.0);
     cross.abs()
         < 1e-6
-            * f64::hypot(p1.0 - p0.0, p1.1 - p0.1).max(1.0)
-            * f64::hypot(p2.0 - p1.0, p2.1 - p1.1).max(1.0)
+            * fp::hypot(p1.0 - p0.0, p1.1 - p0.1).max(1.0)
+            * fp::hypot(p2.0 - p1.0, p2.1 - p1.1).max(1.0)
 }
 
 /// Where the rounded corner at `p1` starts and ends. Each end is `r` along its leg, or half the
 /// leg where that is shorter.
 fn corner_ends(p0: Pt, p1: Pt, p2: Pt, r: f64) -> (Pt, Pt) {
-    let l1 = f64::hypot(p1.0 - p0.0, p1.1 - p0.1).max(1.0);
-    let l2 = f64::hypot(p2.0 - p1.0, p2.1 - p1.1).max(1.0);
+    let l1 = fp::hypot(p1.0 - p0.0, p1.1 - p0.1).max(1.0);
+    let l2 = fp::hypot(p2.0 - p1.0, p2.1 - p1.1).max(1.0);
     let rr = r.min(l1 / 2.0).min(l2 / 2.0);
     (
         (
@@ -453,7 +453,7 @@ fn with_straight_ends(pts: &[Pt]) -> Vec<Pt> {
         return pts.to_vec();
     }
     let split = |from: Pt, to: Pt| -> Option<Pt> {
-        let len = f64::hypot(to.0 - from.0, to.1 - from.1);
+        let len = fp::hypot(to.0 - from.0, to.1 - from.1);
         let d = (len / 2.0).max(len.min(SMOOTH_END));
         (d < len - 0.5).then(|| {
             let t = d / len;
@@ -478,7 +478,7 @@ fn curve_cuts_a_node(edge: &SceneEdge, scene: &Scene) -> bool {
     };
     let mut dense = Vec::new();
     for w in line.windows(2) {
-        let steps = (f64::hypot(w[1].0 - w[0].0, w[1].1 - w[0].1) / 4.0)
+        let steps = (fp::hypot(w[1].0 - w[0].0, w[1].1 - w[0].1) / 4.0)
             .ceil()
             .max(1.0) as usize;
         for k in 0..=steps {
@@ -1620,7 +1620,7 @@ fn anchor_fraction(at: &EdgeAnchor, line: &[Pt]) -> Option<f64> {
         EdgeAnchor::Along { fraction, offset } => {
             let len: f64 = line
                 .windows(2)
-                .map(|w| f64::hypot(w[1].0 - w[0].0, w[1].1 - w[0].1))
+                .map(|w| fp::hypot(w[1].0 - w[0].0, w[1].1 - w[0].1))
                 .sum();
             let f = if len > 0.0 {
                 fraction + offset / len
@@ -1719,7 +1719,7 @@ fn render_decoration(
             let p = anchor_point(at, raw);
             // The perpendicular to the local direction of travel, turned by `slant` towards it.
             let (dx, dy) = local_direction(at, raw);
-            let (sin, cos) = slant.to_radians().sin_cos();
+            let (sin, cos) = (fp::sin(slant.to_radians()), fp::cos(slant.to_radians()));
             let (nx, ny) = (-dy * cos + dx * sin, dx * cos + dy * sin);
             out.push_str(&format!(
                 r#"<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}"{stroke}{attrs}/>
@@ -1759,7 +1759,7 @@ fn local_direction(at: &EdgeAnchor, line: &[Pt]) -> (f64, f64) {
     let f = anchor_fraction(at, line).unwrap_or(0.5);
     let a = polyline_point_at(line, (f - 0.01).max(0.0));
     let b = polyline_point_at(line, (f + 0.01).min(1.0));
-    let len = f64::hypot(b.0 - a.0, b.1 - a.1);
+    let len = fp::hypot(b.0 - a.0, b.1 - a.1);
     if len < EPS {
         (1.0, 0.0)
     } else {

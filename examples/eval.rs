@@ -219,6 +219,7 @@ fn parse_args(argv: Vec<String>) -> Result<Option<Args>, String> {
             "--merge-edges" => {
                 let raw = value()?;
                 args.merge_edges = Some(match raw.as_str() {
+                    "auto" => graphlay::MergeEdges::Auto,
                     "none" => graphlay::MergeEdges::None,
                     "forks" => graphlay::MergeEdges::Forks,
                     "joins" => graphlay::MergeEdges::Joins,

@@ -40,7 +40,8 @@ every node sits on a cycle, because then no strategy can tell where the flow sta
 loop's redo path lies between the loop's entry and exit with its arrows pointing back.
 
 `Node::rank = RankConstraint::First` or `Last` pins a node to the first or last layer, and
-`Fixed(k)` puts nodes that share a `k` in one layer.
+`Fixed(k)` puts nodes that share a `k` in one layer. In an object-centric DFG, start and end nodes
+left free sit next to their type's first or last activity.
 
 `Edge::weight` makes an edge shorter and straighter than its neighbours.
 `coords.branch_style = StraightMain`, the default in the process presets, draws one branch of every
@@ -66,7 +67,9 @@ straightening passes align node centres and can move it off again.
 ## Busy drawings
 
 `routing.merge_edges` (`Forks`, `Joins` or `Both`) draws the edges that fan out of or into one node
-on a shared trunk, with a junction dot where they split. It never adds a crossing or a bend.
+on a shared trunk, with a junction dot where they split. It never adds a crossing or a bend. The
+default, `Auto`, joins only edges whose arrowheads would otherwise run together on a small node,
+and `None` never merges.
 
 `routing.bundle_parallel`, on by default, draws parallel edges between the same two nodes as one
 bundle of lanes.

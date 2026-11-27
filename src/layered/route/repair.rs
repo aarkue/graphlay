@@ -19,6 +19,9 @@ use crate::layered::steps::flatten_short_steps;
 use crate::options::{LayoutOptions, RoutingTuning};
 use crate::sort::SortDyn;
 
+/// Minimum distance between a flattened run and a node it passes, beyond half its stroke width.
+const FLATTEN_CLEARANCE: f64 = 2.0;
+
 /// Matches the `endpoint_off_outline` metric's tolerance.
 const ENDPOINT_OUTLINE_TOL: f64 = 0.5;
 
@@ -108,12 +111,12 @@ pub(super) fn flatten_steps(ctx: &RouteCtx, port: &PortMap, routes: &mut [Vec<(f
                     && (!hints.hinted(arc) || hints.keeps_ends_straight(arc, old, new, b))
             };
             // Lanes are drawn off this corridor later, so it must clear nodes by the fan's half
-            // width.
+            // width. Other edges keep `FLATTEN_CLEARANCE`, so none runs along a node border.
             let fan = tight_lane_pattern(ctx.lane_strokes(arc), o.spacing.bundle_lane_gap)
                 .iter()
                 .zip(ctx.lane_strokes(arc))
                 .map(|(p, s)| p.abs() + s / 2.0)
-                .fold(-1.0, f64::max);
+                .fold(ctx.thickness(arc) / 2.0 + FLATTEN_CLEARANCE, f64::max);
             flatten_short_steps(
                 &mut mine,
                 hy,
@@ -323,6 +326,7 @@ pub(super) fn repair_side_ports(
     o: &LayoutOptions,
     used: &[bool],
     routes: &mut [Vec<(f64, f64)>],
+    facing: &[bool],
 ) {
     let candidates = || (0..routes.len()).filter(|&a| used.get(a).copied().unwrap_or(false));
     let hits = |arc: usize, route: &[(f64, f64)]| -> usize {
@@ -348,7 +352,7 @@ pub(super) fn repair_side_ports(
     {
         return;
     }
-    let plain = route_edges(st, boxes, o, true, false, &mut []).routes;
+    let plain = route_edges(st, boxes, o, true, false, &mut [], facing).routes;
     for arc in candidates() {
         if routes[arc] == plain[arc] {
             continue;

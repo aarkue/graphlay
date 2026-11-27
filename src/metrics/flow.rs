@@ -177,7 +177,7 @@ fn acute_angle_deg(a: [f64; 2], b: [f64; 2], c: [f64; 2], d: [f64; 2]) -> f64 {
         return 90.0;
     };
     let dot = (u[0] * v[0] + u[1] * v[1]).abs().clamp(0.0, 1.0);
-    dot.acos().to_degrees()
+    fp::acos(dot).to_degrees()
 }
 
 fn unit(a: [f64; 2], b: [f64; 2]) -> Option<[f64; 2]> {
@@ -196,7 +196,7 @@ fn parallel_run_len(a: [f64; 2], b: [f64; 2], c: [f64; 2], d: [f64; 2], separati
         return 0.0;
     };
     let dot = (u[0] * v[0] + u[1] * v[1]).abs().clamp(0.0, 1.0);
-    if dot.acos().to_degrees() >= PARALLEL_TOL_DEG {
+    if fp::acos(dot).to_degrees() >= PARALLEL_TOL_DEG {
         return 0.0;
     }
     let len = distance(a, b);

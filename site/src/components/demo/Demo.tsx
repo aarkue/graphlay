@@ -181,7 +181,7 @@ export default function Demo(): ReactNode {
   );
   const direction = options.direction ?? presetDefaults?.direction ?? "leftright";
   const style = options.routing?.style ?? presetDefaults?.routing?.style ?? "orthogonal";
-  const merge = options.routing?.merge_edges ?? presetDefaults?.routing?.merge_edges ?? "none";
+  const merge = options.routing?.merge_edges ?? presetDefaults?.routing?.merge_edges ?? "auto";
   const layerGap = options.spacing?.layer_gap ?? presetDefaults?.spacing?.layer_gap ?? 54;
   const nodeGap = options.spacing?.node_gap ?? presetDefaults?.spacing?.node_gap ?? 30;
   const effortValue = options.effort ?? presetDefaults?.effort ?? "balanced";
@@ -255,7 +255,8 @@ export default function Demo(): ReactNode {
         </label>
         <label className={styles.field}>
           <span>Merge edges</span>
-          <select value={merge} onChange={(e) => setRequest(patch(request, { routing: { merge_edges: e.target.value as "none" | "forks" | "joins" | "both" } }))}>
+          <select value={merge} onChange={(e) => setRequest(patch(request, { routing: { merge_edges: e.target.value as "auto" | "none" | "forks" | "joins" | "both" } }))}>
+            <option value="auto">auto</option>
             <option value="none">none</option>
             <option value="forks">forks</option>
             <option value="joins">joins</option>

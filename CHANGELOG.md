@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.5.0 (2026-11-27)
+
+- `MergeEdges::Auto`, the new default, joins edges on a trunk only where too many end on a small
+  node to keep their arrowheads apart. `MergeEdges::None` never merges. `MergeEdges` is now
+  `#[non_exhaustive]`.
+- When more edges end on a node's border than fit at the port gap, the outermost ones move to its
+  top or bottom border (in a left-to-right drawing), if that adds no crossing.
+- Branches are drawn straighter. Bends go to forks and joins instead of into sequences, and each
+  branch's widest path is put on one line where its layers have room.
+- In a drawing wrapped into rows, an edge to a later column of the next row goes straight down
+  between the rows instead of running back across both rows.
+- Labels of nested self-loops are placed side by side outside the outermost loop.
+- `svg::sketch` moves a compound's title off the edges crossing its top border.
+- Fixed several cases of edges running through or along other nodes, e.g., after straightening a
+  route, in diagonal routing and bundle lanes, with port hints, and next to nodes without edges.
+- The SVG renderer and the metrics give the same results on every platform, as the layout does,
+  and clippy rejects the platform-dependent float functions.
+
 ## 0.4.0 (2026-11-20)
 
 - On equal weights, the main path runs through the nodes with the most extent along the flow. On

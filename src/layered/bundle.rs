@@ -8,6 +8,7 @@
 use std::collections::BTreeMap;
 
 use crate::error::LayoutError;
+use crate::geometry::hit::seg_hits_rect;
 use crate::geometry::polyline::offset_route;
 use crate::geometry::shape::Outline;
 use crate::options::{LayoutOptions, Routing};
@@ -176,7 +177,24 @@ pub(crate) fn bundle_parallel_arcs(
                 size: (input.nodes[i].width, input.nodes[i].height),
                 shape: input.nodes[i].shape,
             };
-            offset_route(route, lane_off[arc], outline(from), outline(to))
+            // An offset lane can cut a node that its route clears. Then try smaller offsets, and
+            // fall back to the route itself.
+            let cuts = |pts: &[(f64, f64)]| {
+                pts.windows(2).any(|w| {
+                    (0..input.nodes.len())
+                        .filter(|&i| i != from && i != to)
+                        .any(|i| {
+                            let (c, n) = (out.centers[i], &input.nodes[i]);
+                            let (hw, hh) = (n.width / 2.0 - 1.0, n.height / 2.0 - 1.0);
+                            seg_hits_rect(w[0], w[1], (c.0 - hw, c.0 + hw), (c.1 - hh, c.1 + hh))
+                        })
+                })
+            };
+            [1.0, 0.5, 0.25]
+                .into_iter()
+                .map(|k| offset_route(route, k * lane_off[arc], outline(from), outline(to)))
+                .find(|lane| !cuts(lane))
+                .unwrap_or_else(|| route.clone())
         })
         .collect();
     // The inner run reserved one label slot per bundle, not per arc.

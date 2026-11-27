@@ -2,6 +2,10 @@
 //! names, in output terms and in any drawing direction, and at the given position for an offset
 //! hint. Router preferences, the cycle breaker and reversed ranking do not override it.
 
+// Tests may use the std float functions. Only the library must give the same result on every
+// platform.
+#![allow(clippy::disallowed_methods)]
+
 use graphlay::{
     layout, reroute, Direction, Edge, EdgeId, EdgeRoute, Graph, GraphBuilder, Layout, LayoutError,
     LayoutOptions, Node, NodeId, Placement, Point, PortHint, PortSides, RouteKind, RoutingStyle,

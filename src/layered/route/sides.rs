@@ -10,6 +10,7 @@ use super::gutter::{lanes_cross, GutterSeg};
 use super::{diagonal, ArcEnds, RouteCtx, PORT_SPAN};
 use crate::geometry::Side;
 use crate::graph::PortSides;
+use crate::sort::SortDyn;
 
 /// Slope (cross offset over layer offset) above which a multi-hop source end leaves through its
 /// top or bottom border.
@@ -29,6 +30,7 @@ pub(super) fn assign_sides(ctx: &RouteCtx, side_port_used: &mut [bool]) -> ArcEn
     let pricer = Pricer::new(ctx);
     let mut arc_ends = choose_sides(&pricer, side_port_used);
     relieve_perpendicular_targets(&pricer, &mut arc_ends);
+    spill_crowded_targets(&pricer, &mut arc_ends);
     arc_ends
 }
 
@@ -300,10 +302,13 @@ fn choose_sides(pricer: &Pricer, side_port_used: &mut [bool]) -> ArcEnds {
             let t = diagonal::ray_side(ctx, hi, cx[t_aim], cy[t_aim]);
             // Diagonal style has no lane model to price a border with, so `FacingPreferred`
             // reads as `Any` here.
-            let facing_only = |node: usize| ctx.sides_of(node) == PortSides::FacingOnly;
+            let facing = |node: usize| {
+                ctx.sides_of(node) == PortSides::FacingOnly
+                    || ctx.facing.get(arc).copied().unwrap_or(false)
+            };
             (
-                if facing_only(lo) { Side::Right } else { s },
-                if facing_only(hi) { Side::Left } else { t },
+                if facing(lo) { Side::Right } else { s },
+                if facing(hi) { Side::Left } else { t },
             )
         } else if direct {
             returns
@@ -483,7 +488,7 @@ fn relieve_perpendicular_targets(pricer: &Pricer, arc_ends: &mut ArcEnds) {
             continue;
         }
         let perp = if drop > 0.0 { Side::Bottom } else { Side::Top };
-        if *occ.get(&(hi, perp.index())).unwrap_or(&0) != 0 {
+        if holds_loops(ctx, hi, perp) || *occ.get(&(hi, perp.index())).unwrap_or(&0) != 0 {
             continue;
         }
         // Keep the edge with others entering the facing border from the same direction.
@@ -526,6 +531,108 @@ fn relieve_perpendicular_targets(pricer: &Pricer, arc_ends: &mut ArcEnds) {
     }
 }
 
+/// Where more edges end on a node's incoming border than fit at the port gap, move the outermost
+/// ones to the borders perpendicular to the flow, if that crosses nothing.
+fn spill_crowded_targets(pricer: &Pricer, arc_ends: &mut ArcEnds) {
+    let ctx = pricer.ctx;
+    if ctx.flow_edges {
+        return;
+    }
+    let (cx, cy, lw, ow) = (&ctx.b.cx, &ctx.b.cy, &ctx.b.layer_w, &ctx.b.order_w);
+    let fits = |extent: f64| 1 + (2.0 * extent * PORT_SPAN / ctx.min_port_gap) as usize;
+    let mut on: BTreeMap<(usize, u8), Vec<usize>> = BTreeMap::new();
+    for (&arc, (s, t)) in arc_ends.iter() {
+        on.entry((s.node, s.side.index()))
+            .or_default()
+            .push(usize::MAX);
+        on.entry((t.node, t.side.index())).or_default().push(arc);
+    }
+    let crowded: Vec<usize> = on
+        .iter()
+        .filter(|(&(node, side), arcs)| {
+            side == Side::Left.index()
+                && node < ctx.n_in
+                && ctx.sides_of(node) != PortSides::FacingOnly
+                && arcs.len() > fits(ow[node])
+        })
+        .map(|(&(node, _), _)| node)
+        .collect();
+    for hi in crowded {
+        let count = |on: &BTreeMap<(usize, u8), Vec<usize>>, side: Side| {
+            on.get(&(hi, side.index())).map_or(0, Vec::len)
+        };
+        // (offset from the node's middle, arc). The ends furthest from the middle move first.
+        let mut queue: Vec<(f64, usize)> = on[&(hi, Side::Left.index())]
+            .iter()
+            .filter(|&&a| a != usize::MAX && ctx.hints.get(a, false).is_none())
+            .map(|&a| (arc_ends[&a].1.aim_order - cy[hi], a))
+            .collect();
+        queue.sort_by_dyn(|a, b| a.0.total_cmp(&b.0).then(a.1.cmp(&b.1)));
+        while count(&on, Side::Left) > fits(ow[hi]) && !queue.is_empty() {
+            let (first, last) = (queue[0], queue[queue.len() - 1]);
+            let arc = if first.0.abs() >= last.0.abs() {
+                queue.remove(0).1
+            } else {
+                queue.pop().map_or(last.1, |q| q.1)
+            };
+            let Some(chain) = ctx.chains.get(&arc) else {
+                continue;
+            };
+            let t_aim = chain[chain.len() - 2];
+            let drop = cy[t_aim] - cy[hi];
+            if drop.abs() < ow[hi] / 2.0 + ctx.min_port_gap {
+                continue;
+            }
+            let perp = if drop > 0.0 { Side::Bottom } else { Side::Top };
+            if holds_loops(ctx, hi, perp) {
+                continue;
+            }
+            // Edges already ending on a perpendicular border of `hi` turn before the gutter, so
+            // this edge does not cross them there.
+            let h = cy[t_aim];
+            let slack = if t_aim < ctx.n_in { -0.5 } else { 0.5 };
+            let runs_cut = pricer
+                .gutter_spans
+                .get(&(ctx.layer_of[t_aim] as usize))
+                .map_or(0, |spans| {
+                    spans
+                        .iter()
+                        .filter(|sp| {
+                            sp.arc != arc
+                                && !arc_ends
+                                    .get(&sp.arc)
+                                    .is_some_and(|(_, t)| t.node == hi && t.side != Side::Left)
+                                && sp.from.min(sp.to) < h - slack
+                                && h + slack < sp.from.max(sp.to)
+                        })
+                        .count()
+                });
+            if count(&on, perp) + 1 > fits(lw[hi])
+                || runs_cut + pricer.column_cost(hi, h) > 0
+                || ctx.seg_hits((cx[t_aim], h), (cx[hi], h), chain[0], hi)
+                || ctx.seg_hits((cx[hi], h), (cx[hi], cy[hi]), chain[0], hi)
+            {
+                continue;
+            }
+            if let Some(list) = on.get_mut(&(hi, Side::Left.index())) {
+                list.retain(|&a| a != arc);
+            }
+            on.entry((hi, perp.index())).or_default().push(arc);
+            if let Some(ends) = arc_ends.get_mut(&arc) {
+                ends.1.side = perp;
+            }
+        }
+    }
+}
+
+/// Whether `node` has self-loops on `side`. Such a border takes no other edge ends.
+fn holds_loops(ctx: &RouteCtx, node: usize, side: Side) -> bool {
+    ctx.st
+        .self_loops
+        .iter()
+        .any(|slot| slot.node == node && slot.side == Some(side))
+}
+
 #[cfg(test)]
 #[allow(clippy::unwrap_used, clippy::expect_used)]
 mod tests {
@@ -535,6 +642,35 @@ mod tests {
     use crate::layered::prepare::{LayeredInput, LayeredInputNode};
     use crate::layered::state::{LArc, LayeredState};
     use crate::options::{LayoutOptions, Routing};
+
+    /// A small sink with more incoming edges than fit on its left border at the port gap moves
+    /// the outer ones to its top and bottom borders.
+    #[test]
+    fn a_crowded_sink_spills_its_outer_ends_to_the_perpendicular_borders() {
+        use crate::{GraphBuilder, LayoutOptions, Node, Size};
+        let mut b = GraphBuilder::new();
+        let start = b.add_box(Size::new(40.0, 40.0));
+        let sink = b.add_node(Node {
+            size: Size::new(24.0, 24.0),
+            ..Node::default()
+        });
+        for _ in 0..6 {
+            let mid = b.add_box(Size::new(60.0, 30.0));
+            b.connect(start, mid);
+            b.connect(mid, sink);
+        }
+        let g = b.build();
+        let l = crate::layout(&g, &LayoutOptions::process_map()).unwrap();
+        let sides: Vec<Side> = l
+            .edges
+            .iter()
+            .zip(&g.edges)
+            .filter(|(_, e)| e.target == sink)
+            .map(|(r, _)| r.target_port.unwrap().side)
+            .collect();
+        let on_top = sides.iter().filter(|&&s| s == Side::Top).count();
+        assert!((1..=3).contains(&on_top), "{sides:?}");
+    }
 
     /// Source -> dummy -> target over ranks 0-2, plus a rank-0 blocker at `blocker_cross`.
     fn multi_hop_past_a_blocker(blocker_cross: f64) -> LayeredState {

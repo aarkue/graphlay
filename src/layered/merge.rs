@@ -29,10 +29,11 @@ pub(crate) fn merge_routes(
     stub: f64,
     forks: bool,
     joins: bool,
+    nodes: impl Fn(usize) -> bool,
 ) -> Vec<(f64, f64)> {
     let mut junctions = Vec::new();
     let roles = [(forks, true), (joins, false)];
-    for node in 0..b.n_real {
+    for node in (0..b.n_real).filter(|&v| nodes(v)) {
         for forward in [true, false] {
             for (_, source) in roles.iter().filter(|r| r.0) {
                 let face = b.cx[node] + if forward { 1.0 } else { -1.0 } * b.layer_w[node] / 2.0;
@@ -290,7 +291,7 @@ mod tests {
             vec![(40.0, 10.0), (110.0, 10.0), (110.0, 80.0), (160.0, 80.0)],
         ];
         let ends = vec![(0, 1, true), (0, 2, true)];
-        let js = merge_routes(&mut routes, &ends, &b, 15.0, true, false);
+        let js = merge_routes(&mut routes, &ends, &b, 15.0, true, false, |_| true);
         assert_eq!(routes[0][0], (40.0, 0.0));
         assert_eq!(routes[1][0], (40.0, 0.0));
         assert_eq!(routes[0][1], (100.0, 0.0));
@@ -315,7 +316,7 @@ mod tests {
             vec![(40.0, 80.0), (100.0, 80.0), (100.0, 10.0), (160.0, 10.0)],
         ];
         let ends = vec![(0, 2, true), (1, 2, true)];
-        let js = merge_routes(&mut routes, &ends, &b, 15.0, false, true);
+        let js = merge_routes(&mut routes, &ends, &b, 15.0, false, true, |_| true);
         assert_eq!(*routes[0].last().unwrap(), (160.0, 0.0));
         assert_eq!(*routes[1].last().unwrap(), (160.0, 0.0));
         assert_eq!(routes[0][routes[0].len() - 2], (100.0, 0.0));
@@ -337,7 +338,7 @@ mod tests {
         ];
         let kept = routes.clone();
         let ends = vec![(0, 1, true), (0, 2, false)];
-        let js = merge_routes(&mut routes, &ends, &b, 15.0, true, true);
+        let js = merge_routes(&mut routes, &ends, &b, 15.0, true, true, |_| true);
         assert!(js.is_empty());
         assert_eq!(routes, kept);
     }
@@ -358,14 +359,14 @@ mod tests {
         ];
         let before = routes.clone();
         let ends = vec![(0, 1, true), (0, 2, true), (usize::MAX, usize::MAX, true)];
-        let js = merge_routes(&mut routes, &ends, &b, 15.0, true, false);
+        let js = merge_routes(&mut routes, &ends, &b, 15.0, true, false, |_| true);
         // Each member already crosses it once, so the merged trunk adds no crossing.
         assert_eq!(js.len(), 1);
         // A short riser between the members' original heights only crosses the merged trunk.
         let mut routes = before;
         routes[2] = vec![(60.0, -5.0), (60.0, 5.0)];
         let kept = routes.clone();
-        let js = merge_routes(&mut routes, &ends, &b, 15.0, true, false);
+        let js = merge_routes(&mut routes, &ends, &b, 15.0, true, false, |_| true);
         assert!(js.is_empty());
         assert_eq!(routes, kept);
     }

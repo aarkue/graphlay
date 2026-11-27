@@ -278,3 +278,86 @@ fn section_two_metrics_hold_their_definitions_on_every_fixture() {
         failures.join("\n  ")
     );
 }
+
+/// In the sepsis net, IV Liquid has no room to move between its skip and LacticAcid. The places of
+/// its branch then line up with it, and the skip takes the bend.
+#[test]
+fn a_boxed_in_branch_transition_gets_its_places_on_its_line() {
+    let f = fixture::load_file(&fixtures_dir().join("petri/pn-sepsis-imf.json")).expect("loads");
+    let (g, o) = f.to_graph();
+    let l = graphlay::layout(&g, &o).expect("lays out");
+    let liquid = f
+        .nodes
+        .iter()
+        .position(|n| n.label == "IV Liquid")
+        .expect("node");
+    let ends: Vec<usize> = g
+        .edges
+        .iter()
+        .filter_map(|e| {
+            let (s, t) = (e.source.0 as usize, e.target.0 as usize);
+            (t == liquid).then_some(s).or((s == liquid).then_some(t))
+        })
+        .collect();
+    assert_eq!(ends.len(), 2);
+    let y = |i: usize| l.nodes[i].center.y;
+    for p in ends {
+        assert!((y(p) - y(liquid)).abs() < 0.5, "{} vs {}", y(p), y(liquid));
+    }
+}
+
+/// With `PortSides::Any`, a long edge can enter its target from the top or bottom, after a run
+/// along the target's layer. Straightening its waypoints must not make that run cross a node.
+#[test]
+fn a_perpendicular_approach_stays_clear_of_its_layer() {
+    let f = fixture::load_file(&fixtures_dir().join("synthetic/cycles-300.json")).expect("loads");
+    let (g, mut o) = f.to_graph();
+    o.routing.port_sides = graphlay::PortSides::Any;
+    let l = graphlay::layout(&g, &o).expect("lays out");
+    assert_eq!(metrics::measure(&g, &o, &l).node_edge_hits, 0);
+}
+
+/// No edge runs along the border of a node it passes, e.g., the end of a silent transition.
+#[test]
+fn a_flattened_run_keeps_off_the_borders_it_passes() {
+    let f =
+        fixture::load_file(&fixtures_dir().join("petri/pn-sepsis-discovered.json")).expect("loads");
+    let (g, o) = f.to_graph();
+    let l = graphlay::layout(&g, &o).expect("lays out");
+    for (e, route) in g.edges.iter().zip(&l.edges) {
+        let half = e.thickness / 2.0;
+        for w in route.points.windows(2) {
+            let (p, q) = (w[0], w[1]);
+            let vertical = (p.x - q.x).abs() < 0.01;
+            if !vertical && (p.y - q.y).abs() >= 0.01 {
+                continue;
+            }
+            for (i, n) in l.nodes.iter().enumerate() {
+                if i == e.source.0 as usize || i == e.target.0 as usize {
+                    continue;
+                }
+                let (hw, hh) = (n.size.width / 2.0, n.size.height / 2.0);
+                let (x0, x1, y0, y1) = (
+                    n.center.x - hw,
+                    n.center.x + hw,
+                    n.center.y - hh,
+                    n.center.y + hh,
+                );
+                // Across the run, its position `at` and the node's `lo..hi`. Along it, the run's
+                // `a..b` and the node's `s..t`.
+                let (at, a, b, lo, hi, s, t) = if vertical {
+                    (p.x, p.y.min(q.y), p.y.max(q.y), x0, x1, y0, y1)
+                } else {
+                    (p.y, p.x.min(q.x), p.x.max(q.x), y0, y1, x0, x1)
+                };
+                let gap = (lo - at).max(at - hi) - half;
+                let shared = b.min(t) - a.max(s);
+                assert!(
+                    gap < -half || gap >= 1.0 || shared <= 1.0,
+                    "edge {:?} runs {gap:.1} px from node {i}'s border",
+                    (e.source, e.target)
+                );
+            }
+        }
+    }
+}

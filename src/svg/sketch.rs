@@ -14,7 +14,7 @@ use crate::svg::model::{
     SceneNode, Shape, Size, Stroke, TextRun, TextWrap, ZOrder,
 };
 use crate::svg::render::{render, xml_escape};
-use crate::svg::text::HeuristicMeasurer;
+use crate::svg::text::{HeuristicMeasurer, TextMeasurer};
 use crate::svg::theme::Theme;
 
 /// What a sketch shows beyond the geometry.
@@ -86,12 +86,11 @@ pub fn sketch_scene(graph: &Graph, layout: &Layout, options: &SketchOptions) -> 
             let content = if text.is_empty() {
                 Vec::new()
             } else if compound {
+                let run = TextRun::new(text).size(11.0).weight(600.0);
+                let dx = title_offset(l, at, &run);
                 vec![NodeContent::Text(TextRun {
                     color: Some("#5b6577".into()),
-                    ..TextRun::new(text)
-                        .at(0.0, -at.size.height / 2.0 + 13.0)
-                        .size(11.0)
-                        .weight(600.0)
+                    ..run.at(dx, -at.size.height / 2.0 + 13.0)
                 })]
             } else {
                 vec![NodeContent::Text(TextRun {
@@ -159,6 +158,52 @@ pub fn sketch_scene(graph: &Graph, layout: &Layout, options: &SketchOptions) -> 
         overlays,
         ..Scene::default()
     }
+}
+
+/// Horizontal offset that moves a compound's title off the edges crossing its top border. It is
+/// the free position closest to the middle, or 0 if none is free.
+fn title_offset(l: &Layout, at: &crate::layout::Placement, run: &TextRun) -> f64 {
+    let font = crate::svg::model::FontSpec {
+        size: run.size.unwrap_or(11.0),
+        weight: run.weight.unwrap_or(400.0),
+        ..Default::default()
+    };
+    let half = HeuristicMeasurer::new().measure(&run.text, &font).width / 2.0 + 4.0;
+    let (left, right) = (
+        at.center.x - at.size.width / 2.0,
+        at.center.x + at.size.width / 2.0,
+    );
+    let (top, bottom) = (
+        at.center.y - at.size.height / 2.0,
+        at.center.y - at.size.height / 2.0 + 20.0,
+    );
+    let mut blocked: Vec<(f64, f64)> = Vec::new();
+    for route in &l.edges {
+        for w in route.points.windows(2) {
+            let (a, b) = (w[0], w[1]);
+            if a.y.max(b.y) < top || a.y.min(b.y) > bottom {
+                continue;
+            }
+            blocked.push((a.x.min(b.x) - 3.0, a.x.max(b.x) + 3.0));
+        }
+    }
+    let free = |x: f64| {
+        blocked
+            .iter()
+            .all(|&(lo, hi)| x + half <= lo || x - half >= hi)
+    };
+    if free(at.center.x) {
+        return 0.0;
+    }
+    let (lo, hi) = (left + half + 6.0, right - half - 6.0);
+    let mut spots: Vec<f64> = blocked
+        .iter()
+        .flat_map(|&(a, b)| [a - half, b + half])
+        .chain([lo, hi])
+        .filter(|&x| x >= lo && x <= hi && free(x))
+        .collect();
+    spots.sort_by(|a, b| (a - at.center.x).abs().total_cmp(&(b - at.center.x).abs()));
+    spots.first().map_or(0.0, |&x| x - at.center.x)
 }
 
 /// Graph node indices in paint order, outermost compounds first.
@@ -234,6 +279,46 @@ fn junction_dots(layout: &Layout) -> RawSvg {
 mod tests {
     use super::*;
     use crate::{GraphBuilder, LayoutOptions, Size};
+
+    #[test]
+    fn a_compound_title_moves_off_an_edge_entering_through_it() {
+        let mut b = GraphBuilder::new();
+        let a = b.add_box(Size::new(80.0, 40.0));
+        let frame = b.add_box(Size::new(10.0, 10.0));
+        let c = b.add_box(Size::new(80.0, 40.0));
+        b.connect(a, c);
+        let mut g = b.build();
+        g.nodes[c.0 as usize].parent = Some(frame);
+        g.nodes[frame.0 as usize].key = Some("Billing".into());
+        let mut o = LayoutOptions::layered_default();
+        o.direction = crate::Direction::TopBottom;
+        o.spacing.compound_header = 16.0;
+        let l = crate::layout(&g, &o).unwrap();
+        let scene = sketch_scene(&g, &l, &SketchOptions::default());
+        let title = scene
+            .nodes
+            .iter()
+            .find_map(|n| match n.content.first() {
+                Some(NodeContent::Text(t)) if t.text == "Billing" => {
+                    Some((n.rect.x + n.rect.w / 2.0 + t.dx, t))
+                }
+                _ => None,
+            })
+            .unwrap();
+        let half = HeuristicMeasurer::new()
+            .measure(
+                &title.1.text,
+                &crate::svg::model::FontSpec {
+                    size: 11.0,
+                    weight: 600.0,
+                    ..Default::default()
+                },
+            )
+            .width
+            / 2.0;
+        let entry = l.edges[0].points.last().unwrap().x;
+        assert!((title.0 - entry).abs() > half, "{} vs {entry}", title.0);
+    }
 
     #[test]
     fn a_sketch_labels_nodes_with_their_keys_unless_told_otherwise() {

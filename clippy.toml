@@ -1,0 +1,15 @@
+# A C library's float functions differ in the last bit between platforms, which moves drawings.
+disallowed-methods = [
+    { path = "f64::hypot", reason = "differs between platforms, use geometry::fp::hypot" },
+    { path = "f64::atan2", reason = "differs between platforms, use geometry::fp::atan2" },
+    { path = "f64::sin", reason = "differs between platforms, use geometry::fp::sin" },
+    { path = "f64::cos", reason = "differs between platforms, use geometry::fp::cos" },
+    { path = "f64::sin_cos", reason = "differs between platforms, use geometry::fp::sin and cos" },
+    { path = "f64::tan", reason = "differs between platforms" },
+    { path = "f64::acos", reason = "differs between platforms, use geometry::fp::acos" },
+    { path = "f64::asin", reason = "differs between platforms" },
+    { path = "f64::atan", reason = "differs between platforms" },
+    { path = "f64::exp", reason = "differs between platforms" },
+    { path = "f64::ln", reason = "differs between platforms" },
+    { path = "f64::powf", reason = "differs between platforms" },
+]

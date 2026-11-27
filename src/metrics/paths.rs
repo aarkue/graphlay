@@ -133,7 +133,7 @@ fn turns(e: &EdgeGeom) -> Vec<(f64, f64)> {
         let dir = [d[0] / len, d[1] / len];
         if let Some(p) = prev {
             let cos = (p[0] * dir[0] + p[1] * dir[1]).clamp(-1.0, 1.0);
-            out.push((cos, cos.acos().to_degrees()));
+            out.push((cos, fp::acos(cos).to_degrees()));
         }
         prev = Some(dir);
     }

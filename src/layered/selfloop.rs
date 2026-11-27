@@ -348,23 +348,46 @@ fn bump(
         } else {
             vec![exit, (exit.0, outer), (entry.0, outer), entry]
         };
-        // Push the label off the outer run by its own half-extent.
-        let (lw, lh) = e.label;
-        let push = if lw > 0.0 && lh > 0.0 {
-            let extent = if side.horizontal() { lw } else { lh };
-            o.self_loops.label_gap.max(0.0) + extent / 2.0
+        let middle = if side.horizontal() {
+            (outer, (exit.1 + entry.1) / 2.0)
         } else {
-            0.0
-        };
-        let anchor = if side.horizontal() {
-            (outer + outward.0 * push, (exit.1 + entry.1) / 2.0)
-        } else {
-            ((exit.0 + entry.0) / 2.0, outer + outward.1 * push)
+            ((exit.0 + entry.0) / 2.0, outer)
         };
         out.push(DrawnLoop {
             points,
-            label_anchor: Some(anchor),
+            label_anchor: Some(middle),
             edge: e.edge,
+        });
+    }
+    // All labels go next to each other outside the outermost loop, in the room `reach` reserved.
+    // A label next to its own loop would overlap the loops around it.
+    let gap = o.self_loops.label_gap.max(0.0);
+    let outer = border
+        + o.self_loops.size.max(0.0)
+        + k.saturating_sub(1) as f64 * o.self_loops.gap.max(0.0);
+    // A label's extent along the border and away from it, or `None` without a label.
+    let extent = |e: &LoopEdge| {
+        let (w, h) = e.label;
+        (w > 0.0 && h > 0.0).then_some(if side.horizontal() { (h, w) } else { (w, h) })
+    };
+    let total: f64 = slot
+        .edges
+        .iter()
+        .filter_map(extent)
+        .map(|(a, _)| a + gap)
+        .sum();
+    let mut at = centre_off - (total - gap) / 2.0;
+    for (drawn, e) in out.iter_mut().zip(&slot.edges) {
+        let Some((along, away)) = extent(e) else {
+            continue;
+        };
+        let push = outer + gap + away / 2.0;
+        let mid = at + along / 2.0;
+        at += along + gap;
+        drawn.label_anchor = Some(if side.horizontal() {
+            (cx + outward.0 * push, cy + mid)
+        } else {
+            (cx + mid, cy + outward.1 * push)
         });
     }
     out

@@ -70,6 +70,21 @@ pub fn align_main_path(st: &mut LayeredState, o: &LayoutOptions) -> Result<(), L
             && !neighbours[u].is_empty()
             && neighbours[u].iter().all(|w| on_spine.contains(w))
     };
+    // Places `layer` as close to `desired` as the node gaps allow, with the `fixed` positions
+    // held. Returns false and changes nothing if the gaps cannot be kept.
+    let settle = |out: &mut [f64], layer: &[usize], desired: &[f64], fixed: &[Option<f64>]| {
+        let gap: Vec<f64> = (0..layer.len().saturating_sub(1))
+            .map(|i| st.sep(layer[i], layer[i + 1], o))
+            .collect();
+        let placed = project_gaps_pinned(desired, &gap, fixed);
+        let holds = gaps_hold(&placed, &gap);
+        if holds {
+            for (i, &u) in layer.iter().enumerate() {
+                out[u] = placed[i];
+            }
+        }
+        holds
+    };
     // A layer that cannot hold its pin keeps its node where it was.
     let pin = |from: &[f64], nodes: &[usize], line: f64| -> Vec<f64> {
         let mut out = from.to_vec();
@@ -86,16 +101,8 @@ pub fn align_main_path(st: &mut LayeredState, o: &LayoutOptions) -> Result<(), L
                 .iter()
                 .map(|&u| if satellite(u) { out[u] + shift } else { out[u] })
                 .collect();
-            let gap: Vec<f64> = (0..layer.len() - 1)
-                .map(|i| st.sep(layer[i], layer[i + 1], o))
-                .collect();
             let fixed: Vec<Option<f64>> = layer.iter().map(|&u| (u == v).then_some(line)).collect();
-            let placed = project_gaps_pinned(&desired, &gap, &fixed);
-            if gaps_hold(&placed, &gap) {
-                for (i, &u) in layer.iter().enumerate() {
-                    out[u] = placed[i];
-                }
-            }
+            settle(&mut out, layer, &desired, &fixed);
         }
         out
     };
@@ -150,6 +157,59 @@ pub fn align_main_path(st: &mut LayeredState, o: &LayoutOptions) -> Result<(), L
             }
         }
     }
+    // Straighten each branch the same way: Its widest path goes onto one line, and the main path
+    // stays in place.
+    for path in branch_paths(st, o) {
+        let on_path: std::collections::BTreeSet<usize> = path.iter().copied().collect();
+        let pin_branch = |from: &[f64], line: f64| -> Option<Vec<f64>> {
+            let mut out = from.to_vec();
+            for &v in &path {
+                let layer = layers.get(st.nodes[v].layer_clamped())?;
+                let desired: Vec<f64> = layer.iter().map(|&u| out[u]).collect();
+                let fixed: Vec<Option<f64>> = layer
+                    .iter()
+                    .map(|&u| {
+                        (u == v)
+                            .then_some(line)
+                            .or(on_spine.contains(&u).then_some(out[u]))
+                    })
+                    .collect();
+                if !settle(&mut out, layer, &desired, &fixed) {
+                    return None;
+                }
+            }
+            Some(out)
+        };
+        // A branch may widen the drawing by at most one node gap.
+        let pays_branch = |before: &[f64], after: &[f64]| {
+            extent(after) <= extent(before) + o.spacing.node_gap + SLACK
+                && length_cost(st, &chains_of, &on_path, after, before)
+                    < length_cost(st, &chains_of, &on_path, before, after)
+                && (!banded || intruders(st, after) <= intruders(st, before))
+        };
+        let mut lines: Vec<f64> = path
+            .iter()
+            .filter(|&&v| v < st.n_real)
+            .map(|&v| placed_cross[v])
+            .collect();
+        lines.sort_unstable_by_dyn(f64::total_cmp);
+        lines.dedup_by(|a, b| (*a - *b).abs() < 0.5);
+        if lines.len() < 2 {
+            continue;
+        }
+        let gain = |after: &[f64]| {
+            length_cost(st, &chains_of, &on_path, after, &placed_cross)
+                - length_cost(st, &chains_of, &on_path, &placed_cross, after)
+        };
+        let best = lines
+            .iter()
+            .filter_map(|&l| pin_branch(&placed_cross, l))
+            .filter(|w| pays_branch(&placed_cross, w))
+            .min_by(|a, b| gain(a).total_cmp(&gain(b)));
+        if let Some(best) = best {
+            placed_cross = best;
+        }
+    }
     for (node, &c) in st.nodes.iter_mut().zip(&placed_cross) {
         node.cross = c;
     }
@@ -184,9 +244,18 @@ pub(super) fn branch_hops(
     st: &LayeredState,
     o: &LayoutOptions,
 ) -> std::collections::BTreeSet<(usize, usize)> {
-    let mut hops = std::collections::BTreeSet::new();
+    branch_paths(st, o)
+        .iter()
+        .flat_map(|path| path.windows(2).map(|w| (w[0], w[1])))
+        .collect()
+}
+
+/// For each fork/join block off the main path, the nodes of its widest path (dummies included),
+/// sorted by rank. Empty unless the main path is favoured.
+fn branch_paths(st: &LayeredState, o: &LayoutOptions) -> Vec<Vec<usize>> {
+    let mut paths = Vec::new();
     if !favours_main_path(st, o) {
-        return hops;
+        return paths;
     }
     let n = st.n_real;
     // (target, arc) per real source, following the layering.
@@ -226,20 +295,24 @@ pub(super) fn branch_hops(
                 }
             }
         }
+        let mut path: Vec<usize> = Vec::new();
         let mut v = join;
         while let Some((u, arc)) = pred[v] {
             if let Some(chain) = st.chains.get(&arc) {
-                for w in chain.windows(2) {
-                    hops.insert((w[0], w[1]));
-                }
+                path.extend(chain.iter().copied());
             }
             if u == fork {
                 break;
             }
             v = u;
         }
+        path.sort_by_key_dyn(|&v| st.nodes[v].rank);
+        path.dedup();
+        if path.len() >= 2 {
+            paths.push(path);
+        }
     }
-    hops
+    paths
 }
 
 /// Pixels of other edges' length that one pixel of bend removed from the spine is worth. Matches
@@ -530,6 +603,37 @@ mod tests {
             l.nodes
         );
         assert!((y(1) - y(0)).abs() > 0.5, "{:?}", l.nodes);
+    }
+
+    /// With four parallel branches, the nodes of each branch share one line, so the bends are at
+    /// the fork and the join.
+    #[test]
+    fn a_branch_bends_at_its_fork_and_not_inside_its_sequence() {
+        let node = |w: f64, h: f64| Node {
+            size: Size::new(w, h),
+            ..Node::default()
+        };
+        let edge = |a: u32, b: u32| Edge::new(NodeId(a), NodeId(b));
+        let mut nodes = vec![node(10.0, 120.0)];
+        let mut edges = vec![];
+        let join = 1 + 4 * 3;
+        for k in 0..4u32 {
+            let (p, t, q) = (1 + 3 * k, 2 + 3 * k, 3 + 3 * k);
+            nodes.extend([node(30.0, 30.0), node(140.0, 40.0), node(30.0, 30.0)]);
+            edges.extend([edge(0, p), edge(p, t), edge(t, q), edge(q, join)]);
+        }
+        nodes.push(node(10.0, 120.0));
+        let g = Graph { nodes, edges };
+        let l = crate::layout(&g, &LayoutOptions::layered_default()).unwrap();
+        let y = |i: u32| l.nodes[i as usize].center.y;
+        for k in 0..4u32 {
+            let (p, t, q) = (1 + 3 * k, 2 + 3 * k, 3 + 3 * k);
+            assert!(
+                (y(p) - y(t)).abs() < 0.5 && (y(t) - y(q)).abs() < 0.5,
+                "branch {k}: {:?}",
+                l.nodes
+            );
+        }
     }
 
     /// The heavy side of a diamond is the main path, and its nodes share one cross coordinate.

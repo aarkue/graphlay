@@ -3,8 +3,8 @@
 //! A layout is positions and polylines, and the renderer decides how they look. Every page of
 //! this gallery draws with `svg::sketch`, the plain look, and `sketch_scene` hands the same
 //! drawing over as a `Scene` to restyle: shapes, fills, token rows, icons, rings, edge colours
-//! and widths, gradients, bands, markers, labels, a legend, and a palette for whatever names no
-//! colour.
+//! and widths, smooth curves, gradients, bands, markers, labels, a legend, and a palette for
+//! whatever names no colour.
 
 use std::path::Path;
 
@@ -295,6 +295,31 @@ fn heat_map() -> Panel {
     Panel::new("frequencies as heat", g, &options, drawing).scene(scene, Palette::default())
 }
 
+/// `SceneEdge::smooth` draws each route as one curve through its corners, straight for the last
+/// few pixels into the arrowhead. A route whose curve would cut a node keeps its corners.
+fn smooth_edges() -> Panel {
+    let path =
+        Path::new(env!("CARGO_MANIFEST_DIR")).join("fixtures/petri/pn-repairexample-im.json");
+    let f = fixture::load_file(&path).expect("the fixture loads");
+    let (g, options) = f.to_graph();
+    let drawing = layout(&g, &options).expect("lays out");
+    let labels = f.nodes.iter().map(|n| n.label.clone()).collect();
+    let sketch = SketchOptions {
+        labels,
+        ..SketchOptions::default()
+    };
+    let mut scene = sketch_scene(&g, &drawing, &sketch);
+    for (i, node) in scene.nodes.iter_mut().enumerate() {
+        if f.nodes[i].shape == "box" && f.nodes[i].label.is_empty() {
+            node.fill = Some(INK.to_string());
+        }
+    }
+    for edge in &mut scene.edges {
+        edge.smooth = true;
+    }
+    Panel::new("smooth edges", g, &options, drawing).scene(scene, Palette::default())
+}
+
 /// A finite automaton: circles for states, a double ring for the accepting ones, self-loops
 /// for the transitions that stay, and the symbol read on every edge.
 fn automaton() -> Panel {
@@ -482,5 +507,6 @@ pub fn panels() -> Vec<Panel> {
         heat_map(),
         automaton(),
         service_map(),
+        smooth_edges(),
     ]
 }

@@ -2,7 +2,9 @@
 //! covers. A failure names the case number, which reproduces it.
 //!
 //! Overlapping edge segments are outside the contract, since a few of these graphs draw two edges
-//! along one stretch. Set `GRAPHLAY_RANDOM_OVERLAPS=1` to fail on them too.
+//! along one stretch. Set `GRAPHLAY_RANDOM_OVERLAPS=1` to fail on them too. An edge through a
+//! node fails the test, except with random port hints or diagonal routing over kept seeds, where
+//! a few cases still have one.
 
 use graphlay::metrics;
 use graphlay::{
@@ -137,6 +139,14 @@ fn check(
     let m = metrics::measure(graph, o, l);
     if m.node_overlaps != 0 {
         fail(format!("{} overlapping node pairs", m.node_overlaps));
+    }
+    let hinted = graph
+        .edges
+        .iter()
+        .any(|e| e.source_port.is_some() || e.target_port.is_some());
+    let diagonal_over_seeds = o.routing.style == RoutingStyle::Diagonal && what == "structure";
+    if !hinted && !diagonal_over_seeds && m.node_edge_hits != 0 {
+        fail(format!("{} edges through a node", m.node_edge_hits));
     }
     if std::env::var_os("GRAPHLAY_RANDOM_OVERLAPS").is_some() && m.overlaps != 0 {
         fail(format!("{} overlapping edge segments", m.overlaps));

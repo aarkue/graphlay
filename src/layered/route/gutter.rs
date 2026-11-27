@@ -58,7 +58,19 @@ pub(super) fn waypoints(ctx: &RouteCtx, port: &PortMap) -> BTreeMap<usize, Vec<(
                     })
                 })
             });
-            if clear {
+            // An end on a border perpendicular to the flow is reached by a run along its node's
+            // layer. Straighten the waypoints only if that run stays clear of the layer's nodes.
+            let (first, last) = (chain[0], chain[m - 1]);
+            let ends_clear = (plo.side.horizontal()
+                || !ctx.seg_hits((cx[first], v[0].1), (cx[first], mono[0]), first, last))
+                && (phi.side.horizontal()
+                    || !ctx.seg_hits(
+                        (cx[last], mono[mono.len() - 1]),
+                        (cx[last], v[m - 1].1),
+                        first,
+                        last,
+                    ));
+            if clear && ends_clear {
                 for (p, &y) in v[1..m - 1].iter_mut().zip(&mono) {
                     p.1 = y;
                 }

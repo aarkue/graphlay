@@ -15,8 +15,7 @@ use graphlay::svg::{
     TextRun,
 };
 use graphlay::{
-    fixture, layout, Edge, GraphBuilder, GroupId, Layout, LayoutOptions, Node, NodeId,
-    RankConstraint, Shape, Size,
+    fixture, layout, Edge, GraphBuilder, GroupId, Layout, LayoutOptions, Node, NodeId, Shape, Size,
 };
 
 use super::Panel;
@@ -298,20 +297,21 @@ fn object_centric_dfg() -> Panel {
             })
         })
         .collect();
-    let mut ends = |rank: RankConstraint, size: Size| -> Vec<NodeId> {
+    // Without a rank constraint, each start and end node sits next to its type's first or last
+    // activity.
+    let mut ends = |size: Size| -> Vec<NodeId> {
         (0..TYPES.len())
             .map(|ty| {
                 b.add_node(Node {
                     size,
-                    rank,
                     group: Some(GroupId(ty as u32)),
                     ..Node::default()
                 })
             })
             .collect()
     };
-    let start = ends(RankConstraint::First, Size::new(92.0, 30.0));
-    let end = ends(RankConstraint::Last, Size::new(24.0, 24.0));
+    let start = ends(Size::new(92.0, 30.0));
+    let end = ends(Size::new(24.0, 24.0));
     let a = |name: &str| activity[ACTIVITIES.iter().position(|x| x.0 == name).expect("known")];
     let flows: Vec<(NodeId, NodeId, usize, u64)> = vec![
         (start[0], a("place order"), 0, 2000),

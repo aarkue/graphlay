@@ -42,6 +42,11 @@ pub fn seg_hits_one_box(p: (f64, f64), q: (f64, f64), b: &Boxes, i: usize, pad: 
         b.cy[i] - b.order_w[i] / 2.0 - pad,
         b.cy[i] + b.order_w[i] / 2.0 + pad,
     );
+    seg_hits_rect(p, q, (xmin, xmax), (ymin, ymax))
+}
+
+/// Whether segment `p->q` passes through the inside of the rectangle spanned by `x` and `y`.
+pub fn seg_hits_rect(p: Pt, q: Pt, (xmin, xmax): (f64, f64), (ymin, ymax): (f64, f64)) -> bool {
     if xmin >= xmax || ymin >= ymax {
         return false;
     }

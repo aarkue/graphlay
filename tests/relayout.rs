@@ -1,6 +1,10 @@
 //! Seeded relayout, pinning, reroute, flow spines and lanes through the public API: the calls an
 //! interactive editor makes after the first layout.
 
+// Tests may use the std float functions. Only the library must give the same result on every
+// platform.
+#![allow(clippy::disallowed_methods)]
+
 use graphlay::{
     layout, reroute, Direction, Edge, Graph, GraphBuilder, GroupId, Layout, LayoutOptions, Node,
     NodeId, Point, PortSides, RoutingStyle, SeedMode, Shape, Size,

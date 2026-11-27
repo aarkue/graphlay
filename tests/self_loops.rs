@@ -4,6 +4,10 @@
 //! the bump is outside the node, its ports keep clear of other edges' ports, `k` loops nest, and
 //! the label anchor is somewhere a label can be drawn.
 
+// Tests may use the std float functions. Only the library must give the same result on every
+// platform.
+#![allow(clippy::disallowed_methods)]
+
 use graphlay::{
     layout, Edge, EdgeRoute, Graph, GraphBuilder, Layout, LayoutOptions, LoopSide, Node, NodeId,
     Point, RouteKind, Shape, Size,
@@ -198,6 +202,50 @@ fn a_loop_label_is_anchored_outside_the_node() {
     );
     assert!(l.bounds.min.x <= anchor.x && anchor.x <= l.bounds.max.x);
     assert!(l.bounds.min.y <= anchor.y && anchor.y <= l.bounds.max.y);
+}
+
+/// Labels of nested loops go beyond the outermost loop, side by side, so none sits on another
+/// loop or on another label.
+#[test]
+fn nested_loop_labels_clear_every_loop_and_each_other() {
+    let size = Size::new(120.0, 52.0);
+    let mut b = boxes(2, size);
+    let (a, c) = (NodeId(0), NodeId(1));
+    b.connect(a, c);
+    let label = Size::new(40.0, 14.0);
+    for _ in 0..2 {
+        b.add_edge(Edge {
+            source: c,
+            target: c,
+            label_size: Some(label),
+            ..Edge::default()
+        });
+    }
+    let g = b.build();
+    let l = layout(&g, &LayoutOptions::layered_default()).unwrap();
+    let at = l.nodes[c.index()];
+    let outer = loops_of(&l)
+        .iter()
+        .flat_map(|r| &r.points)
+        .map(|&p| outside_by(p, at.center, at.size))
+        .fold(f64::NEG_INFINITY, f64::max);
+    let anchors: Vec<Point> = [1, 2]
+        .iter()
+        .map(|&i| l.edges[i].label_anchor.expect("labelled"))
+        .collect();
+    for &p in &anchors {
+        // The label box's inner edge, not only its centre, is beyond the loops.
+        let inner = outside_by(p, at.center, at.size) - label.width.min(label.height) / 2.0;
+        assert!(
+            inner > outer - 0.5,
+            "{p:?} reaches into the loops ({outer})"
+        );
+    }
+    let (p, q) = (anchors[0], anchors[1]);
+    assert!(
+        (p.x - q.x).abs() >= label.width - 0.5 || (p.y - q.y).abs() >= label.height - 0.5,
+        "{p:?} and {q:?} overlap"
+    );
 }
 
 /// On an ellipse the loop leaves and re-enters the curve, not the bounding box.

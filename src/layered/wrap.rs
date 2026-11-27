@@ -2,8 +2,9 @@
 //!
 //! Cuts the layer sequence at gaps few edges cross and stacks the pieces as rows. An edge over a
 //! cut becomes a U on its own lane between the rows, and the edge highest in the row turns
-//! outermost so the lanes nest without crossing. Runs after routing and wraps only when the result
-//! fills [`crate::WrapOptions::viewport_aspect`] at a clearly larger scale.
+//! outermost so the lanes nest without crossing. An edge into the next row whose target is right
+//! of its source goes straight down its lane instead. Runs after routing and wraps only when the
+//! result fills [`crate::WrapOptions::viewport_aspect`] at a clearly larger scale.
 
 use super::state::LayeredState;
 use crate::error::LayoutError;
@@ -283,9 +284,100 @@ fn apply(
         let xl = to.0 - margin - i as f64 * lane;
         vec![from, (xr, from.1), (xr, yl), (xl, yl), (xl, to.1), to]
     };
+    let boxes: Vec<(f64, f64, f64, f64)> = (0..st.n_real)
+        .map(|v| {
+            let nd = &st.nodes[v];
+            let (x, y) = mv((nd.along, nd.cross));
+            (
+                x - nd.w_along / 2.0,
+                x + nd.w_along / 2.0,
+                y - nd.w_cross / 2.0,
+                y + nd.w_cross / 2.0,
+            )
+        })
+        .collect();
+    let clear = |x: f64, y0: f64, y1: f64| {
+        let (lo, hi) = (y0.min(y1), y0.max(y1));
+        boxes
+            .iter()
+            .all(|b| x <= b.0 || x >= b.1 || hi <= b.2 || lo >= b.3)
+    };
+    let ends: Vec<(f64, f64)> = ids
+        .iter()
+        .flat_map(|&id| {
+            let pts = route_of(st, id);
+            [pts.first(), pts.last()]
+                .into_iter()
+                .flatten()
+                .map(|&p| mv(p))
+        })
+        .collect();
+    // A route into the next row whose target is right of its source goes down its lane between
+    // the rows. The U would run back across both rows.
+    let drop = |pts: &[(f64, f64)], j: usize, i: usize| -> Option<Vec<(f64, f64)>> {
+        let n = pts.len();
+        let level = |a: (f64, f64), b: (f64, f64)| (a.1 - b.1).abs() < 0.5;
+        let upright = |a: (f64, f64), b: (f64, f64)| (a.0 - b.0).abs() < 0.5;
+        if n < 2
+            || row_of(pts[0].0, &cuts) != j
+            || row_of(pts[n - 1].0, &cuts) != j + 1
+            || !level(pts[0], pts[1])
+            || pts[1].0 <= pts[0].0
+            || !level(pts[n - 2], pts[n - 1])
+            || pts[n - 1].0 <= pts[n - 2].0
+        {
+            return None;
+        }
+        let (mut s, t) = (mv(pts[0]), mv(pts[n - 1]));
+        // The router may have put the source port above the middle, for a route going up. Going
+        // down from there crosses the source's other edges, so use the mirrored port if free.
+        if let Some(b) = boxes
+            .iter()
+            .find(|b| (b.1 - s.0).abs() < 0.5 && s.1 > b.2 && s.1 < b.3)
+        {
+            let mid = (b.2 + b.3) / 2.0;
+            let mirrored = 2.0 * mid - s.1;
+            let taken = ends
+                .iter()
+                .any(|&(x, y)| (x - s.0).abs() < 0.5 && (y - mirrored).abs() < lane);
+            if s.1 < mid - 0.5 && !taken {
+                s.1 = mirrored;
+            }
+        }
+        // Keep the route's vertical segments next to source and target, else turn just past the
+        // border.
+        let xs = if n > 2 && upright(pts[1], pts[2]) && row_of(pts[1].0, &cuts) == j {
+            mv(pts[1]).0
+        } else {
+            s.0 + margin / 2.0
+        };
+        let xt = if n > 2 && upright(pts[n - 3], pts[n - 2]) && row_of(pts[n - 2].0, &cuts) == j + 1
+        {
+            mv(pts[n - 2]).0
+        } else {
+            t.0 - margin / 2.0
+        };
+        let y = ext[j].3 + shifts[j].1 + margin + (n_cut[j] - 1 - i) as f64 * lane;
+        if xt < xs + 0.5 || !clear(xs, s.1, y) || !clear(xt, y, t.1) {
+            return None;
+        }
+        Some(vec![s, (xs, s.1), (xs, y), (xt, y), (xt, t.1), t])
+    };
     let mut new_routes: Vec<(RouteId, Vec<(f64, f64)>)> = Vec::new();
     for (r, &id) in ids.iter().enumerate() {
         let pts = route_of(st, id).to_vec();
+        let cut_at = |k: usize| row_of(pts[k].0, &cuts);
+        let rows_crossed = (1..pts.len())
+            .filter(|&k| cut_at(k) != cut_at(k - 1))
+            .count();
+        if rows_crossed == 1 {
+            let j = cut_at(0).min(cut_at(pts.len() - 1));
+            let i = lane_of.get(&(r, j)).copied().unwrap_or(0);
+            if let Some(path) = drop(&pts, j, i) {
+                new_routes.push((id, simplify_collinear(path)));
+                continue;
+            }
+        }
         let mut out: Vec<(f64, f64)> = Vec::with_capacity(pts.len() + 6);
         for (k, &p) in pts.iter().enumerate() {
             if k > 0 {
@@ -343,6 +435,44 @@ fn apply(
 #[allow(clippy::unwrap_used, clippy::expect_used)]
 mod tests {
     use crate::{layout, GraphBuilder, LayoutOptions, Node, Size};
+
+    /// A shortcut into a later column of the next row goes down between the rows and never runs
+    /// left of its source.
+    #[test]
+    fn a_shortcut_into_the_next_row_drops_between_the_rows() {
+        let mut b = GraphBuilder::new();
+        let n: Vec<_> = (0..11)
+            .map(|_| {
+                b.add_node(Node {
+                    size: Size::new(100.0, 36.0),
+                    ..Node::default()
+                })
+            })
+            .collect();
+        for w in n.windows(2) {
+            b.connect(w[0], w[1]);
+        }
+        b.connect(n[1], n[5]);
+        b.connect(n[4], n[3]);
+        b.connect(n[8], n[10]);
+        let g = b.build();
+        let mut o = LayoutOptions::layered_default();
+        o.wrap.viewport_aspect = 16.0 / 9.0;
+        let l = layout(&g, &o).unwrap();
+        let (src, dst) = (&l.nodes[1], &l.nodes[5]);
+        assert!(
+            dst.center.y > src.center.y + 50.0,
+            "not wrapped: {:?}",
+            l.nodes
+        );
+        let route = &l.edges[10].points;
+        assert!(
+            route
+                .iter()
+                .all(|p| p.x >= src.center.x && p.x <= dst.center.x),
+            "{route:?}"
+        );
+    }
 
     /// A 16-box chain wraps into rows for a 16:9 viewport, fits it at a larger scale and keeps
     /// every segment axis-aligned.

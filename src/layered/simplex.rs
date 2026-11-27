@@ -27,6 +27,36 @@ const SPINE_FACTOR: f64 = 8.0;
 /// (2), well below the main path.
 const BRANCH_FACTOR: f64 = 2.5;
 
+/// Weight factor for edges inside a sequence, i.e., from a node with one outgoing edge to a node
+/// with one incoming edge. Bends then go to forks and joins instead.
+const SEQUENCE_FACTOR: f64 = 1.1;
+
+/// The hops of the edges [`SEQUENCE_FACTOR`] applies to.
+fn sequence_hops(st: &LayeredState) -> std::collections::BTreeSet<(usize, usize)> {
+    let n = st.n_real;
+    let (mut outs, mut ins) = (vec![0usize; n], vec![0usize; n]);
+    let ends = |chain: &Vec<usize>| {
+        let (&a, &b) = (chain.first()?, chain.last()?);
+        let (a, b) = if st.nodes[b].rank >= st.nodes[a].rank {
+            (a, b)
+        } else {
+            (b, a)
+        };
+        (a < n && b < n && a != b).then_some((a, b))
+    };
+    for chain in st.chains.values() {
+        if let Some((a, b)) = ends(chain) {
+            outs[a] += 1;
+            ins[b] += 1;
+        }
+    }
+    st.chains
+        .values()
+        .filter(|chain| ends(chain).is_some_and(|(a, b)| outs[a] == 1 && ins[b] == 1))
+        .flat_map(|chain| chain.windows(2).map(|w| (w[0], w[1])))
+        .collect()
+}
+
 /// One constraint: `x[head] - x[tail] >= min_len`, costing `weight` per unit of
 /// `x[head] - x[tail]`.
 #[derive(Clone, Copy, Debug)]
@@ -556,6 +586,7 @@ pub fn place_cross_simplex(st: &mut LayeredState, o: &LayoutOptions) -> Result<b
     // pass would leave a gap on the side it moved away from.
     let spine_hops = super::mainpath::spine_hops(st, o);
     let branch_hops = super::mainpath::branch_hops(st, o);
+    let sequence_hops = sequence_hops(st);
     // An end hinted to attach off its border's middle pulls its neighbour level with that point,
     // not with the node's centre.
     let hints = super::route::hints::Hints::of(st, &st.boxes());
@@ -574,6 +605,8 @@ pub fn place_cross_simplex(st: &mut LayeredState, o: &LayoutOptions) -> Result<b
                 SPINE_FACTOR
             } else if on(&branch_hops) {
                 BRANCH_FACTOR
+            } else if on(&sequence_hops) {
+                SEQUENCE_FACTOR
             } else {
                 1.0
             };

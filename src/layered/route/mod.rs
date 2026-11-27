@@ -35,7 +35,7 @@ mod spread;
 
 /// Max distance of a spread port from its border's middle, as a fraction of the border length.
 /// Ports share the middle 90% and leave the corners free.
-const PORT_SPAN: f64 = 0.45;
+pub(super) const PORT_SPAN: f64 = 0.45;
 
 /// The port of every routed arc end, keyed by `(arc, is_source)`.
 type PortMap = BTreeMap<(usize, bool), Port>;
@@ -63,6 +63,8 @@ struct RouteCtx<'a> {
     port_stroke_clear: f64,
     stub_len: f64,
     hints: hints::Hints,
+    /// Per arc, whether diagonal routing must attach it to the borders facing along the flow.
+    facing: Vec<bool>,
 }
 
 impl<'a> RouteCtx<'a> {
@@ -90,6 +92,7 @@ impl<'a> RouteCtx<'a> {
             port_stroke_clear: o.spacing.port_stroke_clear,
             stub_len: o.spacing.stub,
             hints: hints::Hints::of(st, b),
+            facing: Vec::new(),
         }
     }
 
@@ -163,8 +166,10 @@ fn route_edges(
     flow_edges: bool,
     side_port: bool,
     side_port_used: &mut [bool],
+    facing: &[bool],
 ) -> Routed {
-    let ctx = RouteCtx::new(st, b, o, flow_edges, side_port);
+    let mut ctx = RouteCtx::new(st, b, o, flow_edges, side_port);
+    ctx.facing = facing.to_vec();
 
     let arc_ends = sides::assign_sides(&ctx, side_port_used);
     let (mut port, lane_offsets) = spread::spread_ports(&ctx, &arc_ends);
@@ -245,11 +250,28 @@ pub fn route(st: &mut LayeredState, o: &LayoutOptions) -> Result<(), LayoutError
     let boxes = st.boxes();
     let routed = if o.routing.style == RoutingStyle::Diagonal {
         let mut used = vec![false; st.routes.len()];
-        let mut routed = route_edges(st, &boxes, o, true, true, &mut used);
-        repair::repair_side_ports(st, &boxes, o, &used, &mut routed.routes);
+        let mut routed = route_edges(st, &boxes, o, true, true, &mut used, &[]);
+        // A long edge attached to a border perpendicular to the flow can end up routed through
+        // other nodes. Route such edges again on the borders facing along the flow.
+        let mut facing = vec![false; st.routes.len()];
+        for (&arc, chain) in st.chains.iter().filter(|(_, c)| c.len() > 2) {
+            let (lo, hi) = (chain[0], chain[chain.len() - 1]);
+            let cuts = routed.routes.get(arc).is_some_and(|r| {
+                r.windows(2)
+                    .any(|w| seg_hits_box(w[0], w[1], &boxes, lo, hi))
+            });
+            if let Some(f) = facing.get_mut(arc) {
+                *f = cuts;
+            }
+        }
+        if facing.iter().any(|&f| f) {
+            used.fill(false);
+            routed = route_edges(st, &boxes, o, true, true, &mut used, &facing);
+        }
+        repair::repair_side_ports(st, &boxes, o, &used, &mut routed.routes, &facing);
         routed
     } else {
-        let routed = route_edges(st, &boxes, o, false, false, &mut []);
+        let routed = route_edges(st, &boxes, o, false, false, &mut [], &[]);
         // Spread ports can add risers `ReserveLanes` did not count. Widen such gutters and route
         // once more, unless seeds fix the layers.
         if !st.has_seeds() && !st.gap_after.is_empty() && routed.short.iter().any(|&s| s > 0.5) {
@@ -260,7 +282,7 @@ pub fn route(st: &mut LayeredState, o: &LayoutOptions) -> Result<(), LayoutError
             let placed = super::coord::assign_layer_positions(st, &gap);
             st.gap_after = gap;
             placed?;
-            route_edges(st, &st.boxes(), o, false, false, &mut [])
+            route_edges(st, &st.boxes(), o, false, false, &mut [], &[])
         } else {
             routed
         }

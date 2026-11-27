@@ -90,7 +90,7 @@ within a layer, whatever the drawing's direction. `finish` transposes for top-to
 | ReserveLanes | `coord`, `stable` | Widens gaps for the vertical runs they hold. | |
 | Route | `route/` | Ports, polylines, bundle lanes and repair passes. | |
 | RouteSelfLoops | `selfloop` | Draws each self-loop as a bump. | |
-| MergeEdges | `merge` | Draws forks and joins on a shared trunk where that costs no crossing or bend. | option off |
+| MergeEdges | `merge` | Draws forks and joins on a shared trunk where that costs no crossing or bend. | `none` |
 | Wrap | `wrap` | Wraps a long drawing into rows for a viewport aspect. | option off |
 | PlaceLabels | `label` | Puts each label in its reserved gap. | |
 | MeasureLanes | `group` | Measures the strict swimlanes' rectangles. | not strict lanes |

@@ -10,6 +10,10 @@
 //! To add an example, write `tests/gallery/<name>.rs` (a `//!` title line, a blank `//!` line, a
 //! description, and `pub fn panels() -> Vec<Panel>`), add it to [`EXAMPLES`], and bless.
 
+// Tests may use the std float functions. Only the library must give the same result on every
+// platform.
+#![allow(clippy::disallowed_methods)]
+
 use std::fmt::Write as _;
 use std::path::{Path, PathBuf};
 

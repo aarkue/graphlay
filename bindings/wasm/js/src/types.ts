@@ -203,7 +203,7 @@ export type PortCentring = "off" | "round" | "all";
  * This interface was referenced by `GraphlayTypes`'s JSON-Schema
  * via the `definition` "MergeEdges".
  */
-export type MergeEdges = "none" | "forks" | "joins" | "both";
+export type MergeEdges = "auto" | "none" | "forks" | "joins" | "both";
 /**
  * How readily an edge end may attach to a perpendicular border (e.g., top or bottom in a
  * left-to-right drawing) instead of the border facing along the flow.
@@ -1527,7 +1527,7 @@ export interface Routing {
   lane_gap?: number;
   /**
    * Draw a node's forks (edges leaving it) or joins (edges reaching it) on one shared trunk
-   * that branches at a common riser. Default [`MergeEdges::None`]. Orthogonal routing only.
+   * that branches at a common riser. Default [`MergeEdges::Auto`]. Orthogonal routing only.
    * It moves no node, and edges with a port hint are never merged.
    *
    * ```

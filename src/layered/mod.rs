@@ -179,8 +179,19 @@ pub(crate) fn layout_layered_inner(
             max_x = max_x.max(centers[old].0 + hw);
             max_y = max_y.max(centers[old].1 + hh);
         }
+        let drawn = || {
+            sub_out
+                .routes
+                .iter()
+                .chain(sub_out.lane_routes.iter().flatten())
+                .chain(sub_out.loop_routes.values())
+        };
         if !min_x.is_finite() {
             (min_x, max_x, max_y) = (0.0, 0.0, 0.0);
+        } else {
+            // Routes can run below the lowest node (e.g., a loop under its row), and the grid of
+            // nodes without edges starts below them.
+            max_y = drawn().flatten().fold(max_y, |y, p| y.max(p.1));
         }
         // An orphan can still carry self-loops, so a grid cell must also fit the widest loop.
         let axis = state::Axis::of(input.options.direction);
@@ -254,6 +265,13 @@ pub(crate) fn layout_layered_inner(
                 let (hw, hh) = half(node);
                 let collides = taken.iter().any(|&(ox, oy, ow, oh)| {
                     (cx - ox).abs() < hw + ow + clear && (cy - oy).abs() < hh + oh + clear
+                }) || drawn().flat_map(|r| r.windows(2)).any(|w| {
+                    crate::geometry::hit::seg_hits_rect(
+                        w[0],
+                        w[1],
+                        (cx - hw - clear, cx + hw + clear),
+                        (cy - hh - clear, cy + hh + clear),
+                    )
                 });
                 if !collides {
                     slot_of[node] = Some((cx, cy));

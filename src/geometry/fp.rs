@@ -27,6 +27,12 @@ pub(crate) fn cos(x: f64) -> f64 {
     libm::cos(x)
 }
 
+/// The angle whose cosine is `x`, in radians.
+#[inline]
+pub(crate) fn acos(x: f64) -> f64 {
+    libm::acos(x)
+}
+
 /// `x * x`.
 #[inline]
 pub(crate) fn sq(x: f64) -> f64 {
@@ -43,6 +49,7 @@ mod tests {
         assert!((atan2(1.0, 1.0) - std::f64::consts::FRAC_PI_4).abs() < 1e-15);
         assert!((sin(std::f64::consts::FRAC_PI_2) - 1.0).abs() < 1e-15);
         assert!((cos(0.0) - 1.0).abs() < 1e-15);
+        assert!((acos(0.0) - std::f64::consts::FRAC_PI_2).abs() < 1e-15);
         assert_eq!(sq(-3.0), 9.0);
     }
 }
